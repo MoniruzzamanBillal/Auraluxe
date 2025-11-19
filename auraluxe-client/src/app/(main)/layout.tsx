@@ -1,12 +1,14 @@
 import Navbar from "@/components/share/navBar/Navbar";
 import { ReactNode } from "react";
 
-export default function layout({ children }: { children: ReactNode }) {
+function layout({ children }: { children: ReactNode }) {
   return (
-    <div className="bg-[#F0EEEE] min-h-screen ">
+    <div className="overflow-y-auto bg-[#F0EEEE]">
       <Navbar />
-
       {children}
+      {/* <Footer /> */}
     </div>
   );
 }
+
+export default layout;

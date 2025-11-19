@@ -15,9 +15,6 @@ import { useState } from "react";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { IoClose } from "react-icons/io5";
 
-import navLogo from "@/../public/logo-no-bg.png";
-import wishlistLogo from "@/../public/icons/wishlist_icon.png";
-
 const navInfo = [
   {
     navName: "Products",
@@ -113,6 +110,9 @@ const navInfo = [
   },
 ];
 
+import navLogo from "@/../public/logo-no-bg.png";
+import wishlistLogo from "@/../public/icons/wishlist_icon.png";
+
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathName = usePathname();
@@ -135,7 +135,7 @@ const Navbar = () => {
     <div className="print:hidden">
       <div className="h-12 bg-white lg:h-20"></div>
       <div
-        className={` container navbar fixed top-0 left-0 z-[1000] h-12 w-full bg-white/60 font-semibold text-black shadow-md backdrop-blur-md lg:h-20`}
+        className={`navbar fixed top-0 left-0 z-[1000] h-12 w-full bg-white/60 font-semibold text-black shadow-md backdrop-blur-md lg:h-20`}
       >
         <div className="relative h-full">
           <div className="container h-full w-full lg:px-10 2xl:px-0">
@@ -145,7 +145,7 @@ const Navbar = () => {
                 <Link href={"/"}>
                   <div className="my-5 hidden items-center lg:flex">
                     <Image
-                      alt="Logo"
+                      alt="tilottoma Logo"
                       src={navLogo}
                       height={150}
                       width={150}
@@ -158,7 +158,7 @@ const Navbar = () => {
                 <Link href={"/"}>
                   <div className="my-5 flex items-center lg:hidden">
                     <Image
-                      alt="Logo"
+                      alt="tilottoma Logo"
                       src={navLogo}
                       height={20}
                       width={90}
@@ -188,7 +188,7 @@ const Navbar = () => {
                       <NavigationMenuContent
                         onMouseLeave={handleMouseLeave}
                         // !top-16 (64px) bg-bgSoftGray
-                        className="absolute top-6! -left-28 z-[100] w-[330px] rounded-none! border-none! p-0 shadow-none!"
+                        className="absolute !top-6 -left-28 z-[1000] w-[330px] !rounded-none !border-none p-0 !shadow-none"
                       >
                         {/* <div className="bg-bgSoftGray flex h-full w-[330px]"> */}
                         <div className="bg-bgSoftGray mt-9 flex h-full w-[330px] shadow-2xl">
@@ -221,7 +221,7 @@ const Navbar = () => {
                               </Link>
                             ))}
                           </div>
-                          <div className="bg-deepRed absolute bottom-0 h-[6px] w-full"></div>
+                          <div className="bg-deepRed absolute bottom-0 h-1.5 w-full"></div>
                           {/* ====== submenu ======= */}
                           {/* <div className="h-full pl-[50px]">
                           {activeProduct &&
@@ -248,7 +248,7 @@ const Navbar = () => {
               {/*========= wish list button ======== */}
               <Link
                 href={"/wishlist"}
-                className="hidden w-5 cursor-pointer lg:block"
+                className="hidden w-[20px] cursor-pointer lg:block"
               >
                 <Image
                   alt="wishlist icon"
