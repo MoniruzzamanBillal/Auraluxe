@@ -1,13 +1,10 @@
+import dynamic from "next/dynamic";
+
 export default function page() {
-  return (
-    <div className=" container  ">
-      <h1>home page </h1>
-      <h1>home page </h1>
-      <h1>home page </h1>
-      <h1>home page </h1>
-      <h1>home page </h1>
-      <h1>home page </h1>
-      <h1>home page </h1>
-    </div>
+  const LandingPage = dynamic(
+    () => import("@/components/main/landingPage/LandingPage"),
+    { loading: () => <p>loading....</p> }
   );
+
+  return <LandingPage />;
 }
