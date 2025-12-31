@@ -3,10 +3,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import sliderpic1 from "../../../../public/landingPage/slider/sliderOne.jpg";
+import sliderpic3 from "../../../../public/landingPage/slider/sliderThree.png";
+import sliderpic2 from "../../../../public/landingPage/slider/sliderTwo.jpg";
+
 const slides = [
   {
     id: 1,
-    image: "https://i.postimg.cc/PJtYBhSM/slider-One.jpg",
+    image: sliderpic1,
     text: (
       <div className="flex w-[554px] flex-col gap-7">
         <div className="text-white">
@@ -25,7 +29,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "https://i.postimg.cc/zXyV3Vbs/slider-Two.jpg",
+    image: sliderpic2,
     text: (
       <div className="flex w-[554px] flex-col gap-7">
         <div className="text-white">
@@ -44,7 +48,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "https://i.postimg.cc/sxqf54GD/slider-Three.png",
+    image: sliderpic3,
     text: (
       <div className="flex w-[554px] flex-col gap-7">
         <div className="text-white">
@@ -92,8 +96,6 @@ export default function AutoSlider() {
     return () => clearInterval(timer);
   }, []);
 
-  console.log(slides[currentIndex]);
-
   return (
     <div>
       <div className="relative hidden h-[900px] w-full overflow-hidden lg:block">
@@ -101,7 +103,7 @@ export default function AutoSlider() {
         <AnimatePresence custom={1} initial={false}>
           <motion.img
             key={slides[currentIndex]?.id}
-            src={slides[currentIndex].image}
+            src={slides[currentIndex].image?.src}
             custom={1}
             variants={variants}
             initial="enter"
