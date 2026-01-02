@@ -1,7 +1,7 @@
 import Heading from "@/components/share/common/Heading";
 import TextHoverEffect from "@/components/share/hoverEffects/TextHoverEffect";
 import Image from "next/image";
-import { ourProducts } from "./LandingTempData";
+import { ourProductsData } from "./LandingTempData";
 
 export default function OurProducts() {
   return (
@@ -17,7 +17,7 @@ export default function OurProducts() {
       />
       {/*======== products with description ========== */}
       <div className="grid grid-cols-1 gap-8 sm:gap-0 lg:grid-cols-2">
-        {ourProducts?.map((product, index) => {
+        {ourProductsData?.map((product, index) => {
           const group = Math.floor(index / 2);
           const isReverse = group % 2 === 1;
           return (

@@ -49,7 +49,7 @@ export default function Heading({
               <p
                 className={cn(
                   "text-mediumGray text-xs leading-4 font-normal sm:max-w-[438px] sm:text-[1rem] sm:leading-6 lg:max-w-[600px]",
-                  descriptionClassName,
+                  descriptionClassName
                 )}
               >
                 {descripiton}

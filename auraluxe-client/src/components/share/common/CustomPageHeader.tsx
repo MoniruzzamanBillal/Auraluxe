@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -23,16 +22,6 @@ export default function CustomPageHeader({
     >
       {/*======= overlay =======*/}
       <div className="absolute inset-0 h-full w-full bg-black/70"></div>
-      {/* ====== logo ======= */}
-      <div className="absolute right-[50%] -bottom-3 h-6 w-6 translate-x-[50%] overflow-hidden rounded-full bg-white sm:-bottom-3.5 sm:h-[35px] sm:w-[35px] md:-bottom-5.5 md:h-[45px] md:w-[45px] lg:-bottom-7.5 lg:h-[60px] lg:w-[60px] xl:-bottom-9 xl:h-[71px] xl:w-[71px]">
-        <Image
-          alt="tilottoma Logo"
-          src={"/images/logo/page_header_logo.png"}
-          height={400}
-          width={400}
-          className="scale-110 object-fill"
-        />
-      </div>
 
       {/* ======= contents ======= */}
       <div className="sc-500:px-10 relative container flex h-full flex-col justify-center gap-4 text-white sm:justify-center sm:gap-7.5 md:gap-12 lg:gap-16 xl:gap-20">
