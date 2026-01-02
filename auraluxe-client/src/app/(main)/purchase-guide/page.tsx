@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
-  title: "Tilottoma | Purchase Guide",
+  title: "Auraluxe | Purchase Guide",
 };
 export default function PurchaseGuidePage() {
   const PurchaseGuide = dynamic(
