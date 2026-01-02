@@ -56,7 +56,7 @@ export default function ContactPageDetails() {
       <div className="mx-auto mb-10 w-full max-w-[1537px] p-4 md:mt-10 md:mb-28">
         <div className="contact-shadow grid grid-cols-1 gap-6 rounded-[20px] border border-gray-200 border-t-gray-200 xl:h-screen xl:max-h-[554px] xl:grid-cols-3">
           {/* Main Experience Center Card */}
-          <div className="relative min-h-[320px] w-full overflow-hidden rounded-2xl xl:col-span-1 xl:w-[495px] xl:rounded-r-none">
+          <div className="relative min-h-80 w-full overflow-hidden rounded-2xl xl:col-span-1 xl:w-[495px] xl:rounded-r-none">
             {/*====== location =======*/}
             <div className="relative z-10 flex h-full flex-col justify-center">
               <iframe

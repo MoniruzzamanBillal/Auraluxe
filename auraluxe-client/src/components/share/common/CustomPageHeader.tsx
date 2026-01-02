@@ -2,6 +2,8 @@ import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
+import pageHeaderImage from "../../../../public/key_brands/main_banner.jpg";
+
 type Props = {
   image?: string;
   pageTitle: string;
@@ -9,7 +11,7 @@ type Props = {
 };
 
 export default function CustomPageHeader({
-  image = "/images/key_brands/main_banner.jpg",
+  image = pageHeaderImage?.src,
   pageTitle,
   description,
 }: Props) {

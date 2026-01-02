@@ -52,10 +52,10 @@ const navInfo = [
         name: "News & Updates",
         href: "/news-updates",
       },
-      {
-        name: "Our Stories",
-        href: "/our-stories",
-      },
+      // {
+      //   name: "Our Stories",
+      //   href: "/our-stories",
+      // },
       {
         name: "Contact Us",
         href: "/contact",
@@ -110,8 +110,8 @@ const navInfo = [
   },
 ];
 
-import navLogo from "@/../public/logo-no-bg.png";
 import wishlistLogo from "@/../public/icons/wishlist_icon.png";
+import navLogo from "@/../public/logo-no-bg.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
