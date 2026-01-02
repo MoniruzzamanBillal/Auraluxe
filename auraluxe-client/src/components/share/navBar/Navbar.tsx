@@ -98,10 +98,7 @@ const navInfo = [
         name: "Purchase Guide",
         href: "/purchase-guide",
       },
-      {
-        name: "Brand Catalouge",
-        href: "/",
-      },
+
       {
         name: "Key Brands",
         href: "/key-brands",
