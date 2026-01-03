@@ -1,4 +1,5 @@
 import AutoSlider from "./AutoSlider";
+import OurFeatures from "./OurFeatures";
 import OurProducts from "./OurProducts";
 
 export default function LandingPage() {
@@ -9,6 +10,11 @@ export default function LandingPage() {
 
       {/* ======= our products =========== */}
       <OurProducts />
+
+      {/*=== our features ==========*/}
+      <div className="sc-500:my-10 my-5 md:my-20">
+        <OurFeatures />
+      </div>
     </div>
   );
 }
