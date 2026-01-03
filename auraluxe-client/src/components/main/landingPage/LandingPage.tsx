@@ -1,5 +1,6 @@
 import AutoSlider from "./AutoSlider";
 import Elevating from "./Elevating";
+import FeturedProducts from "./FeturedProducts";
 import OurFeatures from "./OurFeatures";
 import OurProducts from "./OurProducts";
 
@@ -20,6 +21,11 @@ export default function LandingPage() {
       {/* ======= Elevating ========== */}
       <div className="">
         <Elevating />
+      </div>
+
+      {/*======= featured products ======== */}
+      <div className="mb-5 lg:mb-10">
+        <FeturedProducts />
       </div>
     </div>
   );
