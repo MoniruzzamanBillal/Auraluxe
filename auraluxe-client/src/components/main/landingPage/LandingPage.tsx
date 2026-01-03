@@ -3,6 +3,7 @@ import Elevating from "./Elevating";
 import FeturedProducts from "./FeturedProducts";
 import OurFeatures from "./OurFeatures";
 import OurProducts from "./OurProducts";
+import TrustedPartners from "./TrustedPartners";
 
 export default function LandingPage() {
   return (
@@ -26,6 +27,11 @@ export default function LandingPage() {
       {/*======= featured products ======== */}
       <div className="mb-5 lg:mb-10">
         <FeturedProducts />
+      </div>
+
+      {/*======= trusted partners ======== */}
+      <div className="mb-5 md:mb-28">
+        <TrustedPartners />
       </div>
     </div>
   );
