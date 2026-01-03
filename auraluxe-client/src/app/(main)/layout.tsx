@@ -1,3 +1,4 @@
+import Footer from "@/components/share/Footer";
 import Navbar from "@/components/share/navBar/Navbar";
 import { ReactNode } from "react";
 
@@ -6,7 +7,7 @@ function layout({ children }: { children: ReactNode }) {
     <div className="overflow-y-auto bg-[#F0EEEE]">
       <Navbar />
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
