@@ -165,3 +165,13 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+/*  */
+/*  */
+.bgr {
+  background-color: rgb(252, 30, 30);
+}
+
+.bge {
+  background-color: rgb(243, 70, 243);
+}

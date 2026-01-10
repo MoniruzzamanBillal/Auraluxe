@@ -1,0 +1,303 @@
+[
+  {
+    "_id": "6871f0dccc611291c5a337e9",
+    "name": "AVENTOS HF Bi-Fold Lift System, Cover Cap, Right and Left, Silk White",
+    "slug": "AVENTOS_HF_Bi-Fold_Lift_System_Cover_Cap_Right_and_Left_Silk_White",
+    "code": "6469518",
+    "description": "<p>Cover caps in an elegant design. Custom branding elements add a unique touch to AVENTOS top in your cabinets.</p>",
+    "specification": "<ul><li>Aventos AVENTOS HF Bi-Fold Lift System</li><li>Cover Cap</li><li>Silk White</li><li>Nylon</li><li>Press-In</li><li>Right+Left</li></ul>",
+    "origin": "Austria",
+    "price": 0,
+    "brand": {
+      "_id": "68930ce029d0183f000cb3a5",
+      "name": "MyKitchen",
+      "description": "Blum brand description",
+      "logo": "http://api.mykitchen-bd.com/uploads/logo-1754467552068-563731475.png",
+      "activeStatus": true
+    },
+    "finish": "Matte",
+    "category": [
+      "Accessories",
+      "Smart Toilet",
+      "Washlet",
+      "Bath and Spa Solutions"
+    ],
+    "images": [
+      "http://api.mykitchen-bd.com/uploads/images-1752297692641-226263013.jpg",
+      "http://api.mykitchen-bd.com/uploads/images-1752297692642-343088358.jpg"
+    ],
+    "activeStatus": true,
+    "createdAt": "2025-07-12T05:21:32.647Z",
+    "updatedAt": "2025-07-12T05:21:32.647Z"
+  },
+  {
+    "_id": "6871f0dccc611291c5a337ea",
+    "name": "Hinge 110° CLIP top BLUMOTION",
+    "slug": "Hinge_110_CLIP_top_BLUMOTION",
+    "code": "7469520",
+    "description": "<p>Soft-close hinge for cabinet doors with sleek motion technology.</p>",
+    "specification": "<ul><li>CLIP top BLUMOTION</li><li>110° opening angle</li><li>Steel Nickel plated</li></ul>",
+    "origin": "Austria",
+    "price": 0,
+    "brand": {
+      "_id": "68930ce029d0183f000cb3a5",
+      "name": "MyKitchen",
+      "description": "Blum brand description",
+      "logo": "http://api.mykitchen-bd.com/uploads/logo-1754467552068-563731475.png",
+      "activeStatus": true
+    },
+    "finish": "Glossy",
+    "category": [
+      "Hinges",
+      "Hardware",
+      "Self Rimming Lavatory",
+      "Half Pedestal Lavatory",
+      "Modular Kitchen Solutions",
+      "Bath & Spa Solution"
+    ],
+    "images": [
+      "http://api.mykitchen-bd.com/uploads/images-1752297692641-226263013.jpg",
+      "http://api.mykitchen-bd.com/uploads/images-1752297692642-343088358.jpg"
+    ],
+    "activeStatus": true,
+    "createdAt": "2025-07-13T05:21:32.647Z",
+    "updatedAt": "2025-07-13T05:21:32.647Z"
+  },
+  {
+    "_id": "6871f0dccc611291c5a337eb",
+    "name": "Tandem Box Drawer System",
+    "slug": "Tandem_Box_Drawer_System",
+    "code": "8469519",
+    "description": "<p>High-quality drawer system with smooth running action and excellent stability.</p>",
+    "specification": "<ul><li>Tandem Box</li><li>Full Extension</li><li>Soft Close</li></ul>",
+    "origin": "Germany",
+    "price": 0,
+    "brand": {
+      "_id": "68930ce029d0183f000cb3a5",
+      "name": "MyKitchen",
+      "description": "Blum brand description",
+      "logo": "http://api.mykitchen-bd.com/uploads/logo-1754467552068-563731475.png",
+      "activeStatus": true
+    },
+    "finish": "Matte",
+    "category": [
+      "Drawer Systems",
+      "Hardware",
+      "Pillar Tap",
+      "Modular Kitchen Solutions",
+      "Seat & Cover"
+    ],
+    "images": [
+      "http://api.mykitchen-bd.com/uploads/images-1752297692641-226263013.jpg",
+      "http://api.mykitchen-bd.com/uploads/images-1752297692642-343088358.jpg"
+    ],
+    "activeStatus": true,
+    "createdAt": "2025-07-14T05:21:32.647Z",
+    "updatedAt": "2025-07-14T05:21:32.647Z"
+  },
+  {
+    "_id": "6871f0dccc611291c5a337ec",
+    "name": "Modern Kitchen Faucet with Pull-Down Sprayer",
+    "slug": "Modern_Kitchen_Faucet_with_Pull-Down_Sprayer",
+    "code": "9469519",
+    "description": "<p>Stylish pull-down faucet for modern kitchens with a stainless steel finish.</p>",
+    "specification": "<ul><li>Single Handle</li><li>Pull Down</li><li>Stainless Steel</li></ul>",
+    "origin": "Italy",
+    "price": 0,
+    "brand": {
+      "_id": "68930ce029d0183f000cb3a5",
+      "name": "MyKitchen",
+      "description": "Blum brand description",
+      "logo": "http://api.mykitchen-bd.com/uploads/logo-1754467552068-563731475.png",
+      "activeStatus": true
+    },
+    "finish": "Chrome",
+    "category": ["Kitchen", "Faucets", "Wall & Floor Solutions", "Oven"],
+    "images": [
+      "http://api.mykitchen-bd.com/uploads/images-1752297692641-226263013.jpg",
+      "http://api.mykitchen-bd.com/uploads/images-1752297692642-343088358.jpg"
+    ],
+    "activeStatus": true,
+    "createdAt": "2025-07-15T05:21:32.647Z",
+    "updatedAt": "2025-07-15T05:21:32.647Z"
+  },
+  {
+    "_id": "6871f0dccc611291c5a337ed",
+    "name": "Kitchen Sink Double Bowl",
+    "slug": "Kitchen_Sink_Double_Bowl",
+    "code": "10469519",
+    "description": "<p>Durable stainless steel double bowl sink with noise-reducing coating.</p>",
+    "specification": "<ul><li>Stainless Steel</li><li>Top Mount</li><li>Double Bowl</li></ul>",
+    "origin": "China",
+    "price": 0,
+    "brand": {
+      "_id": "68899a533c9ff1b0bbf937be",
+      "name": "Kessebohmer",
+      "description": "Blum brand description",
+      "logo": "http://api.mykitchen-bd.com/uploads/logo-1753848403261-531853006.png",
+      "activeStatus": true
+    },
+    "finish": "Brushed Steel",
+    "category": ["Kitchen", "Sinks", "Wall & Floor Solutions", "Oven"],
+    "images": [
+      "http://api.mykitchen-bd.com/uploads/images-1752297692641-226263013.jpg",
+      "http://api.mykitchen-bd.com/uploads/images-1752297692642-343088358.jpg"
+    ],
+    "activeStatus": true,
+    "createdAt": "2025-07-16T05:21:32.647Z",
+    "updatedAt": "2025-07-16T05:21:32.647Z"
+  },
+  {
+    "_id": "6871f0dccc611291c5a337ee",
+    "name": "Soft Close Drawer Slide 450mm",
+    "slug": "Soft_Close_Drawer_Slide_450mm",
+    "code": "11469519",
+    "description": "<p>Soft closing drawer slide for smooth, noiseless operation.</p>",
+    "specification": "<ul><li>Full Extension</li><li>Ball Bearing</li><li>450mm</li></ul>",
+    "origin": "Germany",
+    "price": 0,
+    "brand": {
+      "_id": "68899a533c9ff1b0bbf937be",
+      "name": "Kessebohmer",
+      "description": "Blum brand description",
+      "logo": "http://api.mykitchen-bd.com/uploads/logo-1753848403261-531853006.png",
+      "activeStatus": true
+    },
+    "finish": "Steel",
+    "category": ["Drawer Systems", "Hardware", "Heating Solutions", "Kitchen"],
+    "images": [
+      "http://api.mykitchen-bd.com/uploads/images-1752297692641-226263013.jpg",
+      "http://api.mykitchen-bd.com/uploads/images-1752297692642-343088358.jpg"
+    ],
+    "activeStatus": true,
+    "createdAt": "2025-07-17T05:21:32.647Z",
+    "updatedAt": "2025-07-17T05:21:32.647Z"
+  },
+  {
+    "_id": "6871f0dccc611291c5a337ef",
+    "name": "LED Cabinet Light Strip",
+    "slug": "LED_Cabinet_Light_Strip",
+    "code": "12469519",
+    "description": "<p>Energy-efficient LED light strip for under-cabinet installation.</p>",
+    "specification": "<ul><li>12V DC</li><li>Warm White</li><li>Adhesive Mount</li></ul>",
+    "origin": "China",
+    "price": 0,
+    "brand": {
+      "_id": "68899a533c9ff1b0bbf937be",
+      "name": "Kessebohmer",
+      "description": "Blum brand description",
+      "logo": "http://api.mykitchen-bd.com/uploads/logo-1753848403261-531853006.png",
+      "activeStatus": true
+    },
+    "finish": "White",
+    "category": [
+      "Lighting",
+      "Accessories",
+      "Heating Solutions",
+      "Architectural Hardware",
+      "Kitchen"
+    ],
+    "images": [
+      "http://api.mykitchen-bd.com/uploads/images-1752297692641-226263013.jpg",
+      "http://api.mykitchen-bd.com/uploads/images-1752297692642-343088358.jpg"
+    ],
+    "activeStatus": true,
+    "createdAt": "2025-07-18T05:21:32.647Z",
+    "updatedAt": "2025-07-18T05:21:32.647Z"
+  },
+  {
+    "_id": "6871f0dccc611291c5a337f0",
+    "name": "Corner Storage Carousel System",
+    "slug": "Corner_Storage_Carousel_System",
+    "code": "13469519",
+    "description": "<p>Maximize your corner cabinet storage with this durable carousel system.</p>",
+    "specification": "<ul><li>2-Tier</li><li>Chrome Finish</li><li>Adjustable Height</li></ul>",
+    "origin": "Turkey",
+    "price": 0,
+    "brand": {
+      "_id": "6863ab46cd38a7228e60615d",
+      "name": "BLUM",
+      "description": "Blum brand description",
+      "logo": "http://api.mykitchen-bd.com/uploads/logo-1751424218363-553291742.png",
+      "activeStatus": true
+    },
+    "finish": "Chrome",
+    "category": [
+      "Kitchen",
+      "Storage Solutions",
+      "Architectural Hardware",
+      "Heating Appliances"
+    ],
+    "images": [
+      "http://api.mykitchen-bd.com/uploads/images-1752297692641-226263013.jpg",
+      "http://api.mykitchen-bd.com/uploads/images-1752297692642-343088358.jpg"
+    ],
+    "activeStatus": true,
+    "createdAt": "2025-07-19T05:21:32.647Z",
+    "updatedAt": "2025-07-19T05:21:32.647Z"
+  },
+  {
+    "_id": "6871f0dccc611291c5a337f1",
+    "name": "Glass Door Handle – Brushed Nickel",
+    "slug": "Glass_Door_Handle_Brushed_Nickel",
+    "code": "14469519",
+    "description": "<p>Elegant brushed nickel handle suitable for glass cabinet doors.</p>",
+    "specification": "<ul><li>Brushed Nickel</li><li>Length 128mm</li><li>Screw Mount</li></ul>",
+    "origin": "India",
+    "price": 0,
+    "brand": {
+      "_id": "6863ab46cd38a7228e60615d",
+      "name": "BLUM",
+      "description": "Blum brand description",
+      "logo": "http://api.mykitchen-bd.com/uploads/logo-1751424218363-553291742.png",
+      "activeStatus": true
+    },
+    "finish": "Brushed Nickel",
+    "category": [
+      "Handles",
+      "Hardware",
+      "Industrial Solutions",
+      "Knob Locks",
+      "Lever Handle"
+    ],
+    "images": [
+      "http://api.mykitchen-bd.com/uploads/images-1752297692641-226263013.jpg",
+      "http://api.mykitchen-bd.com/uploads/images-1752297692642-343088358.jpg"
+    ],
+    "activeStatus": true,
+    "createdAt": "2025-07-20T05:21:32.647Z",
+    "updatedAt": "2025-07-20T05:21:32.647Z"
+  },
+  {
+    "_id": "6871f0dccc611291c5a337f2",
+    "name": "Wall Mounted Bathroom Mirror Cabinet",
+    "slug": "Wall_Mounted_Bathroom_Mirror_Cabinet",
+    "code": "15469519",
+    "description": "<p>Space-saving mirror cabinet for modern bathrooms with LED lighting.</p>",
+    "specification": "<ul><li>Wall Mount</li><li>LED Lighting</li><li>Aluminum Frame</li></ul>",
+    "origin": "Malaysia",
+    "price": 0,
+    "brand": {
+      "_id": "6863ab46cd38a7228e60615d",
+      "name": "BLUM",
+      "description": "Blum brand description",
+      "logo": "http://api.mykitchen-bd.com/uploads/logo-1751424218363-553291742.png",
+      "activeStatus": true
+    },
+    "finish": "Silver",
+    "category": [
+      "Bathroom",
+      "Storage Solutions",
+      "Industrial Solutions",
+      "Sensor Faucet",
+      "Knob Locks"
+    ],
+    "images": [
+      "http://api.mykitchen-bd.com/uploads/images-1752297692641-226263013.jpg",
+      "http://api.mykitchen-bd.com/uploads/images-1752297692642-343088358.jpg"
+    ],
+    "activeStatus": true,
+    "createdAt": "2025-07-21T05:21:32.647Z",
+    "updatedAt": "2025-07-21T05:21:32.647Z"
+  }
+]

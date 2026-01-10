@@ -1,0 +1,24 @@
+import Loader from "@/components/share/loader/Loader";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+export const metadata: Metadata = {
+  title: "Tilottoma | Product Details",
+};
+
+interface IPageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function ProductDetailsPage({ params }: IPageProps) {
+  const { slug } = await params;
+
+  const ProductDetails = dynamic(
+    () => import("@/components/main/product-details/ProductDetails"),
+    {
+      loading: () => <Loader />,
+    }
+  );
+
+  return <ProductDetails slug={slug} />;
+}
