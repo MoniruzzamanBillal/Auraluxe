@@ -109,7 +109,7 @@ export default function HomePageBanner() {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isDeleteOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-  const [selectedBanner, setSelectedBanner] = useState({});
+  const [selectedBanner, setSelectedBanner] = useState<any | null>();
 
   const handleEdit = (row: any) => {
     console.log("row =  ", row);
