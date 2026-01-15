@@ -24,82 +24,105 @@ import {
   useReactTable,
   VisibilityState,
 } from "@tanstack/react-table";
+import Image from "next/image";
 import { useState } from "react";
 import CreateUpdateHomeBanner from "./CreateUpdateHomeBanner";
+import { THomePageBanner } from "./schema/HomeBanner";
 
-type TData = {
-  title: string;
-  description: string;
-  status: boolean;
-};
-
-const dummyData: TData[] = [
+export const homePageBannerDummyData: THomePageBanner[] = [
   {
-    title: "User Management",
-    description: "Manage application users and roles",
+    id: "banner_01",
+    title: "Luxury Interior Finishes",
+    description:
+      "Premium interior finishes designed to elevate modern living with elegance, durability, and timeless aesthetics.",
+    bannerImage: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
     status: true,
+    order: 1,
   },
   {
-    title: "Product Listing",
-    description: "Display and manage product inventory",
+    id: "banner_02",
+    title: "Imported Building Materials",
+    description:
+      "Sourced from globally trusted brands, our materials ensure superior quality and long-lasting performance.",
+    bannerImage: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
+    status: true,
+    order: 2,
+  },
+  {
+    id: "banner_03",
+    title: "Modern Architectural Design",
+    description:
+      "Innovative architectural concepts blending functionality, sustainability, and premium craftsmanship.",
+    bannerImage: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
+    status: true,
+    order: 3,
+  },
+  {
+    id: "banner_04",
+    title: "Timeless Living Spaces",
+    description:
+      "Design solutions that create harmonious living spaces reflecting comfort, elegance, and refined taste.",
+    bannerImage: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
+    status: true,
+    order: 4,
+  },
+  {
+    id: "banner_05",
+    title: "Elegant Kitchen Solutions",
+    description:
+      "High-end kitchen designs combining modern technology with sophisticated European craftsmanship.",
+    bannerImage: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
+    status: true,
+    order: 5,
+  },
+  {
+    id: "banner_06",
+    title: "Premium Bathroom Concepts",
+    description:
+      "Luxury bathroom solutions featuring imported fittings, modern layouts, and minimalist aesthetics.",
+    bannerImage: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
+    status: true,
+    order: 6,
+  },
+  {
+    id: "banner_07",
+    title: "Smart Home Integration",
+    description:
+      "Advanced smart home solutions that seamlessly integrate technology with elegant interior design.",
+    bannerImage: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
     status: false,
+    order: 7,
   },
   {
-    title: "Order Tracking",
-    description: "Track customer orders and delivery status",
+    id: "banner_08",
+    title: "Commercial Interior Excellence",
+    description:
+      "Premium commercial interior solutions crafted to enhance brand presence and workspace efficiency.",
+    bannerImage: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
     status: true,
+    order: 8,
   },
   {
-    title: "Reports & Analytics",
-    description: "View sales and performance reports",
+    id: "banner_09",
+    title: "Sustainable Design Solutions",
+    description:
+      "Eco-conscious design approaches that combine sustainability with modern luxury standards.",
+    bannerImage: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
     status: true,
+    order: 9,
   },
   {
-    title: "System Settings",
-    description: "Configure application preferences",
-    status: false,
-  },
-  {
-    title: "User Management",
-    description: "Manage application users and roles",
+    id: "banner_10",
+    title: "Signature Auraluxe Projects",
+    description:
+      "Explore our signature projects showcasing refined craftsmanship, innovation, and premium materials.",
+    bannerImage: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
     status: true,
-  },
-  {
-    title: "Product Listing",
-    description: "Display and manage product inventory",
-    status: false,
-  },
-  {
-    title: "Order Tracking",
-    description: "Track customer orders and delivery status",
-    status: true,
-  },
-  {
-    title: "Reports & Analytics",
-    description: "View sales and performance reports",
-    status: true,
-  },
-  {
-    title: "System Settings",
-    description: "Configure application preferences",
-    status: false,
-  },
-  {
-    title: "Product Listing",
-    description: "Display and manage product inventory",
-    status: false,
-  },
-  {
-    title: "Order Tracking",
-    description: "Track customer orders and delivery status",
-    status: true,
-  },
-  {
-    title: "Reports & Analytics",
-    description: "View sales and performance reports",
-    status: true,
+    order: 10,
   },
 ];
+
+import testImage from "@/../public/landingPage/slider/sliderThree.png";
 
 export default function HomePageBanner() {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -109,49 +132,76 @@ export default function HomePageBanner() {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isDeleteOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-  const [selectedBanner, setSelectedBanner] = useState<any | null>();
+  const [selectedBanner, setSelectedBanner] =
+    useState<THomePageBanner | null>();
 
   const handleEdit = (row: any) => {
-    console.log("row =  ", row);
     setSelectedBanner(row);
     setIsModalOpen(true);
   };
 
-  const columns: ColumnDef<TData>[] = [
+  const columns: ColumnDef<THomePageBanner>[] = [
     {
       header: "Title",
       accessorKey: "title",
+      cell: ({ row }) => (
+        <span className="font-medium">{row.original.title}</span>
+      ),
     },
+
     {
-      // header: "Description",
       accessorKey: "description",
-      header: ({ column }) => {
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          className="px-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Description
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
+      cell: ({ row }) => (
+        <p className="max-w-[300px] truncate text-sm text-muted-foreground">
+          {row.original.description}
+        </p>
+      ),
+    },
+
+    {
+      header: "Image",
+      accessorKey: "image",
+      cell: ({ row }) => {
+        // console.log(row?.original?.bannerImage);
+
         return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Description
-            <ArrowUpDown />
-          </Button>
+          <div className=" size-32 rounded-md overflow-hidden ">
+            <Image
+              // src={row?.original?.bannerImage as string}
+              src={testImage}
+              alt="bannerImage"
+              width={1200}
+              height={1200}
+              className=" w-full h-full "
+            />
+          </div>
         );
       },
     },
+
     {
       header: "Status",
       accessorKey: "status",
       cell: ({ row }) => {
         const status = row.original.status;
-        const statusStyle =
-          status === true
-            ? "bg-green-100 text-green-800"
-            : "bg-red-100 text-red-800";
 
         return (
           <span
-            className={`rounded-full px-2 py-1 text-sm capitalize ${statusStyle}`}
+            className={`rounded-full px-2 py-1 text-xs font-medium ${
+              status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+            }`}
           >
-            {status === true ? "active" : "inactive"}
+            {status ? "Active" : "Inactive"}
           </span>
         );
       },
@@ -159,25 +209,23 @@ export default function HomePageBanner() {
 
     {
       header: "Action",
-      accessorKey: "edit",
+      id: "action",
       enableSorting: false,
       cell: ({ row }) => (
-        <div className="flex w-full items-center justify-center gap-3">
-          <button onClick={() => handleEdit(row.original)} className="flex">
+        <div className="flex items-center justify-center gap-3">
+          <button
+            onClick={() => handleEdit(row.original)}
+            className="text-muted-foreground hover:text-primary"
+          >
             <SquarePen size={16} />
           </button>
-          {/* <button
-        //  onClick={() => handleView(row.original)} 
-         className="flex">
-          <TooltipDiv name="View" />
-        </button> */}
         </div>
       ),
     },
   ];
 
   const table = useReactTable({
-    data: dummyData,
+    data: homePageBannerDummyData,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,

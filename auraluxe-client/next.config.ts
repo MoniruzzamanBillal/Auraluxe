@@ -31,6 +31,10 @@ const nextConfig = {
         hostname: "api.mykitchen-bd.com",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "i.postimg.cc",
+      },
     ],
   },
 };

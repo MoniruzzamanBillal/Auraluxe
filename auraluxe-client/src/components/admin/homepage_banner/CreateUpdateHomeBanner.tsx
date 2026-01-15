@@ -12,14 +12,14 @@ import { FormProvider, useForm } from "react-hook-form";
 import HomeBannerForm from "./HomeBannerForm";
 import {
   HomePageBannerSchema,
+  THomePageBanner,
   THomePageBannerFormData,
 } from "./schema/HomeBanner";
 
 type TPageProps = {
   isOpen: boolean;
   onClose: () => void;
-  // initialValues?: THomePageBanner;
-  initialValues?: any;
+  initialValues?: THomePageBanner | null;
 };
 
 export default function CreateUpdateHomeBanner({
@@ -30,6 +30,16 @@ export default function CreateUpdateHomeBanner({
   const methods = useForm<THomePageBannerFormData>({
     resolver: zodResolver(HomePageBannerSchema),
   });
+
+  useEffect(() => {
+    if (initialValues) {
+      methods.reset({
+        title: initialValues?.title,
+        description: initialValues?.description,
+        bannerImage: initialValues?.bannerImage,
+      });
+    }
+  }, [initialValues, methods]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -58,7 +68,7 @@ export default function CreateUpdateHomeBanner({
           <HomeBannerForm
             onSubmit={onSubmit}
             isPending={false}
-            isEditMode={initialValues}
+            isEditMode={!!initialValues}
           />
         </FormProvider>
       </DialogContent>
