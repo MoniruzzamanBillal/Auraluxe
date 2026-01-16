@@ -253,7 +253,7 @@ export default function HomePageBanner() {
         {/* search section  */}
         <div>
           <Input
-            placeholder="Filter emails..."
+            placeholder="Filter title..."
             value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("title")?.setFilterValue(event.target.value)
