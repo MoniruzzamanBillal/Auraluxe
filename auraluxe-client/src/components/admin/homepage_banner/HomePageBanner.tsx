@@ -181,7 +181,16 @@ export default function HomePageBanner() {
     },
 
     {
-      header: "Status",
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          className="px-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Status
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
       accessorKey: "status",
       cell: ({ row }) => {
         const status = row.original.status;

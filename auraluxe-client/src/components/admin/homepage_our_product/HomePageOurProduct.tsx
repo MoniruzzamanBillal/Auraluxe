@@ -104,11 +104,23 @@ export default function HomePageOurProduct() {
         </div>
       ),
     },
+
     {
       accessorKey: "status",
-      header: "Status",
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          className="px-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Status
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
+
       cell: ({ row }) => {
         const status = row.original.status;
+
         return (
           <span
             className={`rounded-full px-2 py-1 text-xs font-medium ${
@@ -120,6 +132,7 @@ export default function HomePageOurProduct() {
         );
       },
     },
+
     {
       header: "Action",
       id: "action",
