@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { BsAlignCenter, BsPersonBadge } from "react-icons/bs";
+import { BsAlignCenter } from "react-icons/bs";
 import { FaProductHunt, FaProjectDiagram } from "react-icons/fa";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { TbBrand4Chan, TbCategory } from "react-icons/tb";
@@ -84,21 +84,6 @@ const links = [
     label: "Project",
     href: "/admin/project",
     icon: <FaProjectDiagram className="h-5 w-5 shrink-0 text-neutral-200" />,
-  },
-  // {
-  //   label: "Purchase Guide",
-  //   href: "/admin/purchase-guide",
-  //   icon: <FaBlogger className="h-5 w-5 shrink-0 text-neutral-200" />,
-  // },
-  {
-    label: "Career",
-    href: "/admin/career",
-    icon: <BsPersonBadge className="h-5 w-5 shrink-0 text-neutral-200" />,
-  },
-  {
-    label: "Job Apply",
-    href: "/admin/job-apply",
-    icon: <TbBrand4Chan className="h-5 w-5 shrink-0 text-neutral-200" />,
   },
 ];
 
