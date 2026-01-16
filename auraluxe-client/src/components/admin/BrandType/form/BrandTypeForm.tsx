@@ -2,33 +2,32 @@
 
 import ControlledInput from "@/components/share/input/ControlledInput";
 import ControlledTextArea from "@/components/share/input/ControlledTextArea";
-import { FileUploadController } from "@/components/share/input/FileUploadController";
 import SubmitButton from "@/components/share/SubmitButton";
 import { useFormContext } from "react-hook-form";
-import { THomeOurFeaturedForm } from "../schema/homeOurFeatured.schema";
+import { TBrandTypeForm } from "../schema/brandType.schema";
 
 interface Props {
-  onSubmit: (data: THomeOurFeaturedForm) => void;
+  onSubmit: (data: TBrandTypeForm) => void;
   isEdit?: boolean;
   isLoading?: boolean;
 }
 
-export default function HomeOurFeaturedForm({
+export default function BrandTypeForm({
   onSubmit,
   isEdit = false,
   isLoading = false,
 }: Props) {
-  const methods = useFormContext<THomeOurFeaturedForm>();
+  const methods = useFormContext<TBrandTypeForm>();
 
   return (
     <form
       onSubmit={methods.handleSubmit(onSubmit)}
-      className="w-full space-y-4 max-h-[80vh]"
+      className="w-full space-y-4"
     >
       <ControlledInput
-        name="title"
-        label="Title"
-        placeholder="Enter title"
+        name="name"
+        label="Brand Type Name"
+        placeholder="Enter brand type name"
         isRequired
       />
 
@@ -39,14 +38,8 @@ export default function HomeOurFeaturedForm({
         isRequired
       />
 
-      <FileUploadController
-        name="imageUrl"
-        label="Featured Image"
-        className="h-[200px] w-[300px]"
-      />
-
       <SubmitButton
-        label={isEdit ? "Update Featured" : "Create Featured"}
+        label={isEdit ? "Update Brand Type" : "Create Brand Type"}
         isLoading={isLoading}
       />
     </form>
