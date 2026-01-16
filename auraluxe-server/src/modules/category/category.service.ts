@@ -22,7 +22,7 @@ export class CategoryService {
   async getAllCategories() {
     const result = await this.prisma.category.findMany({
       where: { isDeleted: false, status: true },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: 'asc' },
     });
 
     return result;
@@ -31,8 +31,7 @@ export class CategoryService {
   // ! for getting all categories (including inactive - admin only)
   async getAllCategoriesAdmin() {
     const result = await this.prisma.category.findMany({
-      where: { isDeleted: false, status: false },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: 'asc' },
     });
 
     return result;
