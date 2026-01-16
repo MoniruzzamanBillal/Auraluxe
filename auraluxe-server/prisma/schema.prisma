@@ -15,6 +15,7 @@ model User {
   role      UserRole @default(user)
   isDeleted Boolean  @default(false)
   status    Boolean  @default(true)
+  cart      Cart?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -35,26 +36,60 @@ model category {
 model Product {
   id          String   @id @default(uuid())
   name        String
-  productCode String? // optional
+  productCode String? 
   brandId     String
   brand       Brand    @relation(fields: [brandId], references: [id])
   categoryId  String
   category    category @relation(fields: [categoryId], references: [id])
+  quantity    Int
 
   price Float
 
   keyFeatures      String
   specifications   String
   productDes       String
-  shippingDelivery String? // optional
+  shippingDelivery String? 
 
   productImage String
 
-  status Boolean @default(true)
+  cartItems CartItem[]
+
+  status    Boolean @default(true)
   isDeleted Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Cart {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  items CartItem[]
+
+  isDeleted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id String @id @default(uuid())
+
+  cartId String
+  cart   Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  quantity  Int   @default(1)
+  unitPrice Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([cartId, productId])
 }
 
 model brandType {

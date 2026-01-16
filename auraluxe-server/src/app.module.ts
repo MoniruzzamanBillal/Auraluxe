@@ -14,6 +14,7 @@ import { ProductModule } from './modules/product/product.module';
 import { ProjectTypeModule } from './modules/project-type/project-type.module';
 import { ProjectModule } from './modules/project/project.module';
 import { UserModule } from './modules/user/user.module';
+import { CartModule } from './modules/cart/cart.module';
 
 @Module({
   imports: [
@@ -32,6 +33,8 @@ import { UserModule } from './modules/user/user.module';
     OurFeaturedProductModule,
 
     CategoryModule,
+
+    CartModule,
   ],
   controllers: [AppController],
   providers: [AppService],
