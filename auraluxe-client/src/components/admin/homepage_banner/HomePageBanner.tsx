@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpDown, SquarePen } from "lucide-react";
+import { ArrowUpDown, SquarePen, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -114,6 +114,7 @@ export const homePageBannerDummyData: THomePageBanner[] = [
 
 import testImage from "@/../public/landingPage/slider/sliderThree.png";
 import GenericTable from "@/components/common/GenericTable";
+import DeleteDialog from "@/components/share/DeleteDialog";
 
 export default function HomePageBanner() {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -123,12 +124,20 @@ export default function HomePageBanner() {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isDeleteOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const [deletedId, setDeletedId] = useState<string | null>();
+
   const [selectedBanner, setSelectedBanner] =
     useState<THomePageBanner | null>();
 
   const handleEdit = (row: any) => {
     setSelectedBanner(row);
     setIsModalOpen(true);
+  };
+
+  const handleDelete = async () => {
+    console.log("deleted id =  ", deletedId);
+    setIsDeleteModalOpen(false);
+    setDeletedId(null);
   };
 
   const columns: ColumnDef<THomePageBanner>[] = [
@@ -210,17 +219,30 @@ export default function HomePageBanner() {
     {
       header: "Action",
       id: "action",
-      enableSorting: false,
-      cell: ({ row }) => (
-        <div className="flex items-center justify-center gap-3">
-          <button
-            onClick={() => handleEdit(row.original)}
-            className="text-muted-foreground hover:text-primary"
-          >
-            <SquarePen size={16} />
-          </button>
-        </div>
-      ),
+      cell: ({ row }) => {
+        // console.log("row =  ", row?.original);
+
+        return (
+          <div className="flex items-center gap-x-4">
+            <button
+              onClick={() => handleEdit(row.original)}
+              className="text-muted-foreground hover:text-primary"
+            >
+              <SquarePen size={16} />
+            </button>
+            <button
+              onClick={() => {
+                setIsDeleteModalOpen(true);
+                setDeletedId(row?.original?.id);
+              }}
+              className="text-darkLiver hover:underline text-sm flex items-center gap-1"
+            >
+              <Trash2 size={16} />
+              Delete
+            </button>
+          </div>
+        );
+      },
     },
   ];
 
@@ -269,6 +291,13 @@ export default function HomePageBanner() {
             setIsModalOpen(false);
           }}
           initialValues={selectedBanner}
+        />
+
+        {/* delete modal  */}
+        <DeleteDialog
+          open={isDeleteOpen}
+          onOpenChange={setIsDeleteModalOpen}
+          onConfirm={handleDelete}
         />
 
         {/*  */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpDown, SquarePen } from "lucide-react";
+import { ArrowUpDown, SquarePen, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -19,6 +19,7 @@ import {
 } from "@tanstack/react-table";
 
 import GenericTable from "@/components/common/GenericTable";
+import DeleteDialog from "@/components/share/DeleteDialog";
 import CreateUpdateHomeOurFeatured from "./form/CreateUpdateHomeOurFeatured";
 import { THomeOurFeatured } from "./schema/homeOurFeatured.schema";
 
@@ -41,6 +42,8 @@ export default function HomePageOurFeatured() {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+  const [isDeleteOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const [deletedId, setDeletedId] = useState<string | null>();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFeatured, setSelectedFeatured] =
@@ -49,6 +52,12 @@ export default function HomePageOurFeatured() {
   const handleEdit = (featured: THomeOurFeatured) => {
     setSelectedFeatured(featured);
     setIsModalOpen(true);
+  };
+
+  const handleDelete = async () => {
+    console.log("deleted id =  ", deletedId);
+    setIsDeleteModalOpen(false);
+    setDeletedId(null);
   };
 
   /* -------------------- Columns -------------------- */
@@ -112,19 +121,34 @@ export default function HomePageOurFeatured() {
         );
       },
     },
+
     {
       header: "Action",
       id: "action",
-      cell: ({ row }) => (
-        <div className="flex gap-3 justify-center">
-          <button
-            onClick={() => handleEdit(row.original)}
-            className="text-muted-foreground hover:text-primary"
-          >
-            <SquarePen size={16} />
-          </button>
-        </div>
-      ),
+      cell: ({ row }) => {
+        // console.log("row =  ", row?.original);
+
+        return (
+          <div className="flex items-center gap-x-4">
+            <button
+              onClick={() => handleEdit(row.original)}
+              className="text-muted-foreground hover:text-primary"
+            >
+              <SquarePen size={16} />
+            </button>
+            <button
+              onClick={() => {
+                setIsDeleteModalOpen(true);
+                setDeletedId(row?.original?.id);
+              }}
+              className="text-darkLiver hover:underline text-sm flex items-center gap-1"
+            >
+              <Trash2 size={16} />
+              Delete
+            </button>
+          </div>
+        );
+      },
     },
   ];
 
@@ -174,6 +198,13 @@ export default function HomePageOurFeatured() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         initialValues={selectedFeatured}
+      />
+
+      {/* delete modal  */}
+      <DeleteDialog
+        open={isDeleteOpen}
+        onOpenChange={setIsDeleteModalOpen}
+        onConfirm={handleDelete}
       />
     </div>
   );

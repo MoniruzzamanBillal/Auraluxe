@@ -66,6 +66,7 @@ export default function HomePageOurProduct() {
   };
 
   const handleDelete = async () => {
+    console.log("deleted id =  ", deletedId);
     setIsDeleteModalOpen(false);
     setDeletedId(null);
   };
