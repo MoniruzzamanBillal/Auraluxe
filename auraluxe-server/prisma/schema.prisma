@@ -1,0 +1,221 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  password  String
+  role      UserRole @default(user)
+  isDeleted Boolean  @default(false)
+  status    Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model category {
+  id        String  @id @default(uuid())
+  name      String  @unique
+  isDeleted Boolean @default(false)
+  status    Boolean @default(true)
+
+  products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  productCode String? // optional
+  brandId     String
+  brand       Brand    @relation(fields: [brandId], references: [id])
+  categoryId  String
+  category    category @relation(fields: [categoryId], references: [id])
+
+  price Float
+
+  keyFeatures      String
+  specifications   String
+  productDes       String
+  shippingDelivery String? // optional
+
+  productImage String
+
+  status Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model brandType {
+  id          String  @id @default(uuid())
+  name        String  @unique
+  description String
+  isDeleted   Boolean @default(false)
+  status      Boolean @default(true)
+
+  brands Brand[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Brand {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  logo        String
+  brandTypeId String // foreign key
+  brandType   brandType @relation(fields: [brandTypeId], references: [id])
+
+  products Product[]
+
+  isDeleted Boolean @default(false)
+  status    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model projectType {
+  id          String  @id @default(uuid())
+  name        String  @unique
+  description String
+  isDeleted   Boolean @default(false)
+  status      Boolean @default(true)
+
+  projects Project[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model material {
+  id          String  @id @default(uuid())
+  name        String  @unique
+  description String
+  isDeleted   Boolean @default(false)
+  status      Boolean @default(true)
+
+  projects Project[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id            String  @id @default(uuid())
+  projectName   String  @unique
+  projectImg    String
+  location      String
+  client        String
+  architects    String
+  website       String
+  facebookLink  String?
+  instagramLink String?
+  linkedinLink  String?
+  xLink         String?
+  description   String? @default("")
+  status        Boolean @default(true)
+
+  projectTypeId String
+  projectType   projectType @relation(fields: [projectTypeId], references: [id])
+
+  materialId String
+  material   material @relation(fields: [materialId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model keyBrands {
+  id          String @id @default(uuid())
+  name        String @unique
+  logo        String
+  description String
+
+  isDeleted Boolean @default(false)
+  status    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model homeBanner {
+  id          String  @id @default(uuid())
+  title       String  @unique
+  imageUrl    String
+  description String
+  order       Int
+  isDeleted   Boolean @default(false)
+  status      Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([order, isDeleted])
+  @@map("home_banner")
+}
+
+model homeOurFeatured {
+  id          String @id @default(uuid())
+  title       String @unique
+  imageUrl    String
+  description String
+  order       Int
+
+  isDeleted Boolean @default(false)
+  status    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([order, isDeleted])
+  @@map("home_our_featured")
+}
+
+model homeOurProduct {
+  id          String @id @default(uuid())
+  title       String @unique
+  imageUrl    String
+  description String
+  order       Int
+
+  isDeleted Boolean @default(false)
+  status    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([order, isDeleted])
+  @@map("home_our_product")
+}
+
+model ourFeaturedProduct {
+  id       String @id @default(uuid())
+  imageUrl String
+  order    Int
+
+  isDeleted Boolean @default(false)
+  status    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([order, isDeleted])
+  @@map("our_featured_product")
+}
+
+enum UserRole {
+  user
+  admin
+  vendor
+}
