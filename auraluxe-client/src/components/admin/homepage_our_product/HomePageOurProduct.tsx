@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpDown, SquarePen } from "lucide-react";
+import { ArrowUpDown, SquarePen, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -21,6 +21,7 @@ import {
 // temp image (same approach as banner page)
 import testImage from "@/../public/landingPage/slider/sliderThree.png";
 import GenericTable from "@/components/common/GenericTable";
+import DeleteDialog from "@/components/share/DeleteDialog";
 import CreateUpdateHomeOurProduct from "./form/CreateUpdateHomeOurProduct";
 import { THomeOurProduct } from "./schema/HomeOurProduct";
 
@@ -54,12 +55,19 @@ export default function HomePageOurProduct() {
   const [rowSelection, setRowSelection] = useState({});
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const [deletedId, setDeletedId] = useState<string | null>();
   const [selectedProduct, setSelectedProduct] =
     useState<THomeOurProduct | null>(null);
 
   const handleEdit = (row: THomeOurProduct) => {
     setSelectedProduct(row);
     setIsModalOpen(true);
+  };
+
+  const handleDelete = async () => {
+    setIsDeleteModalOpen(false);
+    setDeletedId(null);
   };
 
   /* -------------------- Columns -------------------- */
@@ -136,14 +144,30 @@ export default function HomePageOurProduct() {
     {
       header: "Action",
       id: "action",
-      cell: ({ row }) => (
-        <button
-          onClick={() => handleEdit(row.original)}
-          className="text-muted-foreground hover:text-primary"
-        >
-          <SquarePen size={16} />
-        </button>
-      ),
+      cell: ({ row }) => {
+        // console.log("row =  ", row?.original);
+
+        return (
+          <div className="flex items-center gap-x-4">
+            <button
+              onClick={() => handleEdit(row.original)}
+              className="text-muted-foreground hover:text-primary"
+            >
+              <SquarePen size={16} />
+            </button>
+            <button
+              onClick={() => {
+                setIsDeleteModalOpen(true);
+                setDeletedId(row?.original?.id);
+              }}
+              className="text-darkLiver hover:underline text-sm flex items-center gap-1"
+            >
+              <Trash2 size={16} />
+              Delete
+            </button>
+          </div>
+        );
+      },
     },
   ];
 
@@ -197,6 +221,14 @@ export default function HomePageOurProduct() {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           initialValues={selectedProduct}
+        />
+
+        {/* delete modal  */}
+
+        <DeleteDialog
+          open={isDeleteOpen}
+          onOpenChange={setIsDeleteModalOpen}
+          onConfirm={handleDelete}
         />
       </div>
     </div>
