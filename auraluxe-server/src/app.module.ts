@@ -12,6 +12,8 @@ import { HomeBannerModule } from './modules/home-banner/home-banner.module';
 import { HomeOurFeaturedModule } from './modules/home-our-featured/home-our-featured.module';
 import { HomeOurProductModule } from './modules/home-our-product/home-our-product.module';
 import { OurFeaturedProductModule } from './modules/our-featured-product/our-featured-product.module';
+import { ControllerModule } from './modules/controller/controller.module';
+import { CategoryModule } from './modules/category/category.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { OurFeaturedProductModule } from './modules/our-featured-product/our-fea
     HomeOurFeaturedModule,
     HomeOurProductModule,
     OurFeaturedProductModule,
+    ControllerModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

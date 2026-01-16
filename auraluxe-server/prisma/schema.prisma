@@ -51,6 +51,7 @@ model Product {
   productImage String
 
   status Boolean @default(true)
+  isDeleted Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
