@@ -1,6 +1,7 @@
 "use client";
 
 import ControlledInput from "@/components/share/input/ControlledInput";
+import ControlledTextArea from "@/components/share/input/ControlledTextArea";
 import { FileUploadController } from "@/components/share/input/FileUploadController";
 import SubmitButton from "@/components/share/SubmitButton";
 import { Label } from "@/components/ui/label";
@@ -32,7 +33,7 @@ export default function HomeOurProductForm({
       />
 
       {/* Description */}
-      <ControlledInput
+      <ControlledTextArea
         name="description"
         label="Description"
         placeholder="Enter short description"

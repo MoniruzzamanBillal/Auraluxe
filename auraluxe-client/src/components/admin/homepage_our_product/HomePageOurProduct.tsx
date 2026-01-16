@@ -5,22 +5,12 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 
 import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
-  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
@@ -30,6 +20,7 @@ import {
 
 // temp image (same approach as banner page)
 import testImage from "@/../public/landingPage/slider/sliderThree.png";
+import GenericTable from "@/components/common/GenericTable";
 import CreateUpdateHomeOurProduct from "./form/CreateUpdateHomeOurProduct";
 import { THomeOurProduct } from "./schema/HomeOurProduct";
 
@@ -169,18 +160,6 @@ export default function HomePageOurProduct() {
       <div className="rounded-2xl bg-white py-10">
         <h2 className="text-3xl font-bold text-black">Home Page Our Product</h2>
 
-        {/* Search */}
-        <div className="mt-4">
-          <Input
-            placeholder="Search by title..."
-            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-            onChange={(e) =>
-              table.getColumn("title")?.setFilterValue(e.target.value)
-            }
-            className="max-w-sm"
-          />
-        </div>
-
         {/* Add Button */}
         <div className="mt-4">
           <Button
@@ -193,71 +172,12 @@ export default function HomePageOurProduct() {
           </Button>
         </div>
 
-        {/* Table */}
-        <div className="mt-6 overflow-hidden rounded-md border">
-          <Table>
-            <TableHeader>
-              {table.getHeaderGroups().map((hg) => (
-                <TableRow key={hg.id}>
-                  {hg.headers.map((header) => (
-                    <TableHead key={header.id}>
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                    </TableHead>
-                  ))}
-                </TableRow>
-              ))}
-            </TableHeader>
-
-            <TableBody>
-              {table.getRowModel().rows.length ? (
-                table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id}>
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan={columns.length}
-                    className="h-24 text-center"
-                  >
-                    No results found.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
-
-        {/* Pagination */}
-        <div className="flex items-center justify-end gap-2 py-4">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
-        </div>
+        {/* table  */}
+        <GenericTable
+          data={homeOurProductDummyData}
+          columns={columns}
+          filterKey="title"
+        />
 
         {/* Modal */}
         <CreateUpdateHomeOurProduct

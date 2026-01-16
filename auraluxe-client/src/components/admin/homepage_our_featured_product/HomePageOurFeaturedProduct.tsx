@@ -5,21 +5,12 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 
 import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
-  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
@@ -27,6 +18,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
+import GenericTable from "@/components/common/GenericTable";
 import CreateUpdateOurFeaturedProduct from "./form/CreateUpdateOurFeaturedProduct";
 import { TOurFeaturedProduct } from "./schema/OurFeaturedProduct";
 
@@ -126,48 +118,8 @@ export default function HomePageOurFeaturedProduct() {
         <Button onClick={() => setIsModalOpen(true)}>Add New Product</Button>
       </div>
 
-      <div>
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="text-center">
-                  No products found.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
+      {/* table  */}
+      <GenericTable data={ourFeaturedProductDummyData} columns={columns} />
 
       <CreateUpdateOurFeaturedProduct
         isOpen={isModalOpen}

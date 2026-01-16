@@ -20,7 +20,10 @@ export default function HomeOurFeaturedForm({
   const methods = useFormContext<THomeOurFeaturedForm>();
 
   return (
-    <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-4">
+    <form
+      onSubmit={methods.handleSubmit(onSubmit)}
+      className="w-full space-y-4 max-h-[80vh]"
+    >
       <ControlledInput
         name="title"
         label="Title"
@@ -35,7 +38,11 @@ export default function HomeOurFeaturedForm({
         isRequired
       />
 
-      <FileUploadController name="imageUrl" label="Featured Image" />
+      <FileUploadController
+        name="imageUrl"
+        label="Featured Image"
+        className="h-[200px] w-[300px]"
+      />
 
       <SubmitButton
         label={isEdit ? "Update Featured" : "Create Featured"}

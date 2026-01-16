@@ -5,21 +5,12 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 
 import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
-  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
@@ -27,7 +18,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { Input } from "@/components/ui/input";
+import GenericTable from "@/components/common/GenericTable";
 import CreateUpdateHomeOurFeatured from "./form/CreateUpdateHomeOurFeatured";
 import { THomeOurFeatured } from "./schema/homeOurFeatured.schema";
 
@@ -159,62 +150,12 @@ export default function HomePageOurFeatured() {
         </Button>
       </div>
 
-      {/* search section  */}
-      <div>
-        <Input
-          placeholder="Filter title..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-      </div>
-
-      {/* Table */}
-      <div>
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-
-          <TableBody>
-            {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="text-center">
-                  No featured items found.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
+      {/* table  */}
+      <GenericTable
+        data={homeOurFeaturedDummyData}
+        columns={columns}
+        filterKey="title"
+      />
 
       {/* Modal */}
       <CreateUpdateHomeOurFeatured
