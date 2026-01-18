@@ -22,7 +22,7 @@ export default function DeleteDialog({
   onOpenChange,
   onConfirm,
   loading,
-  deleteMessage = " This action cannot be undone. This will permanently delete the tag",
+  deleteMessage = "This action cannot be undone. This will permanently delete the tag",
 }: DeleteDialogProps) {
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>

@@ -34,7 +34,7 @@ export const homeOurFeaturedDummyData: THomeOurFeatured[] = Array.from(
     imageUrl: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
     status: i % 2 === 0,
     order: i + 1,
-  })
+  }),
 );
 
 export default function HomePageOurFeatured() {
@@ -181,6 +181,7 @@ export default function HomePageOurFeatured() {
             setSelectedFeatured(null);
             setIsModalOpen(true);
           }}
+          className=" bg-prime100 hover:bg-prime200 text-gray-50 cursor-pointer "
         >
           Add New Featured
         </Button>
@@ -205,6 +206,7 @@ export default function HomePageOurFeatured() {
         open={isDeleteOpen}
         onOpenChange={setIsDeleteModalOpen}
         onConfirm={handleDelete}
+        deleteMessage="This action cannot be undone. This will permanently delete the Data"
       />
     </div>
   );

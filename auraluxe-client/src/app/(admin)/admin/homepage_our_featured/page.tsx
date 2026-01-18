@@ -11,7 +11,7 @@ export default function page() {
       import("@/components/admin/homepage_our_featured/HomePageOurFeatured"),
     {
       loading: () => <Loader />,
-    }
+    },
   );
   return <HomePageOurFeatured />;
 }
