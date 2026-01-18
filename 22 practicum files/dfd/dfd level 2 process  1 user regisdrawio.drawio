@@ -1,0 +1,75 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.2">
+  <diagram name="Page-1" id="_xbQB1b265W5goi7EnBK">
+    <mxGraphModel dx="1188" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="entity-guest" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=10;" value="Guest User" vertex="1">
+          <mxGeometry height="40" width="90" x="420" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="entity-user" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=10;" value="Registered User" vertex="1">
+          <mxGeometry height="40" width="90" x="410" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="ds-users" parent="1" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=0;bottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=10;" value="D1  Users" vertex="1">
+          <mxGeometry height="40" width="100" x="710" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="1.1&#xa;Register&#xa;User" vertex="1">
+          <mxGeometry height="70" width="100" x="420" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="1.2&#xa;Validate&#xa;Credentials" vertex="1">
+          <mxGeometry height="70" width="100" x="590" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="1.3&#xa;Authenticate&#xa;User" vertex="1">
+          <mxGeometry height="70" width="100" x="530" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="1.4&#xa;Generate&#xa;JWT Token" vertex="1">
+          <mxGeometry height="70" width="100" x="530" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="1.5&#xa;Hash&#xa;Password" vertex="1">
+          <mxGeometry height="70" width="100" x="760" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-6" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="1.6&#xa;Update&#xa;Profile" vertex="1">
+          <mxGeometry height="70" width="100" x="750" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="1.7&#xa;Store User&#xa;Record" vertex="1">
+          <mxGeometry height="70" width="100" x="860" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" edge="1" parent="1" source="entity-guest" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p1-1" value="Registration Data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" edge="1" parent="1" source="p1-1" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p1-2" value="User Data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" edge="1" parent="1" source="p1-2" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p1-5" value="Valid Data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" edge="1" parent="1" source="p1-5" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p1-7" value="Hashed Password">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" edge="1" parent="1" source="p1-7" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="ds-users" value="User Record">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f6" edge="1" parent="1" source="entity-user" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p1-3" value="Login Credentials">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f7" edge="1" parent="1" source="p1-3" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p1-4" value="Credentials">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f8" edge="1" parent="1" source="p1-4" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="entity-user" value="Auth Token">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f9" edge="1" parent="1" source="entity-user" style="endArrow=classic;html=1;rounded=0;fontSize=9;exitX=1;exitY=0.5;" target="p1-6" value="Profile Update">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="380" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f10" edge="1" parent="1" source="p1-6" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p1-7" value="Updated Data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f11" edge="1" parent="1" source="p1-3" style="endArrow=classic;html=1;rounded=0;fontSize=9;dashed=1;" target="ds-users" value="Verify User">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

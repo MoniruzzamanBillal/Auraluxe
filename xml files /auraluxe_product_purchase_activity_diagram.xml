@@ -1,0 +1,572 @@
+<mxfile host="app.diagrams.net" modified="2026-01-17T13:37:00.000Z" agent="Mozilla/5.0" version="21.0.0" type="device">
+  <diagram name="Product Purchase Activity Diagram" id="purchase-flow-activity">
+    <mxGraphModel dx="1100" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="2100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- ==================== TITLE ==================== -->
+        <mxCell id="title" value="Activity Diagram: Product Purchase Flow - Auraluxe" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="500" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== START NODE ==================== -->
+        <mxCell id="start" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="480" y="70" width="40" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== BROWSE PRODUCTS ==================== -->
+        
+        <!-- Visit Website -->
+        <mxCell id="action-visit" value="Visit Auraluxe Website" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="140" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Browse Products -->
+        <mxCell id="action-browse" value="Browse Products" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="215" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Select Category/Filter -->
+        <mxCell id="action-filter" value="Select Category / Apply Filters" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="290" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- View Product List -->
+        <mxCell id="action-product-list" value="View Product List" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="365" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Select Product -->
+        <mxCell id="action-select-product" value="Select Product" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="440" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- View Product Details -->
+        <mxCell id="action-view-details" value="View Product Details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="515" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Add to Cart? -->
+        <mxCell id="decision-add-cart" value="Add to&#xa;Cart?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="445" y="590" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Continue Browsing -->
+        <mxCell id="action-continue-browse" value="Continue Browsing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="640" y="605" width="160" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== ADD TO CART ==================== -->
+        
+        <!-- Select Quantity -->
+        <mxCell id="action-select-qty" value="Select Quantity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="710" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Click Add to Cart -->
+        <mxCell id="action-click-add-cart" value="Click &quot;Add to Cart&quot; Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="785" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: User Logged In? -->
+        <mxCell id="decision-logged-in" value="User&#xa;Logged In?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="445" y="860" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Redirect to Login -->
+        <mxCell id="action-login-redirect" value="Redirect to Login Page" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="640" y="867" width="160" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- User Login -->
+        <mxCell id="action-user-login" value="User Login / Register" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="640" y="942" width="160" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Add Item to Cart -->
+        <mxCell id="action-add-to-cart" value="Add Item to Cart" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="980" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Cart Updated -->
+        <mxCell id="action-cart-updated" value="Display &quot;Cart Updated&quot; Message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1055" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Continue Shopping? -->
+        <mxCell id="decision-continue-shop" value="Continue&#xa;Shopping?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="445" y="1130" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== VIEW CART ==================== -->
+        
+        <!-- View Cart -->
+        <mxCell id="action-view-cart" value="View Cart" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1250" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Cart Items -->
+        <mxCell id="action-display-cart" value="Display Cart Items with Prices" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1325" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Modify Cart? -->
+        <mxCell id="decision-modify-cart" value="Modify&#xa;Cart?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="445" y="1400" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Update Quantity / Remove Items -->
+        <mxCell id="action-modify-cart" value="Update Quantity /&#xa;Remove Items" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="1407" width="160" height="55" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== CHECKOUT ==================== -->
+        
+        <!-- Click Checkout -->
+        <mxCell id="action-click-checkout" value="Click &quot;Proceed to Checkout&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1520" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Checkout Page -->
+        <mxCell id="action-checkout-page" value="Display Checkout Page" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1595" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Enter Shipping Address -->
+        <mxCell id="action-shipping" value="Enter Shipping Address" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1670" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Enter Contact Details -->
+        <mxCell id="action-contact" value="Enter Contact Details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1745" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Review Order Summary -->
+        <mxCell id="action-review-order" value="Review Order Summary" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1820" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Click Place Order -->
+        <mxCell id="action-place-order" value="Click &quot;Place Order&quot; Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1895" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== PAYMENT (SSLCommerz) ==================== -->
+        
+        <!-- Redirect to SSLCommerz -->
+        <mxCell id="action-redirect-ssl" value="Redirect to SSLCommerz&#xa;Payment Gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1970" width="200" height="55" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Payment Options -->
+        <mxCell id="action-payment-options" value="Display Payment Options&#xa;(Card/Mobile Banking/Net Banking)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2055" width="200" height="55" as="geometry" />
+        </mxCell>
+        
+        <!-- Select Payment Method -->
+        <mxCell id="action-select-payment" value="Select Payment Method" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2140" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Enter Payment Details -->
+        <mxCell id="action-payment-details" value="Enter Payment Details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2215" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Confirm Payment -->
+        <mxCell id="action-confirm-payment" value="Confirm &amp; Submit Payment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2290" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Process Payment -->
+        <mxCell id="action-process-payment" value="SSLCommerz Processes Payment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2365" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Payment Successful? -->
+        <mxCell id="decision-payment" value="Payment&#xa;Successful?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="445" y="2440" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Payment Failed -->
+        <mxCell id="action-payment-failed" value="Display Payment Failed&#xa;Error Message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="640" y="2447" width="170" height="55" as="geometry" />
+        </mxCell>
+        
+        <!-- Retry Payment Option -->
+        <mxCell id="decision-retry" value="Retry&#xa;Payment?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="670" y="2540" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== ORDER CONFIRMATION ==================== -->
+        
+        <!-- Redirect Back to Auraluxe -->
+        <mxCell id="action-redirect-back" value="Redirect Back to Auraluxe" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2560" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Update Order Status -->
+        <mxCell id="action-update-order" value="Update Order Status to &quot;Paid&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2635" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Clear Cart -->
+        <mxCell id="action-clear-cart" value="Clear User's Cart" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2710" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Order Confirmation -->
+        <mxCell id="action-order-confirm" value="Display Order Confirmation&#xa;with Order ID" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2785" width="200" height="55" as="geometry" />
+        </mxCell>
+        
+        <!-- Send Confirmation Email -->
+        <mxCell id="action-send-email" value="Send Order Confirmation Email" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2870" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== END NODE ==================== -->
+        <mxCell id="end" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="480" y="2955" width="40" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Cancel End -->
+        <mxCell id="end-cancel" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="830" y="2560" width="40" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== MERGE NODES ==================== -->
+        
+        <mxCell id="merge-login" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="492" y="945" width="16" height="16" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="merge-cart" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="492" y="1215" width="16" height="16" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="merge-modify" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="492" y="1490" width="16" height="16" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== FLOW CONNECTIONS ==================== -->
+        
+        <!-- Start to Visit -->
+        <mxCell id="flow-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="start" target="action-visit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Visit to Browse -->
+        <mxCell id="flow-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-visit" target="action-browse">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Browse to Filter -->
+        <mxCell id="flow-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-browse" target="action-filter">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Filter to Product List -->
+        <mxCell id="flow-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-filter" target="action-product-list">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Product List to Select Product -->
+        <mxCell id="flow-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-product-list" target="action-select-product">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Select Product to View Details -->
+        <mxCell id="flow-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-select-product" target="action-view-details">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- View Details to Decision Add Cart -->
+        <mxCell id="flow-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-view-details" target="decision-add-cart">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Add Cart: No -->
+        <mxCell id="flow-8" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-add-cart" target="action-continue-browse">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Continue Browse back to Product List -->
+        <mxCell id="flow-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-continue-browse" target="action-product-list">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="388" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Decision Add Cart: Yes -->
+        <mxCell id="flow-10" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-add-cart" target="action-select-qty">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Select Qty to Click Add Cart -->
+        <mxCell id="flow-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-select-qty" target="action-click-add-cart">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Click Add Cart to Decision Logged In -->
+        <mxCell id="flow-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-click-add-cart" target="decision-logged-in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Logged In: No -->
+        <mxCell id="flow-13" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-logged-in" target="action-login-redirect">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Login Redirect to User Login -->
+        <mxCell id="flow-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-login-redirect" target="action-user-login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- User Login to Merge -->
+        <mxCell id="flow-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-user-login" target="merge-login">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="1010" />
+              <mxPoint x="580" y="1010" />
+              <mxPoint x="580" y="953" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Decision Logged In: Yes to Merge -->
+        <mxCell id="flow-16" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-logged-in" target="merge-login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Merge to Add to Cart -->
+        <mxCell id="flow-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="merge-login" target="action-add-to-cart">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Add to Cart to Cart Updated -->
+        <mxCell id="flow-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-add-to-cart" target="action-cart-updated">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Cart Updated to Decision Continue -->
+        <mxCell id="flow-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-cart-updated" target="decision-continue-shop">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Continue: Yes - back to Browse -->
+        <mxCell id="flow-20" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-continue-shop" target="action-browse">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="1170" />
+              <mxPoint x="280" y="238" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Decision Continue: No to Merge Cart -->
+        <mxCell id="flow-21" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-continue-shop" target="merge-cart">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Merge Cart to View Cart -->
+        <mxCell id="flow-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="merge-cart" target="action-view-cart">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- View Cart to Display Cart -->
+        <mxCell id="flow-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-view-cart" target="action-display-cart">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Cart to Decision Modify -->
+        <mxCell id="flow-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-display-cart" target="decision-modify-cart">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Modify: Yes -->
+        <mxCell id="flow-25" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-modify-cart" target="action-modify-cart">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Modify Cart back to Display Cart -->
+        <mxCell id="flow-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-modify-cart" target="action-display-cart">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="1348" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Decision Modify: No to Merge -->
+        <mxCell id="flow-27" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-modify-cart" target="merge-modify">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Merge to Checkout -->
+        <mxCell id="flow-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="merge-modify" target="action-click-checkout">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Checkout flows -->
+        <mxCell id="flow-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-click-checkout" target="action-checkout-page">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-checkout-page" target="action-shipping">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-shipping" target="action-contact">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-contact" target="action-review-order">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-review-order" target="action-place-order">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Payment flows -->
+        <mxCell id="flow-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-place-order" target="action-redirect-ssl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-redirect-ssl" target="action-payment-options">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-payment-options" target="action-select-payment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-select-payment" target="action-payment-details">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-payment-details" target="action-confirm-payment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-confirm-payment" target="action-process-payment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-process-payment" target="decision-payment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Payment: No -->
+        <mxCell id="flow-41" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-payment" target="action-payment-failed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Payment Failed to Retry Decision -->
+        <mxCell id="flow-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-payment-failed" target="decision-retry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Retry: Yes - back to Payment Options -->
+        <mxCell id="flow-43" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-retry" target="action-payment-options">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="850" y="2580" />
+              <mxPoint x="850" y="2030" />
+              <mxPoint x="500" y="2030" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Retry: No - Cancel -->
+        <mxCell id="flow-44" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-retry" target="end-cancel">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Payment: Yes -->
+        <mxCell id="flow-45" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-payment" target="action-redirect-back">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Order Confirmation flows -->
+        <mxCell id="flow-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-redirect-back" target="action-update-order">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-update-order" target="action-clear-cart">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-clear-cart" target="action-order-confirm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-order-confirm" target="action-send-email">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Send Email to End -->
+        <mxCell id="flow-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-send-email" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== LEGEND ==================== -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="700" y="100" width="200" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-title" value="Legend" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="770" y="105" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-browse" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="715" y="135" width="25" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-browse-text" value="Browse Products" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="135" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-cart" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="715" y="160" width="25" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-cart-text" value="Cart Operations" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="160" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-auth" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="715" y="185" width="25" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-auth-text" value="Authentication" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="185" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-checkout" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="715" y="210" width="25" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-checkout-text" value="Checkout" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="210" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-payment" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="715" y="235" width="25" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-payment-text" value="SSLCommerz Payment" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="235" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-decision" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="715" y="260" width="25" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-decision-text" value="Decision Point" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="263" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

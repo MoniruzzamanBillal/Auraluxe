@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-01-18T02:59:00.000Z" agent="Mozilla/5.0" version="21.0.0" type="device">
+  <diagram name="Level 2 DFD - Process 6.0 Admin Product" id="dfd-level2-admin-product">
+    <mxGraphModel dx="1100" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <mxCell id="title" value="Level 2 DFD - Process 6.0: Admin Product Management" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="320" y="15" width="450" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="e-admin" value="Admin" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="30" y="220" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ds-products" value="D2 Products" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=0;bottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="980" y="180" width="90" height="35" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ds-categories" value="D5 Categories" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=0;bottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="980" y="250" width="90" height="35" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ds-brands" value="D6 Brands" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=0;bottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="980" y="320" width="90" height="35" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p6-1" value="6.1&#10;View Products" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="180" y="80" width="90" height="55" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p6-2" value="6.2&#10;Create Product" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="180" y="180" width="90" height="55" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p6-3" value="6.3&#10;Update Product" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="180" y="280" width="90" height="55" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p6-4" value="6.4&#10;Delete Product" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="180" y="380" width="90" height="55" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p6-5" value="6.5&#10;Validate Data" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="420" y="180" width="90" height="55" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p6-6" value="6.6&#10;Process Image" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="420" y="280" width="90" height="55" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p6-7" value="6.7&#10;Save to DB" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="680" y="220" width="90" height="55" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="f1" value="View Request" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="e-admin" target="p6-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" value="Create Request" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="e-admin" target="p6-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" value="Update Request" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="e-admin" target="p6-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" value="Delete Request" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="e-admin" target="p6-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" value="" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p6-2" target="p6-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f6" value="" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p6-3" target="p6-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f7" value="" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p6-5" target="p6-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f8" value="" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p6-6" target="p6-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f9" value="Save" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p6-7" target="ds-products">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f10" value="Fetch" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p6-1" target="ds-products">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f11" value="Delete" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p6-4" target="ds-products">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f12" value="Product List" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p6-1" target="e-admin">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

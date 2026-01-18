@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.2">
+  <diagram name="Page-1" id="_xbQB1b265W5goi7EnBK">
+    <mxGraphModel dx="1426" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="entity-user" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=10;" value="User (Guest/&#xa;Registered)" vertex="1">
+          <mxGeometry height="50" width="90" x="140" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ds-products" parent="1" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=0;bottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=10;" value="D2  Products" vertex="1">
+          <mxGeometry height="40" width="100" x="920" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="ds-categories" parent="1" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=0;bottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=10;" value="D5  Categories" vertex="1">
+          <mxGeometry height="40" width="100" x="920" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="ds-brands" parent="1" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=0;bottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=10;" value="D6  Brands" vertex="1">
+          <mxGeometry height="40" width="100" x="920" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="2.1&#xa;Search&#xa;Products" vertex="1">
+          <mxGeometry height="70" width="100" x="390" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="2.2&#xa;Browse by&#xa;Category" vertex="1">
+          <mxGeometry height="70" width="100" x="360" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="2.3&#xa;Browse by&#xa;Brand" vertex="1">
+          <mxGeometry height="70" width="100" x="500" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="2.4&#xa;Filter&#xa;Products" vertex="1">
+          <mxGeometry height="70" width="100" x="590" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="2.5&#xa;View Product&#xa;Details" vertex="1">
+          <mxGeometry height="70" width="100" x="630" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-6" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="2.6&#xa;Retrieve&#xa;Product Data" vertex="1">
+          <mxGeometry height="70" width="100" x="760" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;" value="2.7&#xa;Format&#xa;Response" vertex="1">
+          <mxGeometry height="70" width="100" x="760" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" edge="1" parent="1" source="entity-user" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p2-1" value="Search Query">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" edge="1" parent="1" source="entity-user" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p2-2" value="Category Request">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" edge="1" parent="1" source="entity-user" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p2-3" value="Brand Request">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f4" edge="1" parent="1" source="p2-1" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p2-4" value="Filter Criteria">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" edge="1" parent="1" source="p2-2" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p2-4" value="Category Filter">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f6" edge="1" parent="1" source="p2-3" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p2-4" value="Brand Filter">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f7" edge="1" parent="1" source="p2-4" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p2-6" value="Query">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f8" edge="1" parent="1" source="p2-5" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p2-6" value="Product ID">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f9" edge="1" parent="1" source="p2-6" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="ds-products" value="Product Query">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f10" edge="1" parent="1" source="p2-6" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="ds-categories" value="Category Query">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f11" edge="1" parent="1" source="p2-6" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="ds-brands" value="Brand Query">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f12" edge="1" parent="1" source="p2-6" style="endArrow=classic;html=1;rounded=0;fontSize=9;" target="p2-7" value="Raw Data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f13" edge="1" parent="1" source="p2-7" style="endArrow=classic;html=1;rounded=0;fontSize=9;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="entity-user" value="Product List">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="320" />
+              <mxPoint x="185" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

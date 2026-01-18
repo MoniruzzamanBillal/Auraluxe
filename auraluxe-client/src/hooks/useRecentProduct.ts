@@ -40,7 +40,7 @@ export default function useRecentProduct() {
 
   const addToRecentProducts = (product: any) => {
     setRecentProducts((prev) => {
-      const filtered = prev.filter((item) => item?._id !== product?._id);
+      const filtered = prev.filter((item: any) => item?._id !== product?._id);
 
       const updatedData = [product, ...filtered];
 
@@ -49,7 +49,9 @@ export default function useRecentProduct() {
   };
 
   const removeFromRecentProducts = (productId: string) => {
-    setRecentProducts((prev) => prev.filter((item) => item._id !== productId));
+    setRecentProducts((prev) =>
+      prev.filter((item: any) => item._id !== productId)
+    );
   };
 
   const clearRecentProducts = () => {
@@ -63,7 +65,7 @@ export default function useRecentProduct() {
   // Get recent products excluding current product
   const getRecentProductsExcluding = (excludeProductId: string) => {
     return recentProducts.filter(
-      (item) => item._id !== excludeProductId && item.status === true
+      (item: any) => item._id !== excludeProductId && item.status === true
     );
   };
 

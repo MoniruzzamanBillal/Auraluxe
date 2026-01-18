@@ -1,0 +1,577 @@
+<mxfile host="app.diagrams.net" modified="2026-01-17T13:30:00.000Z" agent="Mozilla/5.0" version="21.0.0" type="device">
+  <diagram name="Admin CRUD Operations Activity Diagram" id="admin-crud-activity">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- ==================== TITLE ==================== -->
+        <mxCell id="title" value="Activity Diagram: Admin CRUD Operations - Auraluxe" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="500" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== START NODE ==================== -->
+        <mxCell id="start" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="530" y="70" width="40" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== ACTIVITIES ==================== -->
+        
+        <!-- Admin Login -->
+        <mxCell id="action-login" value="Admin Login to Dashboard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="140" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Verify Credentials -->
+        <mxCell id="action-verify" value="Verify Admin Credentials" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="215" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Valid Credentials? -->
+        <mxCell id="decision-valid-login" value="Valid&#xa;Credentials?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="495" y="290" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Invalid Login Error -->
+        <mxCell id="action-login-error" value="Display Login Error" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="297" width="160" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Dashboard -->
+        <mxCell id="action-dashboard" value="Display Admin Dashboard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="410" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Select Module -->
+        <mxCell id="action-select-module" value="Select Management Module&#xa;(Category/Product/Brand/Project/etc.)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="485" width="200" height="55" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Module List -->
+        <mxCell id="action-display-list" value="Display List of Items" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="570" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Select Operation -->
+        <mxCell id="decision-operation" value="Select&#xa;Operation" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="495" y="650" width="110" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== CREATE BRANCH ==================== -->
+        
+        <mxCell id="label-create" value="Create" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="170" y="680" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Click Add New -->
+        <mxCell id="action-click-add" value="Click &quot;Add New&quot; Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="770" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Create Form -->
+        <mxCell id="action-create-form" value="Display Create Form" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="845" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Enter Item Details -->
+        <mxCell id="action-enter-details" value="Enter Item Details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="920" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Upload Image if Required -->
+        <mxCell id="action-upload-create" value="Upload Image (if required)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="995" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Click Submit -->
+        <mxCell id="action-submit-create" value="Click Submit Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1070" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Validate Create Data -->
+        <mxCell id="action-validate-create" value="Validate Input Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1145" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Create Valid? -->
+        <mxCell id="decision-create-valid" value="Data&#xa;Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="135" y="1220" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Create Error -->
+        <mxCell id="action-create-error" value="Display Validation Error" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1330" width="150" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Save to Database -->
+        <mxCell id="action-save-create" value="Save New Item to Database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1410" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== READ/VIEW BRANCH ==================== -->
+        
+        <mxCell id="label-read" value="View" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="385" y="680" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Click View -->
+        <mxCell id="action-click-view" value="Click &quot;View&quot; Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="320" y="770" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Fetch Item Details -->
+        <mxCell id="action-fetch-details" value="Fetch Item Details from DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="320" y="845" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Item Details -->
+        <mxCell id="action-display-details" value="Display Item Details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="320" y="920" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== UPDATE BRANCH ==================== -->
+        
+        <mxCell id="label-update" value="Update" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="600" y="680" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Click Edit -->
+        <mxCell id="action-click-edit" value="Click &quot;Edit&quot; Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="770" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Fetch Existing Data -->
+        <mxCell id="action-fetch-edit" value="Fetch Existing Item Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="845" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Edit Form -->
+        <mxCell id="action-edit-form" value="Display Edit Form with Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="920" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Modify Details -->
+        <mxCell id="action-modify-details" value="Modify Item Details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="995" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Click Update -->
+        <mxCell id="action-submit-update" value="Click Update Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="1070" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Validate Update Data -->
+        <mxCell id="action-validate-update" value="Validate Updated Data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="1145" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Update Valid? -->
+        <mxCell id="decision-update-valid" value="Data&#xa;Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="635" y="1220" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Update Error -->
+        <mxCell id="action-update-error" value="Display Validation Error" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="800" y="1330" width="150" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Update in Database -->
+        <mxCell id="action-save-update" value="Update Item in Database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="1410" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== DELETE BRANCH ==================== -->
+        
+        <mxCell id="label-delete" value="Delete" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="865" y="680" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Click Delete -->
+        <mxCell id="action-click-delete" value="Click &quot;Delete&quot; Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="840" y="770" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Confirmation -->
+        <mxCell id="action-confirm-dialog" value="Display Confirmation Dialog" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="840" y="845" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Confirm Delete? -->
+        <mxCell id="decision-confirm-delete" value="Confirm&#xa;Delete?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="875" y="920" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Delete from Database -->
+        <mxCell id="action-delete-db" value="Delete/Soft Delete from DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="840" y="1070" width="180" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== COMMON SUCCESS/END ==================== -->
+        
+        <!-- Display Success Message -->
+        <mxCell id="action-success" value="Display Success Message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1510" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Refresh List -->
+        <mxCell id="action-refresh" value="Refresh Item List" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1585" width="200" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Continue? -->
+        <mxCell id="decision-continue" value="Continue&#xa;Managing?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="495" y="1665" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Logout -->
+        <mxCell id="action-logout" value="Logout" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1785" width="200" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== END NODE ==================== -->
+        <mxCell id="end" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="530" y="1855" width="40" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== MERGE NODES ==================== -->
+        
+        <mxCell id="merge-operations" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="542" y="1475" width="16" height="16" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== FLOW CONNECTIONS ==================== -->
+        
+        <!-- Start to Login -->
+        <mxCell id="flow-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="start" target="action-login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Login to Verify -->
+        <mxCell id="flow-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-login" target="action-verify">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Verify to Decision -->
+        <mxCell id="flow-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-verify" target="decision-valid-login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Login: No -->
+        <mxCell id="flow-4" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-valid-login" target="action-login-error">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Login Error back to Login -->
+        <mxCell id="flow-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-login-error" target="action-login">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="320" />
+              <mxPoint x="860" y="100" />
+              <mxPoint x="550" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Decision Login: Yes -->
+        <mxCell id="flow-6" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-valid-login" target="action-dashboard">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Dashboard to Select Module -->
+        <mxCell id="flow-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-dashboard" target="action-select-module">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Select Module to Display List -->
+        <mxCell id="flow-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-select-module" target="action-display-list">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Display List to Decision Operation -->
+        <mxCell id="flow-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-display-list" target="decision-operation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== CREATE FLOWS ==================== -->
+        
+        <!-- Decision to Create -->
+        <mxCell id="flow-create-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="decision-operation" target="action-click-add">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="190" y="695" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-create-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-click-add" target="action-create-form">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-create-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-create-form" target="action-enter-details">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-create-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-enter-details" target="action-upload-create">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-create-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-upload-create" target="action-submit-create">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-create-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-submit-create" target="action-validate-create">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-create-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-validate-create" target="decision-create-valid">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Create Decision: No -->
+        <mxCell id="flow-create-8" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-create-valid" target="action-create-error">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Create Error back to Enter Details -->
+        <mxCell id="flow-create-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-create-error" target="action-enter-details">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="45" y="943" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Create Decision: Yes -->
+        <mxCell id="flow-create-10" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-create-valid" target="action-save-create">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Save Create to Merge -->
+        <mxCell id="flow-create-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-save-create" target="merge-operations">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== VIEW FLOWS ==================== -->
+        
+        <!-- Decision to View -->
+        <mxCell id="flow-view-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="decision-operation" target="action-click-view">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="695" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-view-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-click-view" target="action-fetch-details">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-view-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-fetch-details" target="action-display-details">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- View to Merge -->
+        <mxCell id="flow-view-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-display-details" target="merge-operations">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="1000" />
+              <mxPoint x="410" y="1483" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- ==================== UPDATE FLOWS ==================== -->
+        
+        <!-- Decision to Update -->
+        <mxCell id="flow-update-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="decision-operation" target="action-click-edit">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="695" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-update-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-click-edit" target="action-fetch-edit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-update-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-fetch-edit" target="action-edit-form">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-update-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-edit-form" target="action-modify-details">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-update-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-modify-details" target="action-submit-update">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-update-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-submit-update" target="action-validate-update">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-update-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-validate-update" target="decision-update-valid">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Update Decision: No -->
+        <mxCell id="flow-update-8" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-update-valid" target="action-update-error">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Update Error back to Modify -->
+        <mxCell id="flow-update-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-update-error" target="action-modify-details">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="1350" />
+              <mxPoint x="1000" y="1018" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Update Decision: Yes -->
+        <mxCell id="flow-update-10" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-update-valid" target="action-save-update">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Save Update to Merge -->
+        <mxCell id="flow-update-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-save-update" target="merge-operations">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== DELETE FLOWS ==================== -->
+        
+        <!-- Decision to Delete -->
+        <mxCell id="flow-delete-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="decision-operation" target="action-click-delete">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="695" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-delete-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-click-delete" target="action-confirm-dialog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow-delete-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-confirm-dialog" target="decision-confirm-delete">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Delete Decision: No - back to list -->
+        <mxCell id="flow-delete-4" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-confirm-delete" target="merge-operations">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1050" y="960" />
+              <mxPoint x="1050" y="1483" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Delete Decision: Yes -->
+        <mxCell id="flow-delete-5" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-confirm-delete" target="action-delete-db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Delete to Merge -->
+        <mxCell id="flow-delete-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-delete-db" target="merge-operations">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="1483" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- ==================== COMMON END FLOWS ==================== -->
+        
+        <!-- Merge to Success -->
+        <mxCell id="flow-end-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="merge-operations" target="action-success">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Success to Refresh -->
+        <mxCell id="flow-end-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-success" target="action-refresh">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Refresh to Decision Continue -->
+        <mxCell id="flow-end-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-refresh" target="decision-continue">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Continue: Yes - back to Select Module -->
+        <mxCell id="flow-end-4" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-continue" target="action-select-module">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="1705" />
+              <mxPoint x="300" y="513" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Decision Continue: No -->
+        <mxCell id="flow-end-5" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=11;" edge="1" parent="1" source="decision-continue" target="action-logout">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Logout to End -->
+        <mxCell id="flow-end-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-logout" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== LEGEND ==================== -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="30" y="100" width="200" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-title" value="Legend" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="105" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-general" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="45" y="135" width="25" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-general-text" value="General Activity" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="135" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-create" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="45" y="160" width="25" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-create-text" value="Create Operation" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="160" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-view" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="45" y="185" width="25" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-view-text" value="View/Read Operation" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="185" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-update" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="45" y="210" width="25" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-update-text" value="Update Operation" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="210" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-delete" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="45" y="235" width="25" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-delete-text" value="Delete / Error" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="235" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-decision" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="45" y="260" width="25" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-decision-text" value="Decision" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="263" width="140" height="18" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

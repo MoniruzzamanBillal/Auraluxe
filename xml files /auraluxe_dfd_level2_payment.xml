@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-01-18T02:59:00.000Z" agent="Mozilla/5.0" version="21.0.0" type="device">
+  <diagram name="Level 2 DFD - Process 5.0 Payment" id="dfd-level2-payment">
+    <mxGraphModel dx="1100" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <mxCell id="title" value="Level 2 DFD - Process 5.0: Payment Processing" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="350" y="15" width="400" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p-order" value="4.0 Order" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="30" y="180" width="80" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="e-ssl" value="SSLCommerz" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="980" y="180" width="90" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="e-user" value="User" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="30" y="350" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ds-orders" value="D4 Orders" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=0;bottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="980" y="330" width="90" height="35" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p5-1" value="5.1&#10;Init Payment" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="180" y="100" width="90" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p5-2" value="5.2&#10;Generate URL" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="380" y="100" width="90" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p5-3" value="5.3&#10;Redirect" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="580" y="100" width="90" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p5-4" value="5.4&#10;Handle IPN" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="780" y="100" width="90" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p5-5" value="5.5&#10;Verify" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="580" y="250" width="90" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p5-6" value="5.6&#10;Update Status" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="780" y="250" width="90" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p5-7" value="5.7&#10;Return Result" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="180" y="300" width="90" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="f1" value="Order+Amount" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p-order" target="p5-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" value="" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p5-1" target="p5-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" value="" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p5-2" target="p5-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" value="Gateway URL" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p5-3" target="e-ssl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" value="IPN Callback" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="e-ssl" target="p5-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f6" value="" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p5-4" target="p5-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f7" value="" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p5-5" target="p5-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f8" value="Update" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p5-6" target="ds-orders">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f9" value="" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p5-6" target="p5-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f10" value="Result" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="p5-7" target="p-order">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f11" value="Redirect" style="endArrow=classic;html=1;rounded=0;fontSize=8;" edge="1" parent="1" source="e-ssl" target="e-user">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

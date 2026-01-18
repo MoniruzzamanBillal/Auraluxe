@@ -1,0 +1,283 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.2">
+  <diagram name="Page-1" id="We6Ws0Clj_EBL7f09f3a">
+    <mxGraphModel dx="1372" dy="759" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="actor-admin" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=12;fontStyle=1;" value="Admin" vertex="1">
+          <mxGeometry height="70" width="40" x="100" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-frontend" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" value="Admin Dashboard (Next.js)" vertex="1">
+          <mxGeometry height="1600" width="120" x="220" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-table" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=11;" value="TanStack Table" vertex="1">
+          <mxGeometry height="1600" width="100" x="380" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-form" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=11;" value="Form (RHF + Zod)" vertex="1">
+          <mxGeometry height="1600" width="90" x="520" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-query" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=10;" value="TanStack Query" vertex="1">
+          <mxGeometry height="1600" width="100" x="650" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-axios" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" value="Axios" vertex="1">
+          <mxGeometry height="1600" width="80" x="790" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-controller" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" value="NestJS Controller" vertex="1">
+          <mxGeometry height="1600" width="90" x="920" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-guard" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" value="JWT Auth Guard" vertex="1">
+          <mxGeometry height="1600" width="80" x="1050" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-service" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=10;" value="Service" vertex="1">
+          <mxGeometry height="1600" width="110" x="1170" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-prisma" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=11;" value="Prisma ORM (PostgreSQL)" vertex="1">
+          <mxGeometry height="1600" width="100" x="1320" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="section-auth" parent="1" style="text;html=1;strokeColor=none;fillColor=#dae8fc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;" value="Authentication" vertex="1">
+          <mxGeometry height="20" width="100" x="100" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="msg-1" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="1. Login to Admin Panel">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="220" as="sourcePoint" />
+            <mxPoint x="280" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-2" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="2. Verify JWT Token">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="260" as="sourcePoint" />
+            <mxPoint x="1090" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-3" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;fontSize=11;" value="3. Token Valid - Role: ADMIN">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1090" y="300" as="sourcePoint" />
+            <mxPoint x="280" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-4" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;fontSize=11;" value="4. Display Admin Dashboard">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="340" as="sourcePoint" />
+            <mxPoint x="120" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="section-read" parent="1" style="text;html=1;strokeColor=none;fillColor=#e1d5e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;" value="READ (Fetch List)" vertex="1">
+          <mxGeometry height="20" width="100" x="100" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="msg-5" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="5. Select Module (Categories/Products)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="420" as="sourcePoint" />
+            <mxPoint x="280" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-6" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="6. useQuery({ queryKey: [items] })">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="460" as="sourcePoint" />
+            <mxPoint x="700" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-7" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="7. GET /api/items">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="500" as="sourcePoint" />
+            <mxPoint x="830" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-8" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="8. HTTP GET Request">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="830" y="540" as="sourcePoint" />
+            <mxPoint x="965" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-9" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="9. findAll()">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="965" y="580" as="sourcePoint" />
+            <mxPoint x="1225" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-10" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="10. findMany()">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1225" y="620" as="sourcePoint" />
+            <mxPoint x="1370" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-11" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;fontSize=11;" value="11. Return items[]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1370" y="660" as="sourcePoint" />
+            <mxPoint x="280" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-12" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="12. Render Table with Data">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="700" as="sourcePoint" />
+            <mxPoint x="430" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-13" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;fontSize=11;" value="13. Display Data Table">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="740" as="sourcePoint" />
+            <mxPoint x="120" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="section-create" parent="1" style="text;html=1;strokeColor=none;fillColor=#d5e8d4;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;" value="CREATE (Add New)" vertex="1">
+          <mxGeometry height="20" width="100" x="100" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="msg-14" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="14. Click Add New Button">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="820" as="sourcePoint" />
+            <mxPoint x="280" y="820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-15" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;fontSize=11;" value="15. Open Create Form Modal">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="860" as="sourcePoint" />
+            <mxPoint x="120" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-16" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="16. Enter Form Data">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="900" as="sourcePoint" />
+            <mxPoint x="565" y="900" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-17" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;fontStyle=1;" value="17. Submit Form">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="940" as="sourcePoint" />
+            <mxPoint x="280" y="940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-18" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="18. validate(formData)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="980" as="sourcePoint" />
+            <mxPoint x="565" y="980" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-19" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;fontSize=11;" value="19. isValid: true">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="565" y="1020" as="sourcePoint" />
+            <mxPoint x="280" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-20" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="20. useMutation.mutate(data)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="1060" as="sourcePoint" />
+            <mxPoint x="700" y="1060" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-21" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="21. POST /api/items">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="1100" as="sourcePoint" />
+            <mxPoint x="830" y="1100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-22" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="22. @AuthGuard verify">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="830" y="1140" as="sourcePoint" />
+            <mxPoint x="1090" y="1140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-23" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;fontSize=11;" value="23. Authorized">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1090" y="1180" as="sourcePoint" />
+            <mxPoint x="965" y="1180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-24" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="24. create(createDto)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="965" y="1220" as="sourcePoint" />
+            <mxPoint x="1225" y="1220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-25" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="25. create({ data })">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1225" y="1260" as="sourcePoint" />
+            <mxPoint x="1370" y="1260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-25-note" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=left;fillColor=#ffffc0;strokeColor=#c0c0c0;fontSize=9;" value="INSERT INTO items (...)" vertex="1">
+          <mxGeometry height="30" width="130" x="1390" y="1250" as="geometry" />
+        </mxCell>
+        <mxCell id="msg-26" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;fontSize=11;" value="26. HTTP 201 Created">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1370" y="1300" as="sourcePoint" />
+            <mxPoint x="280" y="1300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-27" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;fontSize=11;" value="27. invalidateQueries([items])">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="1340" as="sourcePoint" />
+            <mxPoint x="700" y="1340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-28" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;fontSize=11;" value="28. Refetch and Update Table">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="1380" as="sourcePoint" />
+            <mxPoint x="280" y="1380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg-29" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;fontSize=11;" value="29. Toast: Created Successfully">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="1420" as="sourcePoint" />
+            <mxPoint x="120" y="1420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="section-update-delete" parent="1" style="text;html=1;strokeColor=none;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;" value="UPDATE / DELETE" vertex="1">
+          <mxGeometry height="20" width="100" x="100" y="1460" as="geometry" />
+        </mxCell>
+        <mxCell id="note-update-delete" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=left;fillColor=#ffffc0;strokeColor=#c0c0c0;fontSize=10;" value="UPDATE Flow: Click Edit - Open form with data - Modify - Validate - PATCH /api/items/:id - update() - UPDATE SQL&#xa;&#xa;DELETE Flow: Click Delete - Confirm Modal - DELETE /api/items/:id - delete() - DELETE SQL or Soft Delete" vertex="1">
+          <mxGeometry height="80" width="500" x="220" y="1490" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="80" width="800" x="100" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;" value="Legend:" vertex="1">
+          <mxGeometry height="20" width="50" x="110" y="1610" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sync" edge="1" parent="1" style="endArrow=block;html=1;fontSize=10;" value="Synchronous Call">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="1620" as="sourcePoint" />
+            <mxPoint x="280" y="1620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-async" edge="1" parent="1" style="endArrow=open;dashed=1;html=1;fontSize=10;" value="Return / Response">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="1650" as="sourcePoint" />
+            <mxPoint x="280" y="1650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-frontend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="15" width="15" x="320" y="1615" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-frontend-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" value="Frontend" vertex="1">
+          <mxGeometry height="20" width="55" x="340" y="1612" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-form" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="" vertex="1">
+          <mxGeometry height="15" width="15" x="400" y="1615" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-form-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" value="Table/Form" vertex="1">
+          <mxGeometry height="20" width="70" x="420" y="1612" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-query" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
+          <mxGeometry height="15" width="15" x="495" y="1615" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-query-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" value="Query/Axios" vertex="1">
+          <mxGeometry height="20" width="70" x="515" y="1612" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-backend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
+          <mxGeometry height="15" width="15" x="590" y="1615" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-backend-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" value="NestJS" vertex="1">
+          <mxGeometry height="20" width="45" x="610" y="1612" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-db" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="" vertex="1">
+          <mxGeometry height="15" width="15" x="660" y="1615" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-db-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" value="Prisma/PostgreSQL" vertex="1">
+          <mxGeometry height="20" width="110" x="680" y="1612" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-operations" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;" value="Operations: READ (GET) - CREATE (POST) - UPDATE (PATCH) - DELETE" vertex="1">
+          <mxGeometry height="20" width="450" x="320" y="1645" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

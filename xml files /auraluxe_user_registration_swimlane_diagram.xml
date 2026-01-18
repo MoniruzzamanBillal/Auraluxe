@@ -1,0 +1,412 @@
+<mxfile host="app.diagrams.net" modified="2026-01-17T13:50:00.000Z" agent="Mozilla/5.0" version="21.0.0" type="device">
+  <diagram name="User Registration Swimlane Diagram" id="user-registration-swimlane">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- ==================== TITLE ==================== -->
+        <mxCell id="title" value="Swimlane Diagram: User Registration - Auraluxe" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="450" y="20" width="500" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== SWIMLANES ==================== -->
+        
+        <!-- User Swimlane -->
+        <mxCell id="swimlane-user" value="User" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;startSize=40;" vertex="1" parent="1">
+          <mxGeometry x="80" y="70" width="1240" height="200" as="geometry" />
+        </mxCell>
+        
+        <!-- Frontend Swimlane -->
+        <mxCell id="swimlane-frontend" value="Frontend&#xa;(Next.js)" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;startSize=40;" vertex="1" parent="1">
+          <mxGeometry x="80" y="270" width="1240" height="200" as="geometry" />
+        </mxCell>
+        
+        <!-- Backend Swimlane -->
+        <mxCell id="swimlane-backend" value="Backend&#xa;(NestJS)" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=14;startSize=40;" vertex="1" parent="1">
+          <mxGeometry x="80" y="470" width="1240" height="200" as="geometry" />
+        </mxCell>
+        
+        <!-- Database Swimlane -->
+        <mxCell id="swimlane-database" value="Database&#xa;(PostgreSQL)" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=14;startSize=40;" vertex="1" parent="1">
+          <mxGeometry x="80" y="670" width="1240" height="180" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== START NODE ==================== -->
+        <mxCell id="start" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="150" y="155" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== USER ACTIONS ==================== -->
+        
+        <!-- Navigate to Registration -->
+        <mxCell id="action-navigate" value="Navigate to&#xa;Registration Page" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="145" width="110" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Enter Name -->
+        <mxCell id="action-enter-name" value="Enter Name" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="410" y="145" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Enter Email -->
+        <mxCell id="action-enter-email" value="Enter Email" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="530" y="145" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Enter Password -->
+        <mxCell id="action-enter-password" value="Enter Password" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="145" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Upload Image -->
+        <mxCell id="action-upload-image" value="Upload Profile&#xa;Image" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="770" y="145" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Click Register -->
+        <mxCell id="action-click-register" value="Click Register&#xa;Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="890" y="145" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- View Success -->
+        <mxCell id="action-view-success" value="View Success&#xa;Message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="145" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== FRONTEND ACTIONS ==================== -->
+        
+        <!-- Display Form -->
+        <mxCell id="action-display-form" value="Display&#xa;Registration Form" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="340" y="345" width="110" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Validate Form (Zod) -->
+        <mxCell id="action-validate-zod" value="Validate Form&#xa;(Zod Schema)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="890" y="290" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Frontend Valid? -->
+        <mxCell id="decision-frontend-valid" value="Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="900" y="355" width="80" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Show Validation Error -->
+        <mxCell id="action-show-error" value="Show Validation&#xa;Error" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="770" y="355" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Send API Request -->
+        <mxCell id="action-send-api" value="Send POST Request&#xa;/api/auth/register" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="345" width="120" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Success -->
+        <mxCell id="action-display-success" value="Display Success&#xa;&amp; Redirect" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="345" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== BACKEND ACTIONS ==================== -->
+        
+        <!-- Receive Request -->
+        <mxCell id="action-receive-request" value="Receive&#xa;Registration Request" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="150" y="545" width="110" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Validate Email Format -->
+        <mxCell id="action-validate-email" value="Validate Email&#xa;Format" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="280" y="545" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Email Format Valid? -->
+        <mxCell id="decision-email-valid" value="Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="540" width="70" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Check Email Exists -->
+        <mxCell id="action-check-email-exists" value="Check Email&#xa;Already Exists" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="490" y="545" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision: Email Exists? -->
+        <mxCell id="decision-email-exists" value="Exists?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="610" y="540" width="70" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Validate Image -->
+        <mxCell id="action-validate-image" value="Validate &amp;&#xa;Process Image" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="700" y="545" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Hash Password -->
+        <mxCell id="action-hash-password" value="Hash Password&#xa;(bcrypt)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="820" y="545" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Return Success -->
+        <mxCell id="action-return-success" value="Return Success&#xa;Response" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="545" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Return Error -->
+        <mxCell id="action-return-error" value="Return Error&#xa;Response" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="435" y="620" width="100" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== DATABASE ACTIONS ==================== -->
+        
+        <!-- Query Check Email -->
+        <mxCell id="action-query-email" value="Query: Check&#xa;Email Exists" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="490" y="735" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Create User Record -->
+        <mxCell id="action-create-user" value="INSERT: Create&#xa;User Record" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="940" y="735" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Return Result -->
+        <mxCell id="action-return-result" value="Return Query&#xa;Result" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="610" y="735" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Return User Created -->
+        <mxCell id="action-user-created" value="Return User&#xa;Created" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="735" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== END NODE ==================== -->
+        <mxCell id="end" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="1275" y="155" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== FLOW CONNECTIONS ==================== -->
+        
+        <!-- Start to Navigate -->
+        <mxCell id="flow-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="start" target="action-navigate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Navigate to Display Form -->
+        <mxCell id="flow-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-navigate" target="action-display-form">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Form to Enter Name -->
+        <mxCell id="flow-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-display-form" target="action-enter-name">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Enter Name to Enter Email -->
+        <mxCell id="flow-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-enter-name" target="action-enter-email">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Enter Email to Enter Password -->
+        <mxCell id="flow-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-enter-email" target="action-enter-password">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Enter Password to Upload Image -->
+        <mxCell id="flow-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-enter-password" target="action-upload-image">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Upload Image to Click Register -->
+        <mxCell id="flow-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-upload-image" target="action-click-register">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Click Register to Validate Zod -->
+        <mxCell id="flow-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-click-register" target="action-validate-zod">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Validate Zod to Decision -->
+        <mxCell id="flow-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-validate-zod" target="decision-frontend-valid">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Frontend: No -->
+        <mxCell id="flow-10" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=10;" edge="1" parent="1" source="decision-frontend-valid" target="action-show-error">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Show Error back to Enter Name -->
+        <mxCell id="flow-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="action-show-error" target="action-enter-name">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="820" y="430" />
+              <mxPoint x="460" y="430" />
+              <mxPoint x="460" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Decision Frontend: Yes -->
+        <mxCell id="flow-12" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=10;" edge="1" parent="1" source="decision-frontend-valid" target="action-send-api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Send API to Receive Request -->
+        <mxCell id="flow-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-send-api" target="action-receive-request">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1060" y="440" />
+              <mxPoint x="130" y="440" />
+              <mxPoint x="130" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Receive Request to Validate Email -->
+        <mxCell id="flow-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-receive-request" target="action-validate-email">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Validate Email to Decision -->
+        <mxCell id="flow-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-validate-email" target="decision-email-valid">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Email Valid: No -->
+        <mxCell id="flow-16" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=10;" edge="1" parent="1" source="decision-email-valid" target="action-return-error">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Email Valid: Yes -->
+        <mxCell id="flow-17" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=10;" edge="1" parent="1" source="decision-email-valid" target="action-check-email-exists">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Check Email Exists to Query DB -->
+        <mxCell id="flow-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-check-email-exists" target="action-query-email">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Query Email to Return Result -->
+        <mxCell id="flow-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-query-email" target="action-return-result">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Return Result to Decision Exists -->
+        <mxCell id="flow-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-return-result" target="decision-email-exists">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Decision Email Exists: Yes (Error) -->
+        <mxCell id="flow-21" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=10;" edge="1" parent="1" source="decision-email-exists" target="action-return-error">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="645" y="620" />
+              <mxPoint x="560" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Decision Email Exists: No (Continue) -->
+        <mxCell id="flow-22" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontStyle=1;fontSize=10;" edge="1" parent="1" source="decision-email-exists" target="action-validate-image">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Validate Image to Hash Password -->
+        <mxCell id="flow-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-validate-image" target="action-hash-password">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Hash Password to Create User -->
+        <mxCell id="flow-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-hash-password" target="action-create-user">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Create User to User Created -->
+        <mxCell id="flow-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-create-user" target="action-user-created">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- User Created to Return Success -->
+        <mxCell id="flow-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-user-created" target="action-return-success">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Return Success to Display Success -->
+        <mxCell id="flow-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-return-success" target="action-display-success">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Display Success to View Success -->
+        <mxCell id="flow-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-display-success" target="action-view-success">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- View Success to End -->
+        <mxCell id="flow-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;" edge="1" parent="1" source="action-view-success" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Error back to Show Error (Frontend) -->
+        <mxCell id="flow-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.5;dashed=1;strokeColor=#b85450;" edge="1" parent="1" source="action-return-error" target="action-show-error">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="485" y="690" />
+              <mxPoint x="750" y="690" />
+              <mxPoint x="750" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- ==================== LEGEND ==================== -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="80" y="880" width="400" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-title" value="Legend:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="90" y="890" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-user" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="150" y="890" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-user-text" value="User" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="175" y="888" width="40" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-frontend" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="220" y="890" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-frontend-text" value="Frontend" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="245" y="888" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-backend" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="300" y="890" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-backend-text" value="Backend" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="325" y="888" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-db" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="380" y="890" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-db-text" value="Database" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="405" y="888" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-error" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="150" y="920" width="20" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-error-text" value="Error" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="175" y="918" width="40" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-decision" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="220" y="915" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-decision-text" value="Decision" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="245" y="918" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

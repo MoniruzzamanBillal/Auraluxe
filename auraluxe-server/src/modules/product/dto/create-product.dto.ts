@@ -5,7 +5,6 @@ import {
   IsOptional,
   IsPositive,
   IsString,
-  IsUUID,
   MaxLength,
 } from 'class-validator';
 
@@ -20,11 +19,11 @@ export class CreateProductDto {
   @MaxLength(50)
   productCode?: string;
 
-  @IsUUID()
+  @IsString()
   @IsNotEmpty({ message: 'Brand ID is required' })
   brandId: string;
 
-  @IsUUID()
+  @IsString()
   @IsNotEmpty({ message: 'Category ID is required' })
   categoryId: string;
 
@@ -32,6 +31,11 @@ export class CreateProductDto {
   @IsNumber()
   @IsPositive()
   price: number;
+
+  @Type(() => Number)
+  @IsNumber()
+  @IsPositive()
+  quantity: number;
 
   @IsString()
   @IsNotEmpty({ message: 'Key features are required' })

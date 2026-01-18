@@ -1,0 +1,108 @@
+erDiagram
+    %% Entities
+    User {
+        UUID id PK
+        string email
+        string name
+        string password
+        enum role "USER, ADMIN, VENDOR"
+        boolean isDeleted
+        timestamp createdAt
+    }
+
+    Cart {
+        UUID id PK
+        UUID userId FK
+        timestamp updatedAt
+    }
+
+    CartItem {
+        UUID id PK
+        UUID cartId FK
+        UUID productId FK
+        int quantity
+        float unitPrice
+    }
+
+    Product {
+        UUID id PK
+        string name
+        string productCode
+        int quantity
+        float price
+        UUID categoryId FK
+        UUID brandId FK
+        boolean status
+    }
+
+    Category {
+        UUID id PK
+        string name
+        boolean status
+    }
+
+    Brand {
+        UUID id PK
+        string name
+        string logo
+        UUID brandTypeId FK
+    }
+
+    BrandType {
+        UUID id PK
+        string name
+        string description
+    }
+
+    Project {
+        UUID id PK
+        string name
+        string client
+        UUID projectTypeId FK
+        UUID materialId FK
+    }
+
+    %% Future / Proposed Entities
+    Order {
+        UUID id PK
+        UUID userId FK
+        string orderNumber
+        enum status "PENDING, PROCESSING, SHIPPED, DELIVERED"
+        float totalAmount
+        string shippingAddress
+        enum paymentStatus "PENDING, PAID, FAILED"
+    }
+
+    OrderItem {
+        UUID id PK
+        UUID orderId FK
+        UUID productId FK
+        int quantity
+        float unitPrice
+        float total
+    }
+
+    Payment {
+        UUID id PK
+        UUID orderId FK
+        string transactionId
+        float amount
+        string gateway
+        string status
+    }
+
+    %% Relationships
+    User ||--|| Cart : "has 1"
+    User ||--o{ Order : "places N"
+    
+    Cart ||--o{ CartItem : "contains N"
+    
+    Category ||--o{ Product : "contains N"
+    Brand ||--o{ Product : "makes N"
+    BrandType ||--o{ Brand : "classifies N"
+    
+    Product ||--o{ CartItem : "in N carts"
+    Product ||--o{ OrderItem : "in N orders"
+    
+    Order ||--o{ OrderItem : "contains N"
+    Order ||--o{ Payment : "has N"
