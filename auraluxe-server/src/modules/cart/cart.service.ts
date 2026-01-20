@@ -59,6 +59,7 @@ export class CartService {
     });
   }
 
+  // ! for getting user cart
   async getUserCart(userId: string) {
     const result = await this.prisma.cart.findUnique({
       where: { userId },
@@ -72,6 +73,51 @@ export class CartService {
     });
 
     return result;
+  }
+
+  // ! for removing cart item
+  async removeCartItem(userId: string, productId: string) {
+    return this.prisma.$transaction(async (tx) => {
+      // 1️⃣ Find cart
+      const cart = await tx.cart.findUnique({
+        where: { userId },
+      });
+
+      if (!cart) {
+        throw new BadRequestException('Cart not found');
+      }
+
+      // 2️⃣ Check cart item
+      const cartItem = await tx.cartItem.findUnique({
+        where: {
+          cartId_productId: {
+            cartId: cart.id,
+            productId,
+          },
+        },
+      });
+
+      if (!cartItem) {
+        throw new BadRequestException('Product not found in cart');
+      }
+
+      // 3️⃣ Delete cart item
+      await tx.cartItem.delete({
+        where: { id: cartItem.id },
+      });
+
+      // 4️⃣ Return updated cart
+      // return tx.cart.findUnique({
+      //   where: { id: cart.id },
+      //   include: {
+      //     items: {
+      //       include: {
+      //         product: true,
+      //       },
+      //     },
+      //   },
+      // });
+    });
   }
 
   //

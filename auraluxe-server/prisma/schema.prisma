@@ -16,6 +16,7 @@ model User {
   isDeleted Boolean  @default(false)
   status    Boolean  @default(true)
   cart      Cart?
+  orders    Order[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -36,9 +37,11 @@ model category {
 model Product {
   id          String   @id @default(uuid())
   name        String
-  productCode String? 
-  brandId     String
-  brand       Brand    @relation(fields: [brandId], references: [id])
+  //  name        String    @unique
+  productCode String?
+  // ! brand id is mandatory 
+  // brandId     String
+  // brand       Brand    @relation(fields: [brandId], references: [id])
   categoryId  String
   category    category @relation(fields: [categoryId], references: [id])
   quantity    Int
@@ -48,17 +51,21 @@ model Product {
   keyFeatures      String
   specifications   String
   productDes       String
-  shippingDelivery String? 
+  shippingDelivery String?
 
   productImage String
 
-  cartItems CartItem[]
+  cartItems  CartItem[]
+  orderItems OrderItem[]
 
   status    Boolean @default(true)
-  isDeleted Boolean @default(true)
+  isDeleted Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([isDeleted, status])
 }
 
 model Cart {
@@ -86,10 +93,73 @@ model CartItem {
   quantity  Int   @default(1)
   unitPrice Float
 
+   isDeleted Boolean @default(false)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@unique([cartId, productId])
+}
+
+// ! order related models 
+model OrderItem {
+  id String @id @default(uuid())
+
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  quantity  Int
+  unitPrice Float
+
+
+
+   isDeleted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  status      ORDERSTATUS @default(PENDING)
+  totalAmount Float
+
+  items   OrderItem[]
+  payment Payment?
+
+  isDeleted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Payment {
+  id String @id @default(uuid())
+
+  userId  String
+  orderId String @unique
+  order   Order  @relation(fields: [orderId], references: [id ] , onDelete: Cascade )
+
+  amount        Float
+  transactionId String        @unique
+  status        PAYMENTSTATUS @default(PENDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+   isDeleted Boolean @default(false)
+
+  @@index([transactionId])
+  @@index([orderId])
 }
 
 model brandType {
@@ -112,7 +182,7 @@ model Brand {
   brandTypeId String // foreign key
   brandType   brandType @relation(fields: [brandTypeId], references: [id])
 
-  products Product[]
+  // products Product[]
 
   isDeleted Boolean @default(false)
   status    Boolean @default(true)
@@ -167,6 +237,9 @@ model Project {
 
   materialId String
   material   material @relation(fields: [materialId], references: [id])
+
+
+   isDeleted Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -253,5 +326,17 @@ model ourFeaturedProduct {
 enum UserRole {
   user
   admin
-  vendor
+}
+
+enum ORDERSTATUS {
+  PENDING
+  PAID
+  CANCELED
+}
+
+enum PAYMENTSTATUS {
+  PENDING
+  COMPLETED
+  FAILED
+  CANCELED
 }

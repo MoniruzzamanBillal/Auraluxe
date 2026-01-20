@@ -47,6 +47,8 @@ export class CartController {
   }
 
   // ! Get user cart
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.user)
   @Get()
   async getUserCart(@Req() req: JwtRequest) {
     const userId = req.user.userId;
@@ -60,6 +62,14 @@ export class CartController {
       data: result,
     };
   }
+
+  // ! for removing user cart item
+  //  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(UserRole.user)
+  // @Patch("remove-cart-item")
+  // async removeCartItem(){
+
+  // }
 
   //
 }
