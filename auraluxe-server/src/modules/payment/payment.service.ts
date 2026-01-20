@@ -1,12 +1,17 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import axios from 'axios';
-import QueryString from 'qs';
+import * as qs from 'qs';
 import { ORDERSTATUS, PAYMENTSTATUS } from 'src/generated/prisma/enums';
 import { PrismaService } from 'src/prisma.service';
 
+import { firstValueFrom } from 'rxjs';
+
 @Injectable()
 export class PaymentService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private readonly httpService: HttpService,
+  ) {}
 
   //
 
@@ -17,6 +22,8 @@ export class PaymentService {
     customerName: string;
     customerEmail: string;
   }) {
+    const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+
     const data = {
       store_id: process.env.STORE_ID,
       store_passwd: process.env.STORE_PASSWORD,
@@ -24,9 +31,9 @@ export class PaymentService {
       currency: 'BDT',
       tran_id: payload.transactionId,
 
-      success_url: `${process.env.BASE_URL}/payment/success`,
-      fail_url: `${process.env.BASE_URL}/payment/fail`,
-      cancel_url: `${process.env.BASE_URL}/payment/cancel`,
+      success_url: `${baseUrl}/api/payment/success`,
+      fail_url: `${baseUrl}/api/payment/fail`,
+      cancel_url: `${baseUrl}/api/payment/cancel`,
 
       ipn_url: 'http://localhost:3030/ipn',
       shipping_method: 'Courier',
@@ -52,34 +59,59 @@ export class PaymentService {
       ship_country: 'Bangladesh',
     };
 
-    console.log('------');
-    console.log('from payment service initPayment , data = ', data);
-    console.log('------');
+    console.log('------ SSLCommerz Request ------');
+    console.log('Data:', data);
+    console.log('Base URL:', baseUrl);
+    console.log('Store ID:', process.env.STORE_ID ? 'Set' : 'Not Set');
+    console.log('------------------------------');
 
-    const response = await axios.post(
-      // process.env.SSL_PAYMENT_URL!,
-      'https://sandbox.sslcommerz.com/gwprocess/v3/api.php',
+    try {
+      // const response = await axios.post(
+      //   // process.env.SSL_PAYMENT_URL!,
+      //   'https://sandbox.sslcommerz.com/gwprocess/v3/api.php',
 
-      QueryString.stringify(data),
-      {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      },
-    );
+      //   QueryString.stringify(data),
+      //   {
+      //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      //   },
+      // );
 
-    console.log('------');
-    console.log(
-      'from payment service initPayment , response = ',
-      response?.data,
-    );
-    console.log('------');
+      const formData = qs.stringify(data);
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    if (!response.data?.GatewayPageURL) {
-      throw new Error('Failed to initiate SSL payment');
+      // const response = await this.httpService
+      //   .post('https://sandbox.sslcommerz.com/gwprocess/v3/api.php', data)
+      //   .toPromise();
+
+      const response = await firstValueFrom(
+        this.httpService.post(
+          'https://sandbox.sslcommerz.com/gwprocess/v4/api.php',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            timeout: 10000, // 10 seconds timeout
+          },
+        ),
+      );
+
+      console.log('------');
+      console.log(
+        'from payment service initPayment , response = ',
+        response?.data,
+      );
+      console.log('------');
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (!response?.data?.GatewayPageURL) {
+        throw new Error('Failed to initiate SSL payment');
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+      return response?.data?.GatewayPageURL;
+    } catch (error) {
+      console.log('error from initiate payment = ', error);
     }
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-    return response?.data?.GatewayPageURL;
   }
 
   // ! succesfull payment

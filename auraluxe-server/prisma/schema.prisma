@@ -36,7 +36,7 @@ model category {
 
 model Product {
   id          String   @id @default(uuid())
-  name        String
+  name        String @unique
   //  name        String    @unique
   productCode String?
   // ! brand id is mandatory 
