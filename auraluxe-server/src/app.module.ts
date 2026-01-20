@@ -15,6 +15,7 @@ import { ProjectTypeModule } from './modules/project-type/project-type.module';
 import { ProjectModule } from './modules/project/project.module';
 import { UserModule } from './modules/user/user.module';
 import { CartModule } from './modules/cart/cart.module';
+import { OrderModule } from './modules/order/order.module';
 
 @Module({
   imports: [
@@ -35,6 +36,8 @@ import { CartModule } from './modules/cart/cart.module';
     CategoryModule,
 
     CartModule,
+
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
