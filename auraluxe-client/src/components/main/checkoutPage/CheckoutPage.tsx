@@ -1,8 +1,32 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { usePost } from "@/hooks/useApi";
 import { ShieldCheck } from "lucide-react";
 
 export default function CheckoutPage() {
+  const addMutation = usePost([["orderItem"]]);
+
+  // ! testing order item
+  const handleOrderItem = async () => {
+    try {
+      const orderResponse = await addMutation.mutateAsync({
+        url: "/order/place-order",
+        payload: { test: "test" },
+      });
+      console.log("------");
+      console.log("order response = ");
+      console.log(orderResponse?.data?.paymentUrl);
+
+      if (orderResponse?.success) {
+        window.location.href = orderResponse?.data?.paymentUrl;
+      }
+
+      console.log("------");
+    } catch (error) {
+      console.log("error = ", error);
+    }
+  };
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
       <div className="layout-container flex h-full grow flex-col">
@@ -160,7 +184,10 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                   {/* <!-- CTA --> */}
-                  <Button className=" px-8 py-6 bg-prime100 text-slate-200 font-semibold  hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer ">
+                  <Button
+                    onClick={() => handleOrderItem()}
+                    className=" px-8 py-6 bg-prime100 text-slate-200 font-semibold  hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer "
+                  >
                     <ShieldCheck size={30} />
                     COMPLETE PURCHASE
                   </Button>

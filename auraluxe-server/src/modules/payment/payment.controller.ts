@@ -19,7 +19,7 @@ export class PaymentController {
 
     await this.paymentService.successfullPayment(transactionId);
 
-    return res.redirect(`${redirectURL}/order-success`);
+    return res.redirect(`${redirectURL}/payment-success`);
   }
 
   // ! fail transaction
@@ -29,7 +29,7 @@ export class PaymentController {
 
     await this.paymentService.handleFailedOrCanceledPayment(transactionId);
 
-    return res.redirect(`${redirectURL}/order-success`);
+    return res.redirect(`${redirectURL}/payment-fail`);
   }
 
   // ! cancel
@@ -39,7 +39,7 @@ export class PaymentController {
 
     await this.paymentService.handleFailedOrCanceledPayment(transactionId);
 
-    return res.redirect(`${redirectURL}/order-success`);
+    return res.redirect(`${redirectURL}/payment-cancel`);
   }
 
   //
