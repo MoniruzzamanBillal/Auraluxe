@@ -1,9 +1,19 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma.service';
 import { LoginDto } from './dto/login.dto';
+
+type TTokenType = {
+  email: string;
+  userId: string;
+  role: string;
+};
 
 @Injectable()
 export class AuthService {
@@ -21,7 +31,7 @@ export class AuthService {
     });
 
     if (!userData) {
-      throw new UnauthorizedException('Invalid Email!!!');
+      throw new NotFoundException('Invalid Email!!!');
     }
 
     const isPasswordMatch = await bcrypt.compare(
@@ -30,10 +40,10 @@ export class AuthService {
     );
 
     if (!isPasswordMatch) {
-      throw new UnauthorizedException('Wrong password!!!');
+      throw new Error('Wrong password!!!');
     }
 
-    const tokenPayload = {
+    const tokenPayload: TTokenType = {
       email: payload?.email,
       userId: userData?.id,
       role: userData?.role,
@@ -52,6 +62,53 @@ export class AuthService {
     return { accessToken, refreshToken };
 
     //
+  }
+
+  // ! Refresh Access Token
+  async refreshAccessToken(refreshToken: string) {
+    try {
+      const decoded: TTokenType = await this.jwtService.verifyAsync(
+        refreshToken,
+        {
+          secret: process.env.JWT_REFRESH_SECRET,
+        },
+      );
+
+      // console.log('decoded user = ', decoded);
+
+      // Check if token has valid type
+      if (!decoded?.userId) {
+        throw new UnauthorizedException('Refresh Token expired');
+      }
+
+      // Get user data
+      const user = await this.prisma.user.findUnique({
+        where: { id: decoded.userId },
+      });
+
+      if (!user) {
+        throw new UnauthorizedException('User not found');
+      }
+
+      // Generate new access token
+      const tokenPayload: TTokenType = {
+        email: user.email,
+        userId: user.id,
+        role: user.role,
+      };
+
+      const newAccessToken = await this.jwtService.signAsync(tokenPayload, {
+        secret: process.env.JWT_ACCESS_SECRET,
+        expiresIn: '1h',
+      });
+
+      return {
+        accessToken: newAccessToken,
+      };
+    } catch (error) {
+      console.log(error);
+      throw new UnauthorizedException('Refresh Token expired');
+    }
   }
 
   //

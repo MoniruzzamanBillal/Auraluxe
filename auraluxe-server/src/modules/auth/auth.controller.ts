@@ -21,5 +21,20 @@ export class AuthController {
     };
   }
 
+  // ! for getting new access token
+  @Post('refresh-token')
+  async getNewAccessToken(@Body() payload: { refreshToken: string }) {
+    const result = await this.authService.refreshAccessToken(
+      payload?.refreshToken,
+    );
+
+    return {
+      success: true,
+      status: HttpStatus.OK,
+      message: 'New Access Token refetch successfully!!!',
+      data: result,
+    };
+  }
+
   //
 }
