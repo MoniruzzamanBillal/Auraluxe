@@ -135,7 +135,7 @@ export default function CartPage() {
               </div>
 
               {/* <!-- Checkout Button --> */}
-              <Button className=" bg-prime100 hover:bg-prime200 cursor-pointer text-slate-100 ">
+              <Button className=" bg-prime100 hover:bg-prime200 cursor-pointer text-slate-100 hover:scale-[1.01] active:scale-[0.99] transition-all ">
                 Proceed to Checkout
                 <ArrowRight />
               </Button>
