@@ -1,6 +1,5 @@
-import EmptyCart from "@/components/main/CartPage/EmptyCart";
+import CartPage from "@/components/main/CartPage/CartPage";
 
 export default function page() {
-  return <EmptyCart />;
-  //   return <CartPage />;
+  return <CartPage />;
 }
