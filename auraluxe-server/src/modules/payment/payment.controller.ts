@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { PaymentService } from './payment.service';
+
+const redirectURL = 'http://localhost:3000';
 
 @Controller('payment')
 export class PaymentController {
@@ -11,32 +14,32 @@ export class PaymentController {
 
   // ! for succefull payment
   @Post('success')
-  async paymentSuccess(@Body() body) {
+  async paymentSuccess(@Body() body, @Res() res: Response) {
     const transactionId = body?.tran_id as string;
 
     await this.paymentService.successfullPayment(transactionId);
 
-    return { success: true };
+    return res.redirect(`${redirectURL}/order-success`);
   }
 
   // ! fail transaction
   @Post('fail')
-  async paymentFail(@Body() body) {
+  async paymentFail(@Body() body, @Res() res: Response) {
     const transactionId = body?.tran_id as string;
 
     await this.paymentService.handleFailedOrCanceledPayment(transactionId);
 
-    return { success: false, message: 'Payment failed' };
+    return res.redirect(`${redirectURL}/order-success`);
   }
 
   // ! cancel
   @Post('cancel')
-  async paymentCancel(@Body() body) {
+  async paymentCancel(@Body() body, @Res() res: Response) {
     const transactionId = body?.tran_id as string;
 
     await this.paymentService.handleFailedOrCanceledPayment(transactionId);
 
-    return { success: false, message: 'Payment canceled' };
+    return res.redirect(`${redirectURL}/order-success`);
   }
 
   //

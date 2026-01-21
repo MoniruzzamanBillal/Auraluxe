@@ -22,7 +22,7 @@ export class PaymentService {
     customerName: string;
     customerEmail: string;
   }) {
-    const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+    const baseUrl = process.env.BASE_URL || 'http://localhost:5000';
 
     const data = {
       store_id: process.env.STORE_ID,
@@ -59,28 +59,8 @@ export class PaymentService {
       ship_country: 'Bangladesh',
     };
 
-    console.log('------ SSLCommerz Request ------');
-    console.log('Data:', data);
-    console.log('Base URL:', baseUrl);
-    console.log('Store ID:', process.env.STORE_ID ? 'Set' : 'Not Set');
-    console.log('------------------------------');
-
     try {
-      // const response = await axios.post(
-      //   // process.env.SSL_PAYMENT_URL!,
-      //   'https://sandbox.sslcommerz.com/gwprocess/v3/api.php',
-
-      //   QueryString.stringify(data),
-      //   {
-      //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      //   },
-      // );
-
       const formData = qs.stringify(data);
-
-      // const response = await this.httpService
-      //   .post('https://sandbox.sslcommerz.com/gwprocess/v3/api.php', data)
-      //   .toPromise();
 
       const response = await firstValueFrom(
         this.httpService.post(
@@ -94,13 +74,6 @@ export class PaymentService {
           },
         ),
       );
-
-      console.log('------');
-      console.log(
-        'from payment service initPayment , response = ',
-        response?.data,
-      );
-      console.log('------');
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (!response?.data?.GatewayPageURL) {

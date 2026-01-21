@@ -2,11 +2,13 @@
 
 import ControlledInput from "@/components/share/input/ControlledInput";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { LoginFormData, loginSchema } from "./schema/loginSchema";
 
 export default function LoginForm() {
@@ -21,13 +23,23 @@ export default function LoginForm() {
     },
   });
 
-  //   const { mutate: login, isPending } = useAuth(() => {
-  //     reset();
-  //     router.push("/admin/dashboard");
-  //   });
+  const { mutateAsync: login, isPending } = useAuth();
 
   const onSubmit: SubmitHandler<LoginFormData> = (data) => {
-    console.log("login data = ", data);
+    login(data)
+      .then((res) => {
+        console.log("login result = ", res);
+
+        toast.success(res?.message);
+
+        if (res?.success) {
+          router.push("/");
+        }
+      })
+      .catch((error) => {
+        console.log("login error = ", error);
+        toast.error(error?.message);
+      });
   };
 
   return (
@@ -72,10 +84,11 @@ export default function LoginForm() {
             />
             <div className="mt-1.5 disabled:cursor-not-allowed">
               <Button
+                disabled={isPending}
                 type="submit"
                 className=" bg-brandColor   cursor-pointer rounded-md px-6 py-2.5 text-base font-medium text-white disabled:cursor-not-allowed"
               >
-                Submit
+                {isPending ? "Loading..." : "Sign in"}
               </Button>
             </div>
           </form>
