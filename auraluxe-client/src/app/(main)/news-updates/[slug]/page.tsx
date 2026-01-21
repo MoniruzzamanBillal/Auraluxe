@@ -19,7 +19,7 @@ export default async function NewsAndUpdatesDetailsPage({
     () => import("@/components/main/news-updates-details/NewsUpdatesDetails"),
     {
       loading: () => <Loader />,
-    }
+    },
   );
   return <NewsUpdatesDetails />;
 }
