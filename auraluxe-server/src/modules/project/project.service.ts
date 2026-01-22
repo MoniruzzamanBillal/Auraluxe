@@ -8,46 +8,103 @@ export class ProjectService {
   constructor(private prisma: PrismaService) {}
 
   // ! for adding new project
-  async addProject(payload: CreateProjectDto) {
-    const result = await this.prisma.project.create({ data: payload });
+  async addProject(payload: CreateProjectDto, imageUrl: string) {
+    const result = await this.prisma.project.create({
+      data: { ...payload, projectImg: imageUrl },
+    });
 
     return result;
   }
 
   // ! for getting all project
   async getAllProject() {
-    const result = await this.prisma.project.findMany({
+    return this.prisma.project.findMany({
+      where: {
+        isDeleted: false,
+        status: true,
+      },
+      include: {
+        projectType: true,
+      },
       orderBy: { createdAt: 'desc' },
     });
-
-    return result;
   }
 
   // ! for getting single project
   async getSingleProject(id: string) {
-    const result = await this.prisma.project.findUnique({ where: { id } });
+    const project = await this.prisma.project.findUnique({
+      where: { id },
+      include: {
+        projectType: true,
+      },
+    });
 
-    if (!result) {
-      throw new NotFoundException("This project don't exist!!!");
+    if (!project || project.isDeleted) {
+      throw new NotFoundException("This project doesn't exist!");
     }
 
-    return result;
+    return project;
   }
 
   // ! for updating project
-  async updateProject(id: string, payload: updateProjectDto) {
-    const projectData = await this.prisma.project.findUnique({ where: { id } });
 
-    if (!projectData) {
-      throw new NotFoundException('Project not found!!!');
+  async updateProject(
+    id: string,
+    payload: updateProjectDto,
+    imageUrl?: string,
+  ) {
+    const updatedPayload = {
+      ...payload,
+    };
+
+    if (imageUrl) {
+      updatedPayload.projectImg = imageUrl;
     }
 
-    const result = await this.prisma.project.update({
+    const project = await this.prisma.project.findUnique({
       where: { id },
-      data: { ...payload },
     });
 
-    return result;
+    if (!project || project.isDeleted) {
+      throw new NotFoundException('Project not found!');
+    }
+
+    // Project name uniqueness check
+    if (payload.projectName && payload.projectName !== project.projectName) {
+      const existingProject = await this.prisma.project.findUnique({
+        where: { projectName: payload.projectName },
+      });
+
+      if (existingProject) {
+        throw new NotFoundException('Project with this name already exists!');
+      }
+    }
+
+    return this.prisma.project.update({
+      where: { id },
+      data: updatedPayload,
+    });
+  }
+
+  // ! for deleting
+  async deleteProject(id: string) {
+    const project = await this.prisma.project.findUnique({
+      where: { id },
+    });
+
+    if (!project || project.isDeleted) {
+      throw new NotFoundException('Project not found!');
+    }
+
+    await this.prisma.project.update({
+      where: { id },
+      data: {
+        isDeleted: true,
+        status: false,
+      },
+    });
+
+    return { message: 'Project deleted successfully' };
   }
 
   //

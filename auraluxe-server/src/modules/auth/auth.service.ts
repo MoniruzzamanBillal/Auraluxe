@@ -51,7 +51,7 @@ export class AuthService {
 
     const accessToken = await this.jwtService.signAsync(tokenPayload, {
       secret: process.env.JWT_ACCESS_SECRET,
-      expiresIn: '1h',
+      expiresIn: '2h',
     });
 
     const refreshToken = await this.jwtService.signAsync(tokenPayload, {
@@ -73,8 +73,6 @@ export class AuthService {
           secret: process.env.JWT_REFRESH_SECRET,
         },
       );
-
-      // console.log('decoded user = ', decoded);
 
       // Check if token has valid type
       if (!decoded?.userId) {
@@ -99,7 +97,7 @@ export class AuthService {
 
       const newAccessToken = await this.jwtService.signAsync(tokenPayload, {
         secret: process.env.JWT_ACCESS_SECRET,
-        expiresIn: '1h',
+        expiresIn: '2h',
       });
 
       return {
