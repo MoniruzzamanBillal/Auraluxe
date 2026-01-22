@@ -56,12 +56,12 @@ instance.interceptors.response.use(
   async function (error) {
     const originalRequest = error.config;
 
-    console.log("-----");
-    console.log("-----");
-    console.log("line = 64");
-    console.log("error from axiosInstance = ", error);
-    console.log("-----");
-    console.log("-----");
+    // console.log("-----");
+    // console.log("-----");
+    // console.log("line = 64");
+    // console.log("error from axiosInstance = ", error);
+    // console.log("-----");
+    // console.log("-----");
 
     // !
     if (error?.response?.status === 401 && !originalRequest._retry) {
@@ -84,18 +84,19 @@ instance.interceptors.response.use(
         Cookies.set("accessToken", response?.data?.data?.accessToken, {
           expires: 1,
         });
+        // Cookies.set("refreshToken", data?.data?.refreshToken, { expires: 2 });
 
         originalRequest.headers.Authorization = `Bearer ${response?.data?.data?.accessToken}`;
-
-        // return instance(originalRequest);
         return axios(originalRequest);
       } catch (refreshError) {
         // Handle refresh token failure
         console.log("refreshError from axiosinstance line 94 = ", refreshError);
 
+        Cookies.remove(authKey);
+        Cookies.remove(refreshTokenKey);
         toast.error("Session Expired , Login to continue.");
 
-        // window.location.href = "/login";
+        window.location.href = "/login";
 
         return Promise.reject(refreshError);
       }
@@ -116,7 +117,11 @@ instance.interceptors.response.use(
       errors: error?.response?.data?.errors,
     };
 
-    toast.error(errorObj.message);
+    // toast.error("Session Expired , Login to continue.");
+
+    // console.log("errorObj = ", errorObj);
+
+    // toast.error(errorObj.message);
     return Promise.reject(errorObj);
   },
 );

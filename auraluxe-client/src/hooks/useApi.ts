@@ -6,7 +6,6 @@ import {
   useQueryClient,
   UseQueryOptions,
 } from "@tanstack/react-query";
-import { toast } from "sonner";
 import { apiDelete, apiGet, apiPatch, apiPost, apiPut } from "../../utils/api";
 
 type TFetchOptions = Omit<UseQueryOptions<any, Error>, "queryKey" | "queryFn">;
@@ -40,8 +39,11 @@ export const usePost = (invalidateQueriesKeys?: Array<string[]>) => {
         });
       }
     },
-    onError: (error) => {
-      toast.error(error.message || "Failed to Add.");
+    onError: (error: any) => {
+      // console.log("error = ", error?.response?.data?.message);
+      // toast.error(
+      //   error?.response?.data?.message || error.message || "Failed to Add.",
+      // );
       throw error;
     },
   });
@@ -76,7 +78,7 @@ export const usePatch = (invalidateQueriesKeys?: Array<string[]>) => {
       }
     },
     onError: (error) => {
-      toast.error(error.message || "Failed to update.");
+      // toast.error(error.message || "Failed to update.");
       throw error;
     },
   });
@@ -87,7 +89,7 @@ export const useDeleteData = (invalidateQueriesKeys?: Array<string[]>) => {
 
   return useMutation({
     mutationFn: (params: { url: string }) => {
-      return apiDelete(params.url);
+      return apiDelete(params?.url);
     },
     onSuccess: () => {
       if (invalidateQueriesKeys) {
@@ -97,19 +99,8 @@ export const useDeleteData = (invalidateQueriesKeys?: Array<string[]>) => {
       }
     },
     onError: (error) => {
-      toast.error(error.message || "Failed to Delete");
+      // toast.error(error.message || "Failed to Delete");
       throw error;
     },
   });
 };
-
-// Delete Hook
-// export const useDeleteData = (key: string[], endPoint: string) => {
-//   const queryClient = useQueryClient();
-//   return useMutation({
-//     mutationFn: (id: string) => apiDelete(`${endPoint}/${id}`),
-//     onSuccess: () => {
-//       queryClient.invalidateQueries({ queryKey: key });
-//     },
-//   });
-// };

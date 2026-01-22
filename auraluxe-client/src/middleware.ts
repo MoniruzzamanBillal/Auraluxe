@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { refreshTokenKey } from "./constants/storageKey";
 import { decodedToken } from "./services/jwt";
 
 export function middleware(request: NextRequest) {
@@ -39,13 +38,14 @@ export function middleware(request: NextRequest) {
       const { role } = decodedData;
 
       // Check if token is expired
-      const currentTime = Math.floor(Date.now() / 1000);
-      if (decodedData.exp && decodedData.exp < currentTime) {
-        // Clear expired token
-        const response = NextResponse.redirect(new URL("/login", request.url));
-        response.cookies.delete("accessToken");
-        return response;
-      }
+      // const currentTime = Math.floor(Date.now() / 1000);
+      // if (decodedData.exp && decodedData.exp < currentTime) {
+      //   // Clear expired token
+      //   const response = NextResponse.redirect(new URL("/login", request.url));
+      //   // response.cookies.delete("accessToken");
+
+      //   return response;
+      // }
 
       // 🔹 Admin trying to access user routes
       if (isUserRoute && role === "admin") {
@@ -78,11 +78,8 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL(redirectPath, request.url));
       }
     } catch (error) {
-      // Invalid token
-      console.log("Token decoding error:", error);
       const response = NextResponse.redirect(new URL("/login", request.url));
-      response.cookies.delete("accessToken");
-      response.cookies.delete(refreshTokenKey);
+
       return response;
     }
   }

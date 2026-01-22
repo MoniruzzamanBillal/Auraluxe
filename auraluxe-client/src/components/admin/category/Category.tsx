@@ -20,7 +20,7 @@ export const categoryDummyData: TCategory[] = [
 export default function Category() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<TCategory | null>(
-    null
+    null,
   );
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deletedId, setDeletedId] = useState<string | null>(null);
