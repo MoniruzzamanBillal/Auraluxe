@@ -17,6 +17,7 @@ import { UserModule } from './modules/user/user.module';
 import { CartModule } from './modules/cart/cart.module';
 import { OrderModule } from './modules/order/order.module';
 import { PaymentModule } from './modules/payment/payment.module';
+import { BrandModule } from './modules/brand/brand.module';
 
 @Module({
   imports: [
@@ -41,6 +42,8 @@ import { PaymentModule } from './modules/payment/payment.module';
     OrderModule,
 
     PaymentModule,
+
+    BrandModule,
   ],
   controllers: [AppController],
   providers: [AppService],
