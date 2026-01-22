@@ -10,7 +10,7 @@ export default function page() {
     () => import("@/components/admin/product/Product"),
     {
       loading: () => <Loader />,
-    }
+    },
   );
   return <ProductSetup />;
 }

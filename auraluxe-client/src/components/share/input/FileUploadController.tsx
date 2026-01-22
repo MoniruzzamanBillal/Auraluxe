@@ -65,7 +65,7 @@ export function FileUploadController({
             // Validate file type
             if (!SUPPORTED_IMAGE_FORMATS.includes(file.type)) {
               alert(
-                "Please select a valid image file (PNG, JPEG, JPG, WEBP, SVG)"
+                "Please select a valid image file (PNG, JPEG, JPG, WEBP, SVG)",
               );
               return;
             }
@@ -85,7 +85,7 @@ export function FileUploadController({
             <div
               className={cn(
                 "  border border-dashed hover:border-dashboard-primary bg-[#F5F5F5] border-[#B0B0B0] rounded-lg cursor-pointer block relative",
-                className
+                className,
               )}
             >
               {fileValue ? (
@@ -126,11 +126,22 @@ export function FileUploadController({
                       <X className="w-4 h-4 text-white" />
                     </button>
                     <div className="text-rose-500 text-center">
-                      <X className="w-10 h-10 mx-auto" />
-                      <p className="text-sm font-normal mt-2">
-                        Invalid file type
-                      </p>
-                      <p className="text-xs">Please select an image</p>
+                      <label
+                        htmlFor={`${name}-file`}
+                        className="  cursor-pointer "
+                      >
+                        <input
+                          id={`${name}-file`}
+                          type="file"
+                          className="hidden"
+                          onChange={handleFileChange}
+                        />
+                        <X className="w-10 h-10 mx-auto" />
+                        <p className="text-sm font-normal mt-2">
+                          Invalid file type
+                        </p>
+                        <p className="text-xs">Please select an image</p>
+                      </label>
                     </div>
                   </div>
                 )
