@@ -6,30 +6,13 @@ import Image from "next/image";
 import { useState } from "react";
 
 import GenericTable from "@/components/common/GenericTable";
-import DeleteDialog from "@/components/share/DeleteDialog";
 
+import DeleteDialog from "@/components/share/DeleteDialog";
+import { useDeleteData, useFetchData } from "@/hooks/useApi";
+import { ColumnDef } from "@tanstack/react-table";
+import { toast } from "sonner";
 import CreateUpdateBrand from "./form/CreateUpdateBrand";
 import { TBrand } from "./schema/brand.schema";
-
-/* ---------------- Dummy Data ---------------- */
-const brandDummyData: TBrand[] = [
-  {
-    id: "1",
-    name: "Apple",
-    logo: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
-    brandTypeId: "1",
-
-    status: true,
-  },
-  {
-    id: "2",
-    name: "Nike",
-    logo: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
-    brandTypeId: "2",
-
-    status: false,
-  },
-];
 
 export default function BrandPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,20 +21,36 @@ export default function BrandPage() {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deletedId, setDeletedId] = useState<string | null>(null);
 
-  const handleDelete = () => {
-    console.log("Deleted ID:", deletedId);
-    setIsDeleteOpen(false);
-    setDeletedId(null);
+  const { data, isLoading } = useFetchData(["brand"], "/brand");
+
+  // ✅ Delete Brand
+  const deleteMutation = useDeleteData([["brand"]]);
+  const handleDelete = async () => {
+    try {
+      if (!deletedId) return;
+
+      const result = await deleteMutation.mutateAsync({
+        url: `/brand/${deletedId}`,
+      });
+
+      if (result?.success) {
+        toast.success(result.message);
+        setDeletedId(null);
+        setIsDeleteOpen(false);
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to delete brand");
+    }
   };
 
-  const columns = [
+  const columns: ColumnDef<TBrand>[] = [
     {
       accessorKey: "logo",
       header: "Logo",
-      cell: ({ row }: any) => (
+      cell: ({ row }) => (
         <div className="w-24 h-24 overflow-hidden rounded-md">
           <Image
-            src={row.original.logo}
+            src={row?.original?.logo as string}
             alt="brand logo"
             width={400}
             height={400}
@@ -63,18 +62,20 @@ export default function BrandPage() {
     {
       accessorKey: "name",
       header: "Name",
-      cell: ({ row }: any) => (
+      cell: ({ row }) => (
         <span className="font-medium">{row.original.name}</span>
       ),
     },
-    {
-      accessorKey: "brandTypeName",
-      header: "Brand Type",
-      cell: ({ row }: any) => <span>{row.original.brandTypeName}</span>,
-    },
+
+    // {
+    //   accessorKey: "brandTypeName",
+    //   header: "Brand Type",
+    //   cell: ({ row }) => <span>{row.original.brandTypeName}</span>,
+    // },
+
     {
       accessorKey: "status",
-      header: ({ column }: any) => (
+      header: ({ column }) => (
         <Button
           variant="ghost"
           className="px-0"
@@ -83,7 +84,7 @@ export default function BrandPage() {
           Status <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       ),
-      cell: ({ row }: any) => (
+      cell: ({ row }) => (
         <span
           className={`rounded-full px-2 py-1 text-xs font-medium ${
             row.original.status
@@ -97,7 +98,7 @@ export default function BrandPage() {
     },
     {
       header: "Action",
-      cell: ({ row }: any) => (
+      cell: ({ row }) => (
         <div className="flex items-center gap-x-4">
           <button
             onClick={() => {
@@ -136,11 +137,19 @@ export default function BrandPage() {
         </Button>
       </div>
 
-      <GenericTable data={brandDummyData} columns={columns} filterKey="name" />
+      <GenericTable
+        data={data?.data}
+        columns={columns}
+        filterKey="name"
+        isLoading={isLoading}
+      />
 
       <CreateUpdateBrand
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedBrand(null);
+        }}
         initialValues={selectedBrand}
       />
 

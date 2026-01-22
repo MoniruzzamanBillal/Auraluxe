@@ -6,32 +6,13 @@ import Image from "next/image";
 import { useState } from "react";
 
 import GenericTable from "@/components/common/GenericTable";
-import DeleteDialog from "@/components/share/DeleteDialog";
 
+import DeleteDialog from "@/components/share/DeleteDialog";
+import { useDeleteData, useFetchData } from "@/hooks/useApi";
+import { ColumnDef } from "@tanstack/react-table";
+import { toast } from "sonner";
 import CreateUpdateProject from "./form/CreateUpdateProject";
 import { TProject } from "./schema/project.schema";
-
-/* ---------------- Dummy Data ---------------- */
-const projectDummyData: TProject[] = [
-  {
-    id: "1",
-    projectName: "Luxury Villa",
-    projectImg: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
-    location: "Dhaka",
-    client: "John Doe",
-    architects: "XYZ Architects",
-    website: "https://luxuryvilla.com",
-    facebookLink: "https://facebook.com/luxuryvilla",
-    instagramLink: "https://instagram.com/luxuryvilla",
-    linkedinLink: "https://linkedin.com/luxuryvilla",
-    xLink: "https://x.com/luxuryvilla",
-    description: "Beautiful luxury villa project",
-    status: true,
-    projectTypeId: "1",
-
-    materialId: "1",
-  },
-];
 
 export default function ProjectPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,20 +20,35 @@ export default function ProjectPage() {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deletedId, setDeletedId] = useState<string | null>(null);
 
-  const handleDelete = () => {
-    console.log("Deleted ID:", deletedId);
-    setIsDeleteOpen(false);
-    setDeletedId(null);
+  const { data, isLoading } = useFetchData(["project"], "/project");
+
+  // ✅ Delete mutation
+  const deleteMutation = useDeleteData([["project"]]);
+
+  const handleDelete = async () => {
+    try {
+      const result = await deleteMutation.mutateAsync({
+        url: `/project/${deletedId}`,
+      });
+
+      if (result?.success) {
+        toast.success(result?.message);
+        setDeletedId(null);
+        setIsDeleteOpen(false);
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to delete project");
+    }
   };
 
-  const columns = [
+  const columns: ColumnDef<TProject>[] = [
     {
       accessorKey: "projectImg",
       header: "Image",
-      cell: ({ row }: any) => (
+      cell: ({ row }) => (
         <div className="w-24 h-24 overflow-hidden rounded-md">
           <Image
-            src={row.original.projectImg}
+            src={row?.original?.projectImg as string}
             alt="project"
             width={400}
             height={400}
@@ -65,10 +61,10 @@ export default function ProjectPage() {
     { accessorKey: "location", header: "Location" },
     { accessorKey: "client", header: "Client" },
     { accessorKey: "projectTypeName", header: "Project Type" },
-    { accessorKey: "materialName", header: "Material" },
+
     {
       accessorKey: "status",
-      header: ({ column }: any) => (
+      header: ({ column }) => (
         <Button
           variant="ghost"
           className="px-0"
@@ -77,7 +73,7 @@ export default function ProjectPage() {
           Status <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       ),
-      cell: ({ row }: any) => (
+      cell: ({ row }) => (
         <span
           className={`rounded-full px-2 py-1 text-xs font-medium ${row.original.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
         >
@@ -87,7 +83,7 @@ export default function ProjectPage() {
     },
     {
       header: "Action",
-      cell: ({ row }: any) => (
+      cell: ({ row }) => (
         <div className="flex items-center gap-x-4">
           <button
             onClick={() => {
@@ -127,9 +123,10 @@ export default function ProjectPage() {
       </div>
 
       <GenericTable
-        data={projectDummyData}
+        data={data?.data}
         columns={columns}
         filterKey="projectName"
+        isLoading={isLoading}
       />
 
       <CreateUpdateProject

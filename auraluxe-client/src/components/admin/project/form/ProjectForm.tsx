@@ -12,7 +12,7 @@ import { TProjectForm } from "../schema/project.schema";
 interface Props {
   onSubmit: (data: TProjectForm) => void;
   projectTypeOptions: { label: string; value: string }[];
-  materialOptions: { label: string; value: string }[];
+
   isEdit?: boolean;
   isLoading?: boolean;
 }
@@ -20,7 +20,7 @@ interface Props {
 export default function ProjectForm({
   onSubmit,
   projectTypeOptions,
-  materialOptions,
+
   isEdit = false,
   isLoading = false,
 }: Props) {
@@ -97,14 +97,6 @@ export default function ProjectForm({
         label="Project Type"
         options={projectTypeOptions}
         placeholder="Select project type"
-        isRequired
-      />
-
-      <ControlledSelectField
-        name="materialId"
-        label="Material"
-        options={materialOptions}
-        placeholder="Select material"
         isRequired
       />
 

@@ -10,6 +10,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
+import { usePatch, usePost } from "@/hooks/useApi";
+import { toast } from "sonner";
+import { getChangedFields } from "../../../../../utils/getChangedFields";
 import {
   brandTypeSchema,
   TBrandType,
@@ -28,6 +31,18 @@ export default function CreateUpdateBrandType({
   onClose,
   initialValues,
 }: Props) {
+  const {
+    mutateAsync: createAsync,
+    reset: postReset,
+    isPending: isCreatePending,
+  } = usePost([["brand-type"]]);
+
+  const {
+    mutateAsync: updateAsync,
+    reset: patchReset,
+    isPending: isUpdatePending,
+  } = usePatch([["brand-type"]]);
+
   const methods = useForm<TBrandTypeForm>({
     resolver: zodResolver(brandTypeSchema),
     defaultValues: {
@@ -50,9 +65,45 @@ export default function CreateUpdateBrandType({
     }
   }, [initialValues, methods]);
 
-  const onSubmit = (data: TBrandTypeForm) => {
-    console.log("Brand type submit:", data);
-    onClose();
+  useEffect(() => {
+    if (!isOpen) {
+      methods.reset();
+    }
+    postReset();
+    patchReset();
+  }, [isOpen, postReset, patchReset, methods]);
+
+  const onSubmit = async (data: TBrandTypeForm) => {
+    try {
+      // UPDATE
+      if (initialValues) {
+        const changedData = getChangedFields(data, initialValues);
+
+        const res = await updateAsync({
+          url: `/brand-type/${initialValues.id}`,
+          payload: changedData,
+        });
+
+        if (res?.success) {
+          toast.success(res.message);
+          onClose();
+        }
+        return;
+      }
+
+      // CREATE
+      const res = await createAsync({
+        url: "/brand-type",
+        payload: data,
+      });
+
+      if (res?.success) {
+        toast.success(res.message);
+        onClose();
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed");
+    }
   };
 
   return (

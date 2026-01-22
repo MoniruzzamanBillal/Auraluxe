@@ -11,7 +11,7 @@ export const brandTypeSchema = z.object({
     .string()
     .trim()
     .min(1, "Description is required")
-    .max(200, "Description cannot exceed 200 characters"),
+    .max(500, "Description cannot exceed 200 characters"),
 });
 
 export type TBrandTypeForm = z.infer<typeof brandTypeSchema>;

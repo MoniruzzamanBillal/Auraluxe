@@ -14,7 +14,6 @@ export const projectSchema = z.object({
   xLink: z.string().trim().optional(),
   description: z.string().trim().max(1000).optional(),
   projectTypeId: z.string().min(1, "Project type is required"),
-  materialId: z.string().min(1, "Material is required"),
 });
 
 export type TProjectForm = z.infer<typeof projectSchema>;

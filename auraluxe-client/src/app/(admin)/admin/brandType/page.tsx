@@ -10,7 +10,7 @@ export default function page() {
     () => import("@/components/admin/BrandType/BrandType"),
     {
       loading: () => <Loader />,
-    }
+    },
   );
   return <BrandTypeSetup />;
 }

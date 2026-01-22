@@ -5,32 +5,14 @@ import { SquarePen, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 import GenericTable from "@/components/common/GenericTable";
-import DeleteDialog from "@/components/share/DeleteDialog";
+
 import { Button } from "@/components/ui/button";
 
+import DeleteDialog from "@/components/share/DeleteDialog";
+import { useDeleteData, useFetchData } from "@/hooks/useApi";
+import { toast } from "sonner";
 import CreateUpdateProjectType from "./form/CreateUpdateProjectType";
 import { TProjectType } from "./schema/projectType.schema";
-
-const projectTypeDummyData: TProjectType[] = [
-  {
-    id: "project_1",
-    name: "Residential",
-    description: "Projects related to residential buildings",
-    status: true,
-  },
-  {
-    id: "project_2",
-    name: "Commercial",
-    description: "Office, retail, and commercial projects",
-    status: true,
-  },
-  {
-    id: "project_3",
-    name: "Industrial",
-    description: "Factories and industrial construction projects",
-    status: false,
-  },
-];
 
 export default function ProjectType() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,21 +21,39 @@ export default function ProjectType() {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deletedId, setDeletedId] = useState<string | null>(null);
 
+  const { data, isLoading } = useFetchData(["project-type"], "/project-type");
+
+  // ✅ Delete mutation
+  const deleteMutation = useDeleteData([["project-type"]]);
+
+  // ! handle delete
+  const handleDelete = async () => {
+    try {
+      const result = await deleteMutation.mutateAsync({
+        url: `/project-type/${deletedId}`,
+      });
+
+      if (result?.success) {
+        toast.success(result?.message);
+        setDeletedId(null);
+        setIsDeleteOpen(false);
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to delete");
+    }
+  };
+
   const columns: ColumnDef<TProjectType>[] = [
     {
       accessorKey: "name",
       header: "Name",
-      cell: ({ row }) => (
-        <span className="font-medium">{row.original.name}</span>
-      ),
+      cell: ({ row }) => <span className="">{row.original.name}</span>,
     },
     {
       accessorKey: "description",
       header: "Description",
       cell: ({ row }) => (
-        <p className="max-w-[300px] truncate text-sm text-muted-foreground">
-          {row.original.description}
-        </p>
+        <p className="max-w-[200px] truncate  ">{row.original.description}</p>
       ),
     },
     {
@@ -118,9 +118,10 @@ export default function ProjectType() {
 
       {/* Table */}
       <GenericTable
-        data={projectTypeDummyData}
+        data={data?.data}
         columns={columns}
         filterKey="name"
+        isLoading={isLoading}
       />
 
       {/* Modal */}
@@ -134,10 +135,7 @@ export default function ProjectType() {
       <DeleteDialog
         open={isDeleteOpen}
         onOpenChange={setIsDeleteOpen}
-        onConfirm={() => {
-          console.log("Delete project type:", deletedId);
-          setIsDeleteOpen(false);
-        }}
+        onConfirm={handleDelete}
       />
     </div>
   );

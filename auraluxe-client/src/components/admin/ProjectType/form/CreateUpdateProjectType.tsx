@@ -10,6 +10,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
+import { usePatch, usePost } from "@/hooks/useApi";
+import { toast } from "sonner";
+import { getChangedFields } from "../../../../../utils/getChangedFields";
 import {
   projectTypeSchema,
   TProjectType,
@@ -28,6 +31,18 @@ export default function CreateUpdateProjectType({
   onClose,
   initialValues,
 }: Props) {
+  const {
+    mutateAsync,
+    reset: postReset,
+    isPending: isPostPending,
+  } = usePost([["project-type"]]);
+
+  const {
+    mutateAsync: patchAsync,
+    reset: patchReset,
+    isPending: isPatchPending,
+  } = usePatch([["project-type"]]);
+
   const methods = useForm<TProjectTypeForm>({
     resolver: zodResolver(projectTypeSchema),
     defaultValues: {
@@ -50,10 +65,49 @@ export default function CreateUpdateProjectType({
     }
   }, [initialValues, methods]);
 
-  const onSubmit = (data: TProjectTypeForm) => {
-    console.log("Project type submit:", data);
-    onClose();
+  useEffect(() => {
+    if (!isOpen) {
+      methods.reset();
+    }
+    postReset();
+    patchReset();
+  }, [isOpen, postReset, patchReset, methods]);
+
+  // ! submit handler
+  const onSubmit = async (data: TProjectTypeForm) => {
+    try {
+      if (initialValues) {
+        const changedData = getChangedFields(data, initialValues);
+
+        const result = await patchAsync({
+          url: `/project-type/${initialValues.id}`,
+          payload: changedData,
+        });
+
+        if (result?.success) {
+          toast.success(result?.message);
+          onClose();
+          methods.reset();
+        }
+        return;
+      }
+
+      const response = await mutateAsync({
+        url: "/project-type",
+        payload: data,
+      });
+
+      if (response?.success) {
+        toast.success(response?.message);
+        onClose();
+        methods.reset();
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed");
+    }
   };
+
+  const isLoading = isPostPending || isPatchPending;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -65,7 +119,11 @@ export default function CreateUpdateProjectType({
         </DialogHeader>
 
         <FormProvider {...methods}>
-          <ProjectTypeForm onSubmit={onSubmit} isEdit={!!initialValues} />
+          <ProjectTypeForm
+            onSubmit={onSubmit}
+            isEdit={!!initialValues}
+            isLoading={isLoading}
+          />
         </FormProvider>
       </DialogContent>
     </Dialog>

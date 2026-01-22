@@ -5,40 +5,42 @@ import { SquarePen, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 import GenericTable from "@/components/common/GenericTable";
-import DeleteDialog from "@/components/share/DeleteDialog";
+
 import { Button } from "@/components/ui/button";
 
+import DeleteDialog from "@/components/share/DeleteDialog";
+import { useDeleteData, useFetchData } from "@/hooks/useApi";
+import { toast } from "sonner";
 import CreateUpdateBrandType from "./form/CreateUpdateBrandType";
 import { TBrandType } from "./schema/brandType.schema";
-
-const brandTypeDummyData: TBrandType[] = [
-  {
-    id: "brand_1",
-    name: "Luxury",
-    description: "Premium and luxury brand products",
-    status: true,
-  },
-  {
-    id: "brand_2",
-    name: "Economy",
-    description: "Affordable and budget-friendly brands",
-    status: true,
-  },
-  {
-    id: "brand_3",
-    name: "Exclusive",
-    description: "Limited edition and exclusive brands",
-    status: false,
-  },
-];
 
 export default function BrandType() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBrandType, setSelectedBrandType] = useState<TBrandType | null>(
-    null
+    null,
   );
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deletedId, setDeletedId] = useState<string | null>(null);
+
+  const { data, isLoading } = useFetchData(["brand-type"], "/brand-type");
+
+  const deleteMutation = useDeleteData([["brand-type"]]);
+
+  const handleDelete = async () => {
+    try {
+      const res = await deleteMutation.mutateAsync({
+        url: `/brand-type/delete/${deletedId}`,
+      });
+
+      if (res?.success) {
+        toast.success(res.message);
+        setDeletedId(null);
+        setIsDeleteOpen(false);
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to delete");
+    }
+  };
 
   const columns: ColumnDef<TBrandType>[] = [
     {
@@ -119,9 +121,10 @@ export default function BrandType() {
 
       {/* Table */}
       <GenericTable
-        data={brandTypeDummyData}
+        data={data?.data}
         columns={columns}
         filterKey="name"
+        isLoading={isLoading}
       />
 
       {/* Modal */}
@@ -135,10 +138,7 @@ export default function BrandType() {
       <DeleteDialog
         open={isDeleteOpen}
         onOpenChange={setIsDeleteOpen}
-        onConfirm={() => {
-          console.log("Delete brand type:", deletedId);
-          setIsDeleteOpen(false);
-        }}
+        onConfirm={handleDelete}
       />
     </div>
   );
