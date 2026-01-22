@@ -11,11 +11,8 @@ import { Button } from "@/components/ui/button";
 import CreateUpdateCategory from "./form/CreateUpdateCategory";
 import { TCategory } from "./schema/category.schema";
 
-export const categoryDummyData: TCategory[] = [
-  { id: "cat_1", name: "Kitchen", status: true },
-  { id: "cat_2", name: "Bathroom", status: true },
-  { id: "cat_3", name: "Living Room", status: false },
-];
+import { useDeleteData, useFetchData } from "@/hooks/useApi";
+import { toast } from "sonner";
 
 export default function Category() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,6 +21,28 @@ export default function Category() {
   );
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deletedId, setDeletedId] = useState<string | null>(null);
+
+  const { data, isLoading } = useFetchData(["category"], "/category");
+
+  const deleteMutation = useDeleteData([["category"]]);
+
+  // ! for handling delete
+  const handleDelete = async () => {
+    try {
+      const result = await deleteMutation.mutateAsync({
+        url: `/category/${deletedId}`,
+      });
+
+      if (result?.success) {
+        toast.success(result?.message);
+
+        setDeletedId(null);
+      }
+    } catch (error: any) {
+      console.log("error response from delete category = ", error);
+      toast.error(error?.message || error?.errorMessages || "Failed to delete");
+    }
+  };
 
   const columns: ColumnDef<TCategory>[] = [
     {
@@ -109,9 +128,10 @@ export default function Category() {
 
       {/* Table */}
       <GenericTable
-        data={categoryDummyData}
+        data={data?.data}
         columns={columns}
         filterKey="name"
+        isLoading={isLoading}
       />
 
       {/* Modal */}
@@ -125,10 +145,7 @@ export default function Category() {
       <DeleteDialog
         open={isDeleteOpen}
         onOpenChange={setIsDeleteOpen}
-        onConfirm={() => {
-          console.log("Delete category:", deletedId);
-          setIsDeleteOpen(false);
-        }}
+        onConfirm={() => handleDelete()}
       />
     </div>
   );
