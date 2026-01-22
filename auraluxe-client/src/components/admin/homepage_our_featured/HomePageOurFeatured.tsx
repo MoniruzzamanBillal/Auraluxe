@@ -5,37 +5,21 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { useDeleteData, useFetchData } from "@/hooks/useApi";
+import { toast } from "sonner";
 
 import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
 } from "@tanstack/react-table";
 
 import GenericTable from "@/components/common/GenericTable";
+
 import DeleteDialog from "@/components/share/DeleteDialog";
 import CreateUpdateHomeOurFeatured from "./form/CreateUpdateHomeOurFeatured";
 import { THomeOurFeatured } from "./schema/homeOurFeatured.schema";
-
-/* -------------------- Dummy Data -------------------- */
-export const homeOurFeaturedDummyData: THomeOurFeatured[] = Array.from(
-  { length: 6 },
-  (_, i) => ({
-    id: `featured_${i + 1}`,
-    title: `Featured Title ${i + 1}`,
-    description:
-      "Premium materials crafted with elegance and durability in mind.",
-    imageUrl: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
-    status: i % 2 === 0,
-    order: i + 1,
-  }),
-);
 
 export default function HomePageOurFeatured() {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -49,15 +33,34 @@ export default function HomePageOurFeatured() {
   const [selectedFeatured, setSelectedFeatured] =
     useState<THomeOurFeatured | null>(null);
 
+  const { data, isLoading } = useFetchData(
+    ["home-our-featured"],
+    "/home-our-featured",
+  );
+
+  const deleteMutation = useDeleteData([["home-our-featured"]]);
+
   const handleEdit = (featured: THomeOurFeatured) => {
     setSelectedFeatured(featured);
     setIsModalOpen(true);
   };
 
   const handleDelete = async () => {
-    console.log("deleted id =  ", deletedId);
-    setIsDeleteModalOpen(false);
-    setDeletedId(null);
+    try {
+      if (!deletedId) return;
+
+      const result = await deleteMutation.mutateAsync({
+        url: `/home-our-featured/${deletedId}`,
+      });
+
+      if (result?.success) {
+        toast.success(result.message);
+        setDeletedId(null);
+        setIsDeleteModalOpen(false);
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to delete featured item");
+    }
   };
 
   /* -------------------- Columns -------------------- */
@@ -152,25 +155,6 @@ export default function HomePageOurFeatured() {
     },
   ];
 
-  const table = useReactTable({
-    data: homeOurFeaturedDummyData,
-    columns,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-      rowSelection,
-    },
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-  });
-
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -181,23 +165,25 @@ export default function HomePageOurFeatured() {
             setSelectedFeatured(null);
             setIsModalOpen(true);
           }}
-          className=" bg-prime100 hover:bg-prime200 text-gray-50 cursor-pointer "
         >
           Add New Featured
         </Button>
       </div>
 
-      {/* table  */}
       <GenericTable
-        data={homeOurFeaturedDummyData}
+        data={data?.data}
         columns={columns}
         filterKey="title"
+        isLoading={isLoading}
       />
 
       {/* Modal */}
       <CreateUpdateHomeOurFeatured
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedFeatured(null);
+        }}
         initialValues={selectedFeatured}
       />
 

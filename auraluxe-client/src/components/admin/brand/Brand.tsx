@@ -23,7 +23,7 @@ export default function BrandPage() {
 
   const { data, isLoading } = useFetchData(["brand"], "/brand");
 
-  // ✅ Delete Brand
+  // ! Delete Brand
   const deleteMutation = useDeleteData([["brand"]]);
   const handleDelete = async () => {
     try {

@@ -12,6 +12,9 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useEffect } from "react";
 import HomeOurFeaturedForm from "./HomeOurFeaturedForm";
 
+import { usePatch, usePost } from "@/hooks/useApi";
+import { toast } from "sonner";
+import { getChangedFields } from "../../../../../utils/getChangedFields";
 import {
   homeOurFeaturedSchema,
   THomeOurFeatured,
@@ -34,24 +37,86 @@ export default function CreateUpdateHomeOurFeatured({
     defaultValues: {
       title: "",
       description: "",
-      imageUrl: "",
     },
   });
+  const {
+    mutateAsync: createFeatured,
+    reset: postReset,
+    isPending: isPostPending,
+  } = usePost([["home-our-featured"]]);
 
+  const {
+    mutateAsync: updateFeatured,
+    reset: patchReset,
+    isPending: isPatchPending,
+  } = usePatch([["home-our-featured"]]);
+
+  // 🔁 Reset form on initial values change
   useEffect(() => {
     if (initialValues) {
-      methods.reset({
-        title: initialValues.title,
-        description: initialValues.description,
-        imageUrl: initialValues.imageUrl,
-      });
+      methods.reset(initialValues);
+    } else {
+      methods.reset();
     }
   }, [initialValues, methods]);
 
-  const onSubmit = (data: THomeOurFeaturedForm) => {
-    console.log("Submitted:", data);
-    onClose();
+  // 🔁 Cleanup on modal close
+  useEffect(() => {
+    if (!isOpen) {
+      methods.reset();
+      postReset();
+      patchReset();
+    }
+  }, [isOpen, methods, postReset, patchReset]);
+
+  const onSubmit = async (data: THomeOurFeaturedForm) => {
+    try {
+      // ! UPDATE
+      if (initialValues) {
+        const changedData = getChangedFields(data, initialValues);
+        const formData = new FormData();
+
+        if (changedData.title) formData.append("title", changedData.title);
+
+        if (changedData.description)
+          formData.append("description", changedData.description);
+
+        if (changedData.imageUrl instanceof File)
+          formData.append("file", changedData.imageUrl);
+
+        const result = await updateFeatured({
+          url: `/home-our-featured/${initialValues.id}`,
+          payload: formData,
+        });
+
+        if (result?.success) {
+          toast.success(result.message);
+          onClose();
+        }
+        return;
+      }
+
+      // ✅ CREATE
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      if (data.imageUrl) formData.append("file", data.imageUrl);
+
+      const result = await createFeatured({
+        url: "/home-our-featured",
+        payload: formData,
+      });
+
+      if (result?.success) {
+        toast.success(result.message);
+        onClose();
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to save home featured item");
+    }
   };
+
+  const isLoading = isPostPending || isPatchPending;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -63,7 +128,11 @@ export default function CreateUpdateHomeOurFeatured({
         </DialogHeader>
 
         <FormProvider {...methods}>
-          <HomeOurFeaturedForm onSubmit={onSubmit} isEdit={!!initialValues} />
+          <HomeOurFeaturedForm
+            onSubmit={onSubmit}
+            isEdit={!!initialValues}
+            isLoading={isLoading}
+          />
         </FormProvider>
       </DialogContent>
     </Dialog>
