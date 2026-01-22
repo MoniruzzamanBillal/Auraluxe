@@ -9,19 +9,10 @@ export class HomeOurProductService {
 
   // ! create
   async addHomeOurProduct(payload: CreateHomeOurProductDto, imgUrl: string) {
-    const lastItem = await this.prisma.homeOurProduct.findFirst({
-      where: { isDeleted: false },
-      orderBy: { order: 'desc' },
-      select: { order: true },
-    });
-
-    const nextOrder = lastItem ? lastItem.order + 1 : 1;
-
     return this.prisma.homeOurProduct.create({
       data: {
         ...payload,
         imageUrl: imgUrl,
-        order: nextOrder,
       },
     });
   }
@@ -30,7 +21,6 @@ export class HomeOurProductService {
   async getAllHomeOurProduct() {
     return this.prisma.homeOurProduct.findMany({
       where: { isDeleted: false, status: true },
-      orderBy: { order: 'asc' },
     });
   }
 
@@ -67,19 +57,9 @@ export class HomeOurProductService {
       throw new NotFoundException("This product doesn't exist");
     }
 
-    await this.prisma.$transaction(async (txn) => {
-      const deleted = await txn.homeOurProduct.update({
-        where: { id },
-        data: { isDeleted: true, status: false },
-      });
-
-      await txn.homeOurProduct.updateMany({
-        where: {
-          order: { gt: deleted.order },
-          isDeleted: false,
-        },
-        data: { order: { decrement: 1 } },
-      });
+    await this.prisma.homeOurProduct.update({
+      where: { id },
+      data: { isDeleted: true, status: false },
     });
   }
 }

@@ -8,7 +8,7 @@ export const HomePageBannerSchema = z.object({
     .min(1, "Title is required")
     .max(80, "Title cannot exceed 80 characters"),
 
-  bannerImage: imageSchema,
+  imageUrl: imageSchema,
 
   description: z
     .string()

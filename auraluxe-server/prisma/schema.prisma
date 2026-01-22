@@ -609,14 +609,14 @@ model homeBanner {
   title       String  @unique
   imageUrl    String
   description String
-  order       Int
+      
   isDeleted   Boolean @default(false)
   status      Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([order, isDeleted])
+
   @@map("home_banner")
 }
 
@@ -625,7 +625,7 @@ model homeOurFeatured {
   title       String @unique
   imageUrl    String
   description String
-  order       Int
+
 
   isDeleted Boolean @default(false)
   status    Boolean @default(true)
@@ -633,7 +633,7 @@ model homeOurFeatured {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([order, isDeleted])
+
   @@map("home_our_featured")
 }
 
@@ -642,7 +642,7 @@ model homeOurProduct {
   title       String @unique
   imageUrl    String
   description String
-  order       Int
+
 
   isDeleted Boolean @default(false)
   status    Boolean @default(true)
@@ -650,14 +650,14 @@ model homeOurProduct {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([order, isDeleted])
+
   @@map("home_our_product")
 }
 
 model ourFeaturedProduct {
   id       String @id @default(uuid())
   imageUrl String
-  order    Int
+ 
 
   isDeleted Boolean @default(false)
   status    Boolean @default(true)
@@ -665,7 +665,7 @@ model ourFeaturedProduct {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([order, isDeleted])
+
   @@map("our_featured_product")
 }
 

@@ -11,16 +11,8 @@ export class HomeBannerService {
 
   // ! for creating new home banner
   async addHomeBanner(payload: CreateHomeBannerDto, imgUrl: string) {
-    const lastBanner = await this.prisma.homeBanner.findFirst({
-      where: { isDeleted: false },
-      orderBy: { order: 'desc' },
-      select: { order: true },
-    });
-
-    const nextOrder = lastBanner ? lastBanner.order + 1 : 1;
-
     const result = await this.prisma.homeBanner.create({
-      data: { ...payload, imageUrl: imgUrl, order: nextOrder },
+      data: { ...payload, imageUrl: imgUrl },
     });
 
     return result;
@@ -73,20 +65,9 @@ export class HomeBannerService {
       throw new NotFoundException("This banner don't exist!!! ");
     }
 
-    await this.prisma.$transaction(async (txn) => {
-      // ! soft delete banner
-      const deletedBanner = await txn.homeBanner.update({
-        where: { id },
-        data: { isDeleted: true, status: false },
-      });
-
-      // ! re order the banner
-      await txn.homeBanner.updateMany({
-        where: {
-          order: { gt: deletedBanner?.order },
-        },
-        data: { order: { decrement: 1 } },
-      });
+    await this.prisma.homeBanner.update({
+      where: { id },
+      data: { isDeleted: true, status: false },
     });
   }
 

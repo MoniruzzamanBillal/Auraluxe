@@ -9,19 +9,10 @@ export class HomeOurFeaturedService {
 
   // ! create
   async addHomeOurFeatured(payload: CreateHomeOurFeaturedDto, imgUrl: string) {
-    const lastItem = await this.prisma.homeOurFeatured.findFirst({
-      where: { isDeleted: false },
-      orderBy: { order: 'desc' },
-      select: { order: true },
-    });
-
-    const nextOrder = lastItem ? lastItem.order + 1 : 1;
-
     return this.prisma.homeOurFeatured.create({
       data: {
         ...payload,
         imageUrl: imgUrl,
-        order: nextOrder,
       },
     });
   }
@@ -30,7 +21,6 @@ export class HomeOurFeaturedService {
   async getAllHomeOurFeatured() {
     return this.prisma.homeOurFeatured.findMany({
       where: { isDeleted: false, status: true },
-      orderBy: { order: 'asc' },
     });
   }
 
@@ -67,19 +57,9 @@ export class HomeOurFeaturedService {
       throw new NotFoundException("This featured item doesn't exist");
     }
 
-    await this.prisma.$transaction(async (txn) => {
-      const deleted = await txn.homeOurFeatured.update({
-        where: { id },
-        data: { isDeleted: true, status: false },
-      });
-
-      await txn.homeOurFeatured.updateMany({
-        where: {
-          order: { gt: deleted.order },
-          isDeleted: false,
-        },
-        data: { order: { decrement: 1 } },
-      });
+    await this.prisma.homeOurFeatured.update({
+      where: { id },
+      data: { isDeleted: true, status: false },
     });
   }
 }

@@ -35,6 +35,16 @@ const nextConfig = {
         protocol: "https",
         hostname: "i.postimg.cc",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "5000",
+        pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
     ],
   },
 };
