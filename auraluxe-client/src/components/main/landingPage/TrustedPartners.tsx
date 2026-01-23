@@ -62,7 +62,6 @@ const brands = [
   },
   {
     id: 8,
-
     logo: "/landingPage/trusted_brands/ventura.png",
   },
 ];
@@ -140,7 +139,7 @@ const BrandShowPart = () => {
   const getNextBrandIndex = (
     currentIndex: any,
     totalBrands: any,
-    currentlyVisible: any
+    currentlyVisible: any,
   ) => {
     const availableBrands = [];
 
@@ -190,7 +189,7 @@ const BrandShowPart = () => {
               newBrands[position] = getNextBrandIndex(
                 prev[position],
                 brands.length,
-                currentlyVisible
+                currentlyVisible,
               );
               return newBrands;
             });

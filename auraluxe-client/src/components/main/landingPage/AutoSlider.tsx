@@ -4,7 +4,7 @@ import { THomePageBanner } from "@/components/admin/homepage_banner/schema/HomeB
 import { useFetchData } from "@/hooks/useApi";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const variants = {
   enter: {
@@ -30,7 +30,15 @@ export default function AutoSlider() {
   // ! FETCH - using your hook
   const { data, isLoading } = useFetchData(["home-banner"], "/home-banner");
 
-  const banners: THomePageBanner[] | [] = data?.data || [];
+  // Filter out deleted banners and memoize the result
+  const banners = useMemo(() => {
+    if (!data?.data || !Array.isArray(data.data)) {
+      return [];
+    }
+
+    // Filter out deleted banners
+    return data.data.filter((banner: THomePageBanner) => !banner.isDeleted);
+  }, [data]);
 
   // Auto-slide effect - only if we have banners
   useEffect(() => {
@@ -79,9 +87,8 @@ export default function AutoSlider() {
             <Image
               src={banners[currentIndex]?.imageUrl as string}
               alt={banners[currentIndex]?.title || "Banner"}
-              height={1280}
-              width={1280}
-              className=" w-full h-full "
+              fill
+              style={{ objectFit: "cover" }}
               priority
             />
           </motion.div>
@@ -117,7 +124,7 @@ export default function AutoSlider() {
         {/* Navigation Dots */}
         {banners.length > 1 && (
           <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-            {banners.map((_, index) => (
+            {banners.map((_, index: number) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}

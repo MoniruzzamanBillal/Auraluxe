@@ -21,4 +21,5 @@ export type THomeOurProductFormData = z.infer<typeof HomeOurProductSchema>;
 
 export type THomeOurProduct = THomeOurProductFormData & {
   id: string;
+  isDeleted?: boolean;
 };

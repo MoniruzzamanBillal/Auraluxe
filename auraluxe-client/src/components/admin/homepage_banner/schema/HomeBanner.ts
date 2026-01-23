@@ -20,7 +20,7 @@ export const HomePageBannerSchema = z.object({
 export type THomePageBannerFormData = z.infer<typeof HomePageBannerSchema>;
 
 export type THomePageBanner = THomePageBannerFormData & {
-  status: boolean;
-  order: number;
+  isDeleted?: boolean;
+
   id: string;
 };
