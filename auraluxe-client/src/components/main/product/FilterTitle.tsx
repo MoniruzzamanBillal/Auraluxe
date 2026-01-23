@@ -1,8 +1,8 @@
 "use client";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useState } from "react";
 import { FaSliders } from "react-icons/fa6";
 import Category from "./Category";
-import { useState } from "react";
 
 type Props = {
   selectedCat: string;
@@ -48,15 +48,6 @@ const FilterTitle = ({
               setSelectedBrand={setSelectedBrand}
               handleOpenChange={handleOpenChange}
             />
-            {/*====== apply button for small devices only ========== */}
-            {/* <div className="cus mt-5">
-              <button
-                onClick={handleApply}
-                className="bg-brandColOne w-full py-2 text-base font-medium text-white"
-              >
-                Apply
-              </button>
-            </div> */}
           </div>
         </SheetContent>
       </Sheet>

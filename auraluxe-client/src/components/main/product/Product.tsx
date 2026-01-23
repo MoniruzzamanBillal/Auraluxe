@@ -5,14 +5,14 @@ import CustomPageHeader from "@/components/share/common/CustomPageHeader";
 import StaticPagination from "@/components/share/pagination/StaticPagination";
 import { useEffect, useState } from "react";
 import { TbPackageOff } from "react-icons/tb";
-import { dummyProductData } from "../../../../data/productData";
 import Category from "./Category";
 import FilterTitle from "./FilterTitle";
 import ProductCard from "./ProductCard";
 import ProductTitleAndSort from "./ProductTitleAndSort";
 
-// import dummyProductData from "@/../data/productsData.json";
-// import dummyProductData from "@/../data/productsData.json";
+import { TProduct } from "@/components/admin/product/schema/product.schema";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useFetchData } from "@/hooks/useApi";
 
 const Product = ({ query }: { query: string }) => {
   // console.log("query = ", query);
@@ -57,86 +57,33 @@ const Product = ({ query }: { query: string }) => {
     setPage(1);
   };
 
-  // console.log(allProductList);
+  // Construct query string for API
+  let filterQuery = `page=${page}&limit=${itemsPerPage}&sort=${sortOrder}`;
+  if (selectedCat) filterQuery += `&categoryId=${selectedCat}`;
+  if (selectedBrand) filterQuery += `&brandId=${selectedBrand}`;
 
-  // const allProductList = productResponse.data || [];
+  const { data: productData, isLoading: isProductLoading } = useFetchData(
+    ["products", filterQuery],
+    `/product?${filterQuery}`,
+  );
 
-  // const filteredProducts = categoryQuery
-  //   ? dummyProductData?.filter((product) =>
-  //       product?.category.includes(categoryQuery),
-  //     )
-  //   : dummyProductData;
+  console.log("selected cat =>>", selectedCat);
+  console.log("selected brand =>>", selectedBrand);
+  console.log("prodct data = ", productData?.data);
 
-  // const allProductList = filteredProducts || [];
+  const allProductList = productData?.data || [];
+  const meta = productData?.meta;
 
-  // console.log(appliedFilters);
+  const totalPages = meta?.totalPage || 1;
+  const totalItems = meta?.total || 0;
 
-  // * Filter products based on applied filters
-  const getFilteredProducts = () => {
-    let filtered = dummyProductData;
-
-    if (appliedFilters.category) {
-      filtered = filtered?.filter((product) =>
-        product?.category?.includes(selectedCat)
-      );
-    }
-
-    if (appliedFilters?.brand) {
-      filtered = filtered?.filter((product) =>
-        product?.brand?.name?.includes(selectedBrand)
-      );
-    }
-
-    filtered = [...filtered].sort((a, b) => {
-      if (sortOrder === "asc") {
-        return a.name.localeCompare(b.name);
-      } else {
-        return b.name.localeCompare(a.name);
-      }
-    });
-
-    return filtered;
-  };
-
-  const allFilteredProducts = getFilteredProducts();
-
-  const totalItems = allFilteredProducts.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  // Get current page products
-  const getCurrentPageProducts = () => {
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return allFilteredProducts.slice(startIndex, endIndex);
-  };
-
-  const currentPageProducts = getCurrentPageProducts();
-
-  // * update appliedFilters state , based on the category , brand change
-  useEffect(() => {
-    setAppliedFilters((prev) => ({
-      ...prev,
-      category: selectedCat,
-      brand: selectedBrand,
-    }));
-  }, [selectedCat, selectedBrand]);
-
-  //  * update the category state , based on the query parameter
+  // Sync state with URL params
   useEffect(() => {
     if (categoryQuery) {
       setSelectedCat(categoryQuery);
     }
+    // Handle brand query if needed in future
   }, [categoryQuery]);
-
-  // Reset to page 1 when filters change
-  useEffect(() => {
-    setPage(1);
-  }, [selectedCat, selectedBrand, sortOrder]);
-
-  // console.log("sort order = ", sortOrder);
-  // console.log("selected category = ", selectedCat);
-  // console.log("selected brand = ", selectedBrand);
-  // console.log(allProductList);
 
   return (
     <div className="relative flex min-h-screen flex-col gap-0 overflow-hidden bg-white lg:gap-20">
@@ -193,19 +140,33 @@ const Product = ({ query }: { query: string }) => {
 
             {/* Product Cards */}
 
-            {!currentPageProducts?.length && <NoProductFound />}
+            {!isProductLoading && !allProductList?.length && <NoProductFound />}
 
-            <div className="sc-500:grid-cols-2 grid grid-cols-1 gap-x-5 gap-y-10 pt-4 pb-22 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-16 lg:pt-12 xl:grid-cols-4">
-              {currentPageProducts?.length > 0 &&
-                currentPageProducts.map((product: any, index: number) => (
-                  <div
-                    key={product?._id}
-                    className="relative cursor-pointer overflow-hidden"
-                  >
-                    <ProductCard {...product} />
+            {isProductLoading ? (
+              <div className="sc-500:grid-cols-2 grid grid-cols-1 gap-x-5 gap-y-10 pt-4 pb-22 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-16 lg:pt-12 xl:grid-cols-4">
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((_, index) => (
+                  <div key={index} className="space-y-4">
+                    <Skeleton className="h-[300px] w-full rounded-xl" />
+                    <div className="space-y-2">
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-4 w-[80%]" />
+                    </div>
                   </div>
                 ))}
-            </div>
+              </div>
+            ) : (
+              <div className="sc-500:grid-cols-2 grid grid-cols-1 gap-x-5 gap-y-10 pt-4 pb-22 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-16 lg:pt-12 xl:grid-cols-4">
+                {allProductList?.length > 0 &&
+                  allProductList.map((product: TProduct, index: number) => (
+                    <div
+                      key={product?.id || index}
+                      className="relative cursor-pointer overflow-hidden"
+                    >
+                      <ProductCard {...product} />
+                    </div>
+                  ))}
+              </div>
+            )}
 
             {/* {isProductLoading ? (
                 <p>I am miniloader</p>
@@ -228,7 +189,7 @@ const Product = ({ query }: { query: string }) => {
 
         {/* ===== pagination ====== */}
 
-        {currentPageProducts?.length > 0 && (
+        {allProductList?.length > 0 && (
           <div className="sc-laptop:mb-22 mb-16 flex justify-end">
             <StaticPagination
               currentPage={page}

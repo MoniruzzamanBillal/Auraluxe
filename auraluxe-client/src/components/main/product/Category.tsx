@@ -1,11 +1,11 @@
 "use client";
-import { Accordion } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useFetchData } from "@/hooks/useApi";
 import { TbCategory } from "react-icons/tb";
 import { TiStarOutline } from "react-icons/ti";
-import CategoryAccordion from "./CategoryAccordian";
-import { BrandList, CategoryList } from "./TempData";
 
 type Props = {
   selectedCat: string;
@@ -22,24 +22,28 @@ const Category = ({
   setSelectedBrand,
   handleOpenChange,
 }: Props) => {
-  const isAllCatListLoading = false;
-  const isAllBrandListLoading = false;
+  const { data: categoryData, isLoading: isAllCatListLoading } = useFetchData(
+    ["category"],
+    "/category",
+  );
+
+  const { data: brandData, isLoading: isAllBrandListLoading } = useFetchData(
+    ["brand"],
+    "/brand",
+  );
 
   const toggleCategorySelection = (id: string) => {
     setSelectedCat((prev: string) => (prev === id ? "" : id));
   };
 
-  // const toggleCategorySelection = (name: string) => {
-  //   setSelectedCat(name);
-  // };
-  // const toggleBrandSelection = (name: string) => {
-  //   setSelectedBrand(name);
-  // };
-  const toggleBrandSelection = (name: string) => {
-    setSelectedBrand((prev: string) => (prev === name ? "" : name));
+  const handleReset = () => {
+    setSelectedCat("");
+    setSelectedBrand("");
   };
 
-  // console.log(allBrandsList);
+  const toggleBrandSelection = (id: string) => {
+    setSelectedBrand((prev: string) => (prev === id ? "" : id));
+  };
 
   return (
     <div>
@@ -47,42 +51,42 @@ const Category = ({
         <div>
           <TbCategory className="text-charcoolGray h-6 w-6" />
         </div>
-        <p className="text-textBlack text-base font-medium">Category</p>
+        <p className="text-textBlack text-base font-medium   ">Category</p>
       </div>
       <hr className="text-grayLightPrimary mt-3" />
 
       {/* ========== category ========== */}
-      <div className="mt-7  ">
-        <Accordion type="single" className="space-y-2">
-          {CategoryList.map((cat) => (
-            <CategoryAccordion
-              key={cat.id}
-              category={cat}
-              level={1}
-              setSelectedCat={setSelectedCat}
-            />
-          ))}
-        </Accordion>
-      </div>
-      {/* {isAllCatListLoading ? (
-        <>
-          <NormalLoader />
-        </>
-      ) : (
-        <div className="mt-7">
-          <Accordion type="multiple" className="space-y-2">
-            {CategoryList.map((cat) => (
-              <CategoryAccordion
-                key={cat.id}
-                category={cat}
-                level={1}
-                setSelectedCat={setSelectedCat}
-                handleOpenChange={handleOpenChange}
-              />
+      <div className="mt-7">
+        {isAllCatListLoading ? (
+          <div className="space-y-2">
+            {[1, 2, 3, 4, 5].map((_, idx) => (
+              <Skeleton key={idx} className="h-10 w-full" />
             ))}
-          </Accordion>
-        </div>
-      )} */}
+          </div>
+        ) : (
+          categoryData?.data?.map((cat: any, index: number) => (
+            <div
+              key={index + 1}
+              className={`hover:text-brandColor hover:bg-graySecondary flex cursor-pointer items-center gap-x-2 py-4 text-sm font-bold ${
+                selectedCat === cat.id
+                  ? "text-brandColor bg-graySecondary"
+                  : "text-secondary"
+              }`}
+            >
+              <Checkbox
+                id={cat?.id}
+                checked={selectedCat === cat?.id}
+                className={` ${selectedCat === cat?.id ? "bg-brandColor text-white" : "border-darkGray border"} `}
+                onCheckedChange={() => toggleCategorySelection(cat?.id)}
+              />
+
+              <Label htmlFor={cat?.id} className="text-darkGray font-medium">
+                {cat?.name}
+              </Label>
+            </div>
+          ))
+        )}
+      </div>
 
       {/*=========== Brand ==========*/}
       <div className="mt-12 flex items-center justify-start gap-2">
@@ -95,73 +99,46 @@ const Category = ({
       <hr className="text-grayLightPrimary mt-3" />
 
       <div className="mt-7">
-        {BrandList.map((brand: any, index: number) => (
-          <div
-            key={index + 1}
-            className={`hover:text-brandColor hover:bg-graySecondary flex cursor-pointer items-center gap-x-2 py-4 text-sm font-bold ${
-              selectedBrand === brand.name
-                ? "text-brandColor bg-graySecondary"
-                : "text-secondary"
-            }`}
-            // onClick={() => toggleBrandSelection(brand.name)}
-            // onClick={() => toggleBrandSelection(brand._id)}
-          >
-            <Checkbox
-              id={brand?.name}
-              checked={selectedBrand === brand?.name}
-              className={` ${selectedBrand === brand?.name ? "bg-brandColor text-white" : "border-darkGray border"} `}
-              // onCheckedChange={(checked) =>
-              //   handleChangeFinish(Boolean(checked), data?.id)
-              // }
-
-              onCheckedChange={() => toggleBrandSelection(brand?.name)}
-            />
-
-            <Label htmlFor={brand?.name} className="text-darkGray font-medium">
-              {brand?.name}
-            </Label>
+        {isAllBrandListLoading ? (
+          <div className="space-y-2">
+            {[1, 2, 3, 4, 5].map((_, idx) => (
+              <Skeleton key={idx} className="h-10 w-full" />
+            ))}
           </div>
-        ))}
-      </div>
-
-      {/* {isAllBrandListLoading ? (
-        <NormalLoader />
-      ) : (
-        <div className="mt-7">
-          {BrandList.map((brand: any, index: number) => (
+        ) : (
+          brandData?.data?.map((brand: any, index: number) => (
             <div
               key={index + 1}
               className={`hover:text-brandColor hover:bg-graySecondary flex cursor-pointer items-center gap-x-2 py-4 text-sm font-bold ${
-                selectedBrand === brand._id
+                selectedBrand === brand.id
                   ? "text-brandColor bg-graySecondary"
                   : "text-secondary"
               }`}
-              // onClick={() => toggleBrandSelection(brand.name)}
-              // onClick={() => toggleBrandSelection(brand._id)}
             >
               <Checkbox
                 id={brand?.id}
                 checked={selectedBrand === brand?.id}
-                className={` ${selectedBrand === brand?.id ? "bg-brandColor text-white" : "border-darkGray border"} cursor-pointer`}
-                // onCheckedChange={(checked) =>
-                //   handleChangeFinish(Boolean(checked), data?.id)
-                // }
-
-                onCheckedChange={() => {
-                  toggleBrandSelection(brand.id);
-                  if (handleOpenChange) {
-                    handleOpenChange(false);
-                  }
-                }}
+                className={` ${selectedBrand === brand?.id ? "bg-brandColor text-white" : "border-darkGray border"} `}
+                onCheckedChange={() => toggleBrandSelection(brand?.id)}
               />
 
-              <Label htmlFor={brand?._id} className="text-darkGray font-medium">
+              <Label htmlFor={brand?.id} className="text-darkGray font-medium">
                 {brand?.name}
               </Label>
             </div>
-          ))}
-        </div>
-      )} */}
+          ))
+        )}
+      </div>
+
+      <div className="mt-10 w-full">
+        <Button
+          variant="outline"
+          className="w-full border-red-500 text-red-500 hover:bg-red-50 hover:text-red-600"
+          onClick={handleReset}
+        >
+          Reset Filters
+        </Button>
+      </div>
     </div>
   );
 };
