@@ -8,6 +8,8 @@ import { useState } from "react";
 import GenericTable from "@/components/common/GenericTable";
 import DeleteDialog from "@/components/share/DeleteDialog";
 
+import { useDeleteData, useFetchData } from "@/hooks/useApi";
+import { toast } from "sonner";
 import CreateUpdateKeyBrand from "./form/CreateUpdateKeyBrand";
 import { TKeyBrand } from "./schema/keyBrand.schema";
 
@@ -36,10 +38,28 @@ export default function KeyBrandsPage() {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deletedId, setDeletedId] = useState<string | null>(null);
 
-  const handleDelete = () => {
-    console.log("Deleted ID:", deletedId);
-    setIsDeleteOpen(false);
-    setDeletedId(null);
+  // ! FETCH DATA
+  const { data, isLoading } = useFetchData(["key-brands"], "/key-brands");
+
+  // ! DELETE
+  const deleteMutation = useDeleteData([["key-brands"]]);
+
+  const handleDelete = async () => {
+    try {
+      const result = await deleteMutation.mutateAsync({
+        url: `/key-brands/${deletedId}`,
+      });
+
+      if (result?.success) {
+        toast.success(result.message);
+        setDeletedId(null);
+        setIsDeleteOpen(false);
+      }
+    } catch (error: any) {
+      setDeletedId(null);
+      setIsDeleteOpen(false);
+      toast.error(error?.message || "Failed to delete key brand");
+    }
   };
 
   const columns = [
@@ -139,14 +159,18 @@ export default function KeyBrandsPage() {
       </div>
 
       <GenericTable
-        data={keyBrandsDummyData}
+        data={data?.data ?? []}
         columns={columns}
         filterKey="name"
+        isLoading={isLoading}
       />
 
       <CreateUpdateKeyBrand
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedBrand(null);
+        }}
         initialValues={selectedBrand}
       />
 

@@ -43,9 +43,9 @@ export default function HomeBannerForm({
 
       {/* ===== Banner Image ===== */}
       <div className="flex flex-col gap-y-2">
-        <Label htmlFor="bannerImage">Banner Image</Label>
+        <Label htmlFor="imageUrl">Banner Image</Label>
         <FileUploadController
-          name="bannerImage"
+          name="imageUrl"
           label="Upload banner image (JPEG, JPG, PNG)"
           className="h-[200px] w-[300px]"
         />

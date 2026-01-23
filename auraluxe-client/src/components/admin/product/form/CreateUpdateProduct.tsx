@@ -34,7 +34,7 @@ export default function CreateUpdateProduct({
     resolver: zodResolver(productSchema),
     defaultValues: {
       name: "",
-      // brandId: "",
+      brandId: "",
       categoryId: "",
       price: 0,
       quantity: 0,
@@ -48,14 +48,14 @@ export default function CreateUpdateProduct({
   /* ----------------------------------
    Fetch Brands & Categories
   ---------------------------------- */
-  // const { data: brandData } = useFetchData(["brand"], "/brand");
+  const { data: brandData } = useFetchData(["brand"], "/brand");
   const { data: categoryData } = useFetchData(["category"], "/category");
 
-  // const brandOptions =
-  //   brandData?.data?.map((item: any) => ({
-  //     label: item.name,
-  //     value: item.id,
-  //   })) || [];
+  const brandOptions =
+    brandData?.data?.map((item: any) => ({
+      label: item.name,
+      value: item.id,
+    })) || [];
 
   const categoryOptions =
     categoryData?.data?.map((item: any) => ({
@@ -102,8 +102,8 @@ export default function CreateUpdateProduct({
 
         if (changedData?.name) formData.append("name", changedData.name);
 
-        // if (changedData?.brandId)
-        //   formData.append("brandId", changedData.brandId);
+        if (changedData?.brandId)
+          formData.append("brandId", changedData.brandId);
 
         if (changedData?.categoryId)
           formData.append("categoryId", changedData.categoryId);
@@ -151,7 +151,7 @@ export default function CreateUpdateProduct({
 
       formData.append("name", data.name);
 
-      // formData.append("brandId", data.brandId);
+      formData.append("brandId", data.brandId);
       formData.append("categoryId", data.categoryId);
       formData.append("price", String(data.price));
       formData.append("quantity", String(data.quantity));
@@ -197,7 +197,7 @@ export default function CreateUpdateProduct({
         <FormProvider {...methods}>
           <ProductForm
             onSubmit={onSubmit}
-            // brandOptions={brandOptions}
+            brandOptions={brandOptions}
             categoryOptions={categoryOptions}
             isEdit={!!initialValues}
             isLoading={isLoading}

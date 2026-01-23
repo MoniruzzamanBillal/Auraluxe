@@ -6,9 +6,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { usePatch, usePost } from "@/hooks/useApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { getChangedFields } from "../../../../../utils/getChangedFields";
 import {
   keyBrandSchema,
   TKeyBrand,
@@ -32,24 +35,91 @@ export default function CreateUpdateKeyBrand({
     defaultValues: {
       name: "",
       description: "",
-      logo: "",
     },
   });
+
+  const {
+    mutateAsync: createKeyBrand,
+    reset: postReset,
+    isPending: isPostPending,
+  } = usePost([["key-brands"]]);
+
+  const {
+    mutateAsync: updateKeyBrand,
+    reset: patchReset,
+    isPending: isPatchPending,
+  } = usePatch([["key-brands"]]);
 
   useEffect(() => {
     if (initialValues) {
       methods.reset({
         name: initialValues.name,
         description: initialValues.description,
-        logo: initialValues.logo,
       });
+    } else {
+      methods.reset();
     }
   }, [initialValues, methods]);
 
-  const onSubmit = (data: TKeyBrandForm) => {
+  useEffect(() => {
+    if (!isOpen) {
+      methods.reset();
+      postReset();
+      patchReset();
+    }
+  }, [isOpen, methods, postReset, patchReset]);
+
+  const onSubmit = async (data: TKeyBrandForm) => {
     console.log("Submitted:", data);
-    onClose();
+
+    try {
+      // UPDATE
+      if (initialValues) {
+        const changedData = getChangedFields(data, initialValues);
+        const formData = new FormData();
+
+        if (changedData?.name) formData.append("name", changedData.name);
+        if (changedData?.description)
+          formData.append("description", changedData.description);
+        if (changedData?.logo && changedData.logo instanceof File) {
+          formData.append("file", changedData.logo);
+        }
+
+        const result = await updateKeyBrand({
+          url: `/key-brands/${initialValues.id}`,
+          payload: formData,
+        });
+
+        if (result?.success) {
+          toast.success(result.message);
+          onClose();
+        }
+        return;
+      }
+
+      // CREATE
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("description", data.description);
+      if (data.logo) {
+        formData.append("file", data.logo);
+      }
+
+      const result = await createKeyBrand({
+        url: "/key-brands",
+        payload: formData,
+      });
+
+      if (result?.success) {
+        toast.success(result.message);
+        onClose();
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to save key brand");
+    }
   };
+
+  const isLoading = isPostPending || isPatchPending;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -61,7 +131,11 @@ export default function CreateUpdateKeyBrand({
         </DialogHeader>
 
         <FormProvider {...methods}>
-          <KeyBrandForm onSubmit={onSubmit} isEdit={!!initialValues} />
+          <KeyBrandForm
+            onSubmit={onSubmit}
+            isEdit={!!initialValues}
+            isLoading={isLoading}
+          />
         </FormProvider>
       </DialogContent>
     </Dialog>

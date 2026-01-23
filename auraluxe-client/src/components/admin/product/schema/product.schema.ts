@@ -4,7 +4,7 @@ import { z } from "zod";
 export const productSchema = z.object({
   name: z.string().trim().min(1, "Product name is required").max(100),
 
-  // brandId: z.string().min(1, "Brand is required"),
+  brandId: z.string().min(1, "Brand is required"),
 
   categoryId: z.string().min(1, "Category is required"),
 

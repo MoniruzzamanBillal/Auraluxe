@@ -3,12 +3,7 @@
 import { ArrowUpDown, SquarePen, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
-} from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import { useState } from "react";
 import CreateUpdateHomeBanner from "./CreateUpdateHomeBanner";
@@ -20,11 +15,6 @@ import { useDeleteData, useFetchData } from "@/hooks/useApi";
 import { toast } from "sonner";
 
 export default function HomePageBanner() {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = useState({});
-
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isDeleteOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [deletedId, setDeletedId] = useState<string | null>();

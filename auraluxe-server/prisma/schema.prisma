@@ -1,5 +1,3 @@
-
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -16,9 +14,9 @@ model User {
   password  String
   role      UserRole @default(user)
   isDeleted Boolean  @default(false)
-  
-  cart      Cart?
-  orders    Order[]
+
+  cart   Cart?
+  orders Order[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -29,7 +27,6 @@ model category {
   name      String  @unique
   isDeleted Boolean @default(false)
 
-
   products Product[]
 
   createdAt DateTime @default(now())
@@ -37,16 +34,16 @@ model category {
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  name        String @unique
- 
+  id   String @id @default(uuid())
+  name String @unique
+
   productCode String?
 
-  brandId     String
-  brand       Brand    @relation(fields: [brandId], references: [id])
-  categoryId  String
-  category    category @relation(fields: [categoryId], references: [id])
-  quantity    Int
+  brandId    String
+  brand      Brand    @relation(fields: [brandId], references: [id])
+  categoryId String
+  category   category @relation(fields: [categoryId], references: [id])
+  quantity   Int
 
   price Float
 
@@ -60,14 +57,12 @@ model Product {
   cartItems  CartItem[]
   orderItems OrderItem[]
 
-
   isDeleted Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([categoryId])
- 
 }
 
 model Cart {
@@ -95,7 +90,7 @@ model CartItem {
   quantity  Int   @default(1)
   unitPrice Float
 
-   isDeleted Boolean @default(false)
+  isDeleted Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -116,12 +111,10 @@ model OrderItem {
   quantity  Int
   unitPrice Float
 
-
-
-   isDeleted Boolean @default(false)
+  isDeleted Boolean @default(false)
 
   createdAt DateTime @default(now())
-   updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt
 }
 
 model Order {
@@ -148,7 +141,7 @@ model Payment {
 
   userId  String
   orderId String @unique
-  order   Order  @relation(fields: [orderId], references: [id ] , onDelete: Cascade )
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
   amount        Float
   transactionId String        @unique
@@ -157,8 +150,7 @@ model Payment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-
-   isDeleted Boolean @default(false)
+  isDeleted Boolean @default(false)
 
   @@index([transactionId])
   @@index([orderId])
@@ -170,7 +162,6 @@ model brandType {
   description String
   isDeleted   Boolean @default(false)
 
-
   brands Brand[]
 
   createdAt DateTime @default(now())
@@ -181,13 +172,12 @@ model Brand {
   id          String    @id @default(uuid())
   name        String    @unique
   logo        String
-  brandTypeId String 
+  brandTypeId String
   brandType   brandType @relation(fields: [brandTypeId], references: [id])
 
   products Product[]
 
   isDeleted Boolean @default(false)
-
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -198,7 +188,6 @@ model projectType {
   name        String  @unique
   description String
   isDeleted   Boolean @default(false)
-
 
   projects Project[]
 
@@ -211,7 +200,6 @@ model material {
   name        String  @unique
   description String
   isDeleted   Boolean @default(false)
- 
 
   projects Project[]
 
@@ -231,8 +219,7 @@ model Project {
   instagramLink String?
   linkedinLink  String?
   xLink         String?
-  description   String? 
-
+  description   String?
 
   projectTypeId String
   projectType   projectType @relation(fields: [projectTypeId], references: [id])
@@ -240,8 +227,7 @@ model Project {
   materialId String
   material   material @relation(fields: [materialId], references: [id])
 
-
-   isDeleted Boolean @default(false)
+  isDeleted Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -255,23 +241,20 @@ model keyBrands {
 
   isDeleted Boolean @default(false)
 
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model homeBanner {
-  id          String  @id @default(uuid())
-  title       String  @unique
+  id          String @id @default(uuid())
+  title       String @unique
   imageUrl    String
   description String
-      
-  isDeleted   Boolean @default(false)
 
+  isDeleted Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 
   @@map("home_banner")
 }
@@ -282,13 +265,10 @@ model homeOurFeatured {
   imageUrl    String
   description String
 
-
   isDeleted Boolean @default(false)
- 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 
   @@map("home_our_featured")
 }
@@ -299,13 +279,10 @@ model homeOurProduct {
   imageUrl    String
   description String
 
-
   isDeleted Boolean @default(false)
-
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 
   @@map("home_our_product")
 }
@@ -313,14 +290,11 @@ model homeOurProduct {
 model ourFeaturedProduct {
   id       String @id @default(uuid())
   imageUrl String
- 
 
   isDeleted Boolean @default(false)
 
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 
   @@map("our_featured_product")
 }

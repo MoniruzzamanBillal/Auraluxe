@@ -67,6 +67,7 @@ export default function CreateUpdateHomeBanner({
   }, [isOpen, methods, postReset, patchReset]);
 
   const onSubmit = async (data: THomePageBannerFormData) => {
+    console.log(data);
     try {
       // UPDATE
       if (initialValues) {

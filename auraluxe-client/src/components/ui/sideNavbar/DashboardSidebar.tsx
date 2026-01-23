@@ -49,12 +49,6 @@ const links = [
     href: "/admin/category",
     icon: <TbCategory className="h-5 w-5 shrink-0 text-neutral-200" />,
   },
-
-  {
-    label: "Product",
-    href: "/admin/product",
-    icon: <FaProductHunt className="h-5 w-5 shrink-0 text-neutral-200" />,
-  },
   {
     label: "Brand Type",
     href: "/admin/brandType",
@@ -65,6 +59,13 @@ const links = [
     href: "/admin/brand",
     icon: <TbBrand4Chan className="h-5 w-5 shrink-0 text-neutral-200" />,
   },
+
+  {
+    label: "Product",
+    href: "/admin/product",
+    icon: <FaProductHunt className="h-5 w-5 shrink-0 text-neutral-200" />,
+  },
+
   {
     label: "Key Brand",
     href: "/admin/key_Brands",
@@ -105,7 +106,7 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
     <div
       className={cn(
         "flex h-screen w-full flex-1 flex-col rounded-md md:flex-row",
-        ""
+        "",
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>

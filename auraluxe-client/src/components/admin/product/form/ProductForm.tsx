@@ -11,7 +11,7 @@ import { TProductForm } from "../schema/product.schema";
 
 interface Props {
   onSubmit: (data: TProductForm) => void;
-  // brandOptions: { label: string; value: string }[];
+  brandOptions: { label: string; value: string }[];
   categoryOptions: { label: string; value: string }[];
   isEdit?: boolean;
   isLoading?: boolean;
@@ -19,7 +19,7 @@ interface Props {
 
 export default function ProductForm({
   onSubmit,
-  // brandOptions,
+  brandOptions,
   categoryOptions,
   isEdit = false,
   isLoading = false,
@@ -38,13 +38,13 @@ export default function ProductForm({
         isRequired
       />
 
-      {/* <ControlledSelectField
+      <ControlledSelectField
         name="brandId"
         label="Brand"
         options={brandOptions}
         placeholder="Select brand"
         isRequired
-      /> */}
+      />
 
       <ControlledSelectField
         name="categoryId"
