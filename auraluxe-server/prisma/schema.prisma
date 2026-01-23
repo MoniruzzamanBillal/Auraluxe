@@ -128,6 +128,14 @@ model Order {
   items   OrderItem[]
   payment Payment?
 
+
+    // Add shipping information fields
+  shippingFullName    String
+  shippingPhone       String
+  shippingAddress     String
+  shippingCity        String
+  shippingPostalCode  String
+
   isDeleted Boolean @default(false)
 
   createdAt DateTime @default(now())

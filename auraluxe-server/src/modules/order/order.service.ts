@@ -3,6 +3,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { PAYMENTSTATUS } from 'src/generated/prisma/enums';
 import { PrismaService } from 'src/prisma.service';
 import { PaymentService } from '../payment/payment.service';
+import { ShippingInfoDto } from './dto/create-order.dto';
 
 @Injectable()
 export class OrderService {
@@ -15,7 +16,7 @@ export class OrderService {
 
   // ! for ordering item
 
-  async placeOrderFromCart(userId: string) {
+  async placeOrderFromCart(userId: string, payload: ShippingInfoDto) {
     return this.prisma.$transaction(async (tx) => {
       // 1️⃣ Get cart
       const cart = await tx.cart.findUnique({
@@ -54,6 +55,7 @@ export class OrderService {
         data: {
           userId,
           totalAmount,
+
           items: {
             create: cart.items.map((item) => ({
               productId: item.productId,
@@ -61,6 +63,11 @@ export class OrderService {
               unitPrice: item.unitPrice,
             })),
           },
+          shippingFullName: payload?.fullName,
+          shippingPhone: payload?.phoneNumber,
+          shippingAddress: payload?.streetAddress,
+          shippingCity: payload?.city,
+          shippingPostalCode: payload?.postalCode,
         },
       });
 
