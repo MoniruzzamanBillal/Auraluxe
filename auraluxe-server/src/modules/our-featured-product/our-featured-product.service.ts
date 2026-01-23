@@ -14,19 +14,16 @@ export class OurFeaturedProductService {
     });
   }
 
-  // ! get all
+  // ! get all active
   async getAllOurFeaturedProduct() {
     return this.prisma.ourFeaturedProduct.findMany({
       where: { isDeleted: false, status: true },
+      orderBy: { createdAt: 'desc' },
     });
   }
 
-  // ! update
-  async updateOurFeaturedProduct(
-    id: string,
-    imageUrl?: string,
-    order?: number,
-  ) {
+  // ! get single
+  async getSingleOurFeaturedProduct(id: string) {
     const data = await this.prisma.ourFeaturedProduct.findFirst({
       where: { id, isDeleted: false, status: true },
     });
@@ -35,19 +32,33 @@ export class OurFeaturedProductService {
       throw new NotFoundException("This featured product doesn't exist");
     }
 
-    return this.prisma.ourFeaturedProduct.update({
-      where: { id },
-      data: {
-        ...(imageUrl && { imageUrl }),
-        ...(order && { order }),
-      },
-    });
+    return data;
   }
 
-  // ! delete (soft delete + reorder)
+  // ! update
+  async updateOurFeaturedProduct(id: string, imageUrl?: string) {
+    const data = await this.prisma.ourFeaturedProduct.findFirst({
+      where: { id, isDeleted: false },
+    });
+
+    if (!data) {
+      throw new NotFoundException("This featured product doesn't exist");
+    }
+
+    if (imageUrl) {
+      return this.prisma.ourFeaturedProduct.update({
+        where: { id },
+        data: imageUrl,
+      });
+    }
+
+    return;
+  }
+
+  // ! delete (soft delete)
   async deleteOurFeaturedProduct(id: string) {
     const data = await this.prisma.ourFeaturedProduct.findFirst({
-      where: { id, isDeleted: false, status: true },
+      where: { id, isDeleted: false },
     });
 
     if (!data) {
@@ -56,7 +67,14 @@ export class OurFeaturedProductService {
 
     await this.prisma.ourFeaturedProduct.update({
       where: { id },
-      data: { isDeleted: true, status: false },
+      data: {
+        isDeleted: true,
+        status: false,
+      },
     });
+
+    return { message: 'Our featured product deleted successfully' };
   }
+
+  //
 }

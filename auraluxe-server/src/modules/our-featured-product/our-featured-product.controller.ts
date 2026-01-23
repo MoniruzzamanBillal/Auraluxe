@@ -31,7 +31,7 @@ export class OurFeaturedProductController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: './uploads',
+        destination: './uploads/featured-products',
         filename: (req, file, cb) => {
           const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1e9);
           cb(null, uniqueName + extname(file.originalname));
@@ -41,10 +41,10 @@ export class OurFeaturedProductController {
   )
   async add(@UploadedFile() file: Express.Multer.File) {
     if (!file) {
-      throw new BadRequestException('File is required');
+      throw new BadRequestException('Image file is required');
     }
 
-    const imageUrl = `${process.env.APP_URL}/uploads/${file.filename}`;
+    const imageUrl = `${process.env.APP_URL}/uploads/featured-products/${file.filename}`;
 
     const result = await this.service.addOurFeaturedProduct(imageUrl);
 
@@ -63,6 +63,18 @@ export class OurFeaturedProductController {
     return {
       success: true,
       status: HttpStatus.OK,
+      message: 'Our Featured Products retrieved successfully',
+      data: result,
+    };
+  }
+
+  // ! get single
+  @Get(':id')
+  async getSingle(@Param('id') id: string) {
+    const result = await this.service.getSingleOurFeaturedProduct(id);
+    return {
+      success: true,
+      status: HttpStatus.OK,
       message: 'Our Featured Product retrieved successfully',
       data: result,
     };
@@ -75,7 +87,7 @@ export class OurFeaturedProductController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: './uploads',
+        destination: './uploads/featured-products',
         filename: (req, file, cb) => {
           const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1e9);
           cb(null, uniqueName + extname(file.originalname));
@@ -88,7 +100,7 @@ export class OurFeaturedProductController {
     @UploadedFile() file?: Express.Multer.File,
   ) {
     const imageUrl = file
-      ? `${process.env.APP_URL}/uploads/${file.filename}`
+      ? `${process.env.APP_URL}/uploads/featured-products/${file.filename}`
       : undefined;
 
     const result = await this.service.updateOurFeaturedProduct(id, imageUrl);
@@ -101,7 +113,7 @@ export class OurFeaturedProductController {
     };
   }
 
-  // ! delete
+  // ! delete (soft delete)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.admin)
   @Delete(':id')
@@ -114,4 +126,6 @@ export class OurFeaturedProductController {
       message: 'Our Featured Product deleted successfully',
     };
   }
+
+  //
 }
