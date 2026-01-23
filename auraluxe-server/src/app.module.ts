@@ -18,6 +18,7 @@ import { CartModule } from './modules/cart/cart.module';
 import { OrderModule } from './modules/order/order.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { BrandModule } from './modules/brand/brand.module';
+import { MaterialModule } from './modules/material/material.module';
 
 @Module({
   imports: [
@@ -44,6 +45,8 @@ import { BrandModule } from './modules/brand/brand.module';
     PaymentModule,
 
     BrandModule,
+
+    MaterialModule,
   ],
   controllers: [AppController],
   providers: [AppService],
