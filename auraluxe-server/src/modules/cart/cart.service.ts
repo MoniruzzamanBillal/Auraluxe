@@ -17,7 +17,7 @@ export class CartService {
         throw new BadRequestException('Product not found');
       }
 
-      if (quantity > product.quantity) {
+      if (quantity > product?.quantity) {
         throw new BadRequestException('Insufficient stock');
       }
 
@@ -35,6 +35,16 @@ export class CartService {
           },
         },
       });
+
+      if (cartItem && cartItem?.isDeleted) {
+        return tx.cartItem.update({
+          where: { id: cartItem.id },
+          data: {
+            quantity: 1,
+            isDeleted: false,
+          },
+        });
+      }
 
       // Update or create cart item
       if (cartItem) {

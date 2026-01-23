@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   HttpStatus,
+  Patch,
   Post,
   Req,
   UseGuards,
@@ -31,7 +32,7 @@ export class CartController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.user)
   @Post('')
-  async addBrandType(@Body() payload: AddToCartDto, @Req() req: JwtRequest) {
+  async addCart(@Body() payload: AddToCartDto, @Req() req: JwtRequest) {
     const result = await this.cartService.addToCart(
       req.user?.userId,
       payload?.productId,
@@ -49,7 +50,7 @@ export class CartController {
   // ! Get user cart
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.user)
-  @Get()
+  @Get('')
   async getUserCart(@Req() req: JwtRequest) {
     const userId = req.user.userId;
 
@@ -64,12 +65,26 @@ export class CartController {
   }
 
   // ! for removing user cart item
-  //  @UseGuards(JwtAuthGuard, RolesGuard)
-  // @Roles(UserRole.user)
-  // @Patch("remove-cart-item")
-  // async removeCartItem(){
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.user)
+  @Patch('remove-cart-item')
+  async removeCartItem(
+    @Req() req: JwtRequest,
+    @Body() payload: { productId: string },
+  ) {
+    const userId = req.user.userId;
+    const result = await this.cartService.removeCartItem(
+      userId,
+      payload?.productId,
+    );
 
-  // }
+    return {
+      success: true,
+      status: HttpStatus.OK,
+      message: 'Cart retrived successfully!!!',
+      data: result,
+    };
+  }
 
   //
 }

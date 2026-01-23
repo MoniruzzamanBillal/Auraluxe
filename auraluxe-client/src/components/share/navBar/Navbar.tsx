@@ -53,8 +53,8 @@ const navInfo = [
   },
 ];
 
-import wishlistLogo from "@/../public/icons/wishlist_icon.png";
 import navLogo from "@/../public/logo-no-bg.png";
+import { ShoppingCart } from "lucide-react";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -178,16 +178,10 @@ const Navbar = () => {
 
               {/*========= wish list button ======== */}
               <Link
-                href={"/wishlist"}
+                href={"/cart"}
                 className="hidden w-[20px] cursor-pointer lg:block"
               >
-                <Image
-                  alt="wishlist icon"
-                  src={wishlistLogo}
-                  height={21}
-                  width={20}
-                  className="shrink-0"
-                />
+                <ShoppingCart />
               </Link>
 
               {/*====== small screen navbar =========*/}
