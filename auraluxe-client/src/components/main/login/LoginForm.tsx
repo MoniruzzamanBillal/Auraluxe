@@ -28,7 +28,7 @@ export default function LoginForm() {
   const onSubmit: SubmitHandler<LoginFormData> = (data) => {
     login(data)
       .then((res) => {
-        console.log("login result = ", res);
+        // console.log("login result = ", res);
 
         toast.success(res?.message);
 

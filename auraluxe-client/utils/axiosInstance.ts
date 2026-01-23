@@ -1,4 +1,4 @@
-import { authKey, refreshTokenKey } from "@/constants/storageKey";
+import { authKey, refreshTokenKey, userIdKey } from "@/constants/storageKey";
 
 import { getBaseUrl } from "@/config/envConfig";
 import axios from "axios";
@@ -81,10 +81,9 @@ instance.interceptors.response.use(
           response?.data?.data?.accessToken,
         );
 
-        Cookies.set("accessToken", response?.data?.data?.accessToken, {
+        Cookies.set(authKey, response?.data?.data?.accessToken, {
           expires: 1,
         });
-        // Cookies.set("refreshToken", data?.data?.refreshToken, { expires: 2 });
 
         originalRequest.headers.Authorization = `Bearer ${response?.data?.data?.accessToken}`;
         return axios(originalRequest);
@@ -94,6 +93,7 @@ instance.interceptors.response.use(
 
         Cookies.remove(authKey);
         Cookies.remove(refreshTokenKey);
+        Cookies.remove(userIdKey);
         toast.error("Session Expired , Login to continue.");
 
         window.location.href = "/login";

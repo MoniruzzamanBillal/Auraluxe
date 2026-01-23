@@ -1,23 +1,26 @@
 import { deleteAllCookies, refreshDelete } from "@/actions/cookiesAction";
 import { getBaseUrl } from "@/config/envConfig";
 
+import { authKey } from "@/constants/storageKey";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { getCookies } from "../../utils/GetCookies";
+import { decodedToken } from "./jwt";
 
 // export const storeUserInfo = ({ accessToken }: { accessToken: string }) => {
 //   return setToLocalStorage(authKey , accessToken as string);
 // };
 
-// export const getUserInfo = () => {
-//   const authToken = getFromLocalStorage(authKey);
-//   // console.log(authToken);
-//   if (authToken) {
-//     const decodedData = decodedToken(authToken);
-//     return decodedData;
-//   } else {
-//     return "";
-//   }
-// };
+export const getUserInfo = () => {
+  const authToken = getCookies(authKey);
+
+  if (authToken) {
+    const decodedData = decodedToken(String(authToken)) as any;
+    return decodedData;
+  } else {
+    return "";
+  }
+};
 
 // export const isLoggedIn = () => {
 //   const authToken = getFromLocalStorage(authKey);

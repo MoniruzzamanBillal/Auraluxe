@@ -16,7 +16,7 @@ export class AuthController {
     return {
       success: true,
       status: HttpStatus.OK,
-      message: 'User logged in successfully!!!',
+      message: 'Logged in successfully!!!',
       data: result,
     };
   }

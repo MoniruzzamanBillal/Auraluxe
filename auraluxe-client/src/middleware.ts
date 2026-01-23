@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { authKey } from "./constants/storageKey";
 import { decodedToken } from "./services/jwt";
 
 export function middleware(request: NextRequest) {
@@ -11,7 +12,7 @@ export function middleware(request: NextRequest) {
   const isDashboardRoute = isAdminRoute || isUserRoute;
   const isPublicRoute = !isDashboardRoute && !isLoginPage;
 
-  const token = request.cookies.get("accessToken")?.value;
+  const token = request.cookies.get(authKey)?.value;
 
   // Handle public routes - no token required
   if (isPublicRoute) {
@@ -36,16 +37,6 @@ export function middleware(request: NextRequest) {
     try {
       const decodedData = decodedToken(String(token)) as any;
       const { role } = decodedData;
-
-      // Check if token is expired
-      // const currentTime = Math.floor(Date.now() / 1000);
-      // if (decodedData.exp && decodedData.exp < currentTime) {
-      //   // Clear expired token
-      //   const response = NextResponse.redirect(new URL("/login", request.url));
-      //   // response.cookies.delete("accessToken");
-
-      //   return response;
-      // }
 
       // 🔹 Admin trying to access user routes
       if (isUserRoute && role === "admin") {
