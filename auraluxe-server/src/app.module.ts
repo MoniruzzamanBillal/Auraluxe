@@ -19,6 +19,7 @@ import { OrderModule } from './modules/order/order.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { BrandModule } from './modules/brand/brand.module';
 import { MaterialModule } from './modules/material/material.module';
+import { KeyBrandModule } from './modules/key-brand/key-brand.module';
 
 @Module({
   imports: [
@@ -47,6 +48,8 @@ import { MaterialModule } from './modules/material/material.module';
     BrandModule,
 
     MaterialModule,
+
+    KeyBrandModule,
   ],
   controllers: [AppController],
   providers: [AppService],
