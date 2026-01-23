@@ -42,13 +42,13 @@ export default function CreateUpdateKeyBrand({
     mutateAsync: createKeyBrand,
     reset: postReset,
     isPending: isPostPending,
-  } = usePost([["key-brands"]]);
+  } = usePost([["key-brand"]]);
 
   const {
     mutateAsync: updateKeyBrand,
     reset: patchReset,
     isPending: isPatchPending,
-  } = usePatch([["key-brands"]]);
+  } = usePatch([["key-brand"]]);
 
   useEffect(() => {
     if (initialValues) {
@@ -86,7 +86,7 @@ export default function CreateUpdateKeyBrand({
         }
 
         const result = await updateKeyBrand({
-          url: `/key-brands/${initialValues.id}`,
+          url: `/key-brand/${initialValues.id}`,
           payload: formData,
         });
 
@@ -106,7 +106,7 @@ export default function CreateUpdateKeyBrand({
       }
 
       const result = await createKeyBrand({
-        url: "/key-brands",
+        url: "/key-brand",
         payload: formData,
       });
 

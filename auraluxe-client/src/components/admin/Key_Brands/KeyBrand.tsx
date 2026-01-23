@@ -13,24 +13,6 @@ import { toast } from "sonner";
 import CreateUpdateKeyBrand from "./form/CreateUpdateKeyBrand";
 import { TKeyBrand } from "./schema/keyBrand.schema";
 
-/* ---------------- Dummy Data ---------------- */
-const keyBrandsDummyData: TKeyBrand[] = [
-  {
-    id: "1",
-    name: "Apple",
-    logo: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
-    description: "Innovative technology brand",
-    status: true,
-  },
-  {
-    id: "2",
-    name: "Nike",
-    logo: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
-    description: "Sportswear global brand",
-    status: false,
-  },
-];
-
 export default function KeyBrandsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState<TKeyBrand | null>(null);
@@ -39,15 +21,15 @@ export default function KeyBrandsPage() {
   const [deletedId, setDeletedId] = useState<string | null>(null);
 
   // ! FETCH DATA
-  const { data, isLoading } = useFetchData(["key-brands"], "/key-brands");
+  const { data, isLoading } = useFetchData(["key-brand"], "/key-brand");
 
   // ! DELETE
-  const deleteMutation = useDeleteData([["key-brands"]]);
+  const deleteMutation = useDeleteData([["key-brand"]]);
 
   const handleDelete = async () => {
     try {
       const result = await deleteMutation.mutateAsync({
-        url: `/key-brands/${deletedId}`,
+        url: `/key-brand/${deletedId}`,
       });
 
       if (result?.success) {
