@@ -15,35 +15,11 @@ import { useState } from "react";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { IoClose } from "react-icons/io5";
 
+// Updated navInfo structure
 const navInfo = [
   {
     navName: "Products",
-    children: [
-      {
-        name: "Bath & Spa Solution",
-        href: `/product?category=${encodeURIComponent("Bath and Spa Solution")}`,
-      },
-      {
-        name: "Wall & Floor Solutions",
-        href: `/product?category=${encodeURIComponent("Wall and Floor Solutions")}`,
-      },
-      {
-        name: "Modular Kitchen Solutions",
-        href: `/product?category=${encodeURIComponent("Modular Kitchen Solutions")}`,
-      },
-      {
-        name: "Heating Solutions",
-        href: `/product?category=${encodeURIComponent("Heating Solutions")}`,
-      },
-      {
-        name: "Architectural Hardware",
-        href: `/product?category=${encodeURIComponent("Architectural Hardware")}`,
-      },
-      {
-        name: "Industrial Solutions",
-        href: `/product?category=${encodeURIComponent("Industrial Solutions")}`,
-      },
-    ],
+    href: "/product",
   },
   {
     navName: "Studio",
@@ -52,10 +28,6 @@ const navInfo = [
         name: "News & Updates",
         href: "/news-updates",
       },
-      // {
-      //   name: "Our Stories",
-      //   href: "/our-stories",
-      // },
       {
         name: "Contact Us",
         href: "/contact",
@@ -64,32 +36,7 @@ const navInfo = [
   },
   {
     navName: "Projects",
-    children: [
-      {
-        name: "Commercial Complex",
-        href: "/projects",
-      },
-      {
-        name: "Hotels and Resorts",
-        href: "/projects",
-      },
-      {
-        name: "Education",
-        href: "/projects",
-      },
-      {
-        name: "Premium Residence",
-        href: "/projects",
-      },
-      {
-        name: "Architectural Hardware",
-        href: "/projects",
-      },
-      {
-        name: "Industrial Solutions",
-        href: "/projects",
-      },
-    ],
+    href: "/about",
   },
   {
     navName: "Connects",
@@ -98,7 +45,6 @@ const navInfo = [
         name: "Purchase Guide",
         href: "/purchase-guide",
       },
-
       {
         name: "Key Brands",
         href: "/key-brands",
@@ -113,7 +59,6 @@ import navLogo from "@/../public/logo-no-bg.png";
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathName = usePathname();
-
   const [activeProduct, setActiveProduct] = useState<string | null>(null);
 
   const handleMouseEnter = (productName: string) => {
@@ -171,72 +116,61 @@ const Navbar = () => {
                 viewport={false}
               >
                 <NavigationMenuList className="flex gap-12">
-                  {navInfo?.map((list, firstIndex) => (
-                    <NavigationMenuItem key={firstIndex + 1}>
-                      <NavigationMenuTrigger className="cursor-pointer">
-                        <div
-                          className={`text-sm leading-5 font-medium text-black ${
-                            pathName === " " && "text-brandColor"
-                          }`}
-                        >
-                          {list?.navName}
-                        </div>
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent
-                        onMouseLeave={handleMouseLeave}
-                        // !top-16 (64px) bg-bgSoftGray
-                        className="absolute !top-6 -left-28 z-[1000] w-[330px] !rounded-none !border-none p-0 !shadow-none"
-                      >
-                        {/* <div className="bg-bgSoftGray flex h-full w-[330px]"> */}
-                        <div className="bg-bgSoftGray mt-9 flex h-full w-[330px] shadow-2xl">
-                          <div className="relative flex w-full flex-col gap-4 py-5">
-                            {list?.children?.map((product, secIndex) => (
-                              <Link
-                                key={product.name}
-                                href={`${product.href}`}
-                                className={`border-b-softGray border-b ${
-                                  secIndex === list.children.length - 1 &&
-                                  "border-none"
-                                }`}
-                              >
-                                <div
-                                  className={`hover:text-brandColor text-charcoolGray flex cursor-pointer items-center justify-between px-5 text-sm leading-5 font-medium ${
-                                    secIndex === list.children.length - 1
-                                      ? "pb-0"
-                                      : "pb-4"
-                                  }`}
-                                  // onMouseEnter={() =>
-                                  //   handleMouseEnter(product.name)
-                                  // }
-                                >
-                                  {product.name}
-                                  {/* {product?.submenu &&
-                                  product?.submenu.length > 0 && (
-                                    <IoIosArrowDown className="text-brandColor group-hover:text-white transition-transform duration-300 group-hover:-rotate-90 tran" />
-                                  )} */}
-                                </div>
-                              </Link>
-                            ))}
+                  {navInfo?.map((list, index) => (
+                    <NavigationMenuItem key={index}>
+                      {list.children ? (
+                        <>
+                          <NavigationMenuTrigger className="cursor-pointer">
+                            <div
+                              className={`text-sm leading-5 font-medium text-black ${
+                                pathName === list.href && "text-brandColor"
+                              }`}
+                            >
+                              {list.navName}
+                            </div>
+                          </NavigationMenuTrigger>
+                          <NavigationMenuContent
+                            onMouseLeave={handleMouseLeave}
+                            className="absolute !top-6 -left-28 z-[1000] w-[330px] !rounded-none !border-none p-0 !shadow-none"
+                          >
+                            <div className="bg-bgSoftGray mt-9 flex h-full w-[330px] shadow-2xl">
+                              <div className="relative flex w-full flex-col gap-4 py-5">
+                                {list.children?.map((product, secIndex) => (
+                                  <Link
+                                    key={product.name}
+                                    href={product.href}
+                                    className={`border-b-softGray border-b ${
+                                      secIndex === list.children.length - 1 &&
+                                      "border-none"
+                                    }`}
+                                  >
+                                    <div
+                                      className={`hover:text-brandColor text-charcoolGray flex cursor-pointer items-center justify-between px-5 text-sm leading-5 font-medium ${
+                                        secIndex === list.children.length - 1
+                                          ? "pb-0"
+                                          : "pb-4"
+                                      }`}
+                                    >
+                                      {product.name}
+                                    </div>
+                                  </Link>
+                                ))}
+                              </div>
+                              <div className="bg-deepRed absolute bottom-0 h-1.5 w-full"></div>
+                            </div>
+                          </NavigationMenuContent>
+                        </>
+                      ) : (
+                        <Link href={list.href || "#"}>
+                          <div
+                            className={`text-sm leading-5 font-medium text-black hover:text-brandColor cursor-pointer ${
+                              pathName === list.href && "text-brandColor"
+                            }`}
+                          >
+                            {list.navName}
                           </div>
-                          <div className="bg-deepRed absolute bottom-0 h-1.5 w-full"></div>
-                          {/* ====== submenu ======= */}
-                          {/* <div className="h-full pl-[50px]">
-                          {activeProduct &&
-                            expertiseInfo
-                              .find((product) => product.name === activeProduct)
-                              ?.submenu?.map((submenuItem) => (
-                                <Link
-                                  key={submenuItem.name}
-                                  href={submenuItem.path}
-                                >
-                                  <div className="p-2 hover:text-brandColor cursor-pointer">
-                                    {submenuItem.name}
-                                  </div>
-                                </Link>
-                              ))}
-                        </div> */}
-                        </div>
-                      </NavigationMenuContent>
+                        </Link>
+                      )}
                     </NavigationMenuItem>
                   ))}
                 </NavigationMenuList>
@@ -275,11 +209,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {/* <ToggleNavbar
-        isOpen={isMobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
-        pathName={pathName}
-      /> */}
     </div>
   );
 };
