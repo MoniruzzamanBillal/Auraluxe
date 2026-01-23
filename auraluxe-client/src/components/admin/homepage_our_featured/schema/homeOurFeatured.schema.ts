@@ -21,6 +21,4 @@ export type THomeOurFeaturedForm = z.infer<typeof homeOurFeaturedSchema>;
 
 export type THomeOurFeatured = THomeOurFeaturedForm & {
   id: string;
-  order: number;
-  status: boolean;
 };

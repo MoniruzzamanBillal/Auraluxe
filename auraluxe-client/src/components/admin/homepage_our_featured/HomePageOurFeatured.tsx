@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpDown, SquarePen, Trash2 } from "lucide-react";
+import { SquarePen, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -8,12 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useDeleteData, useFetchData } from "@/hooks/useApi";
 import { toast } from "sonner";
 
-import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
-} from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 
 import GenericTable from "@/components/common/GenericTable";
 
@@ -22,10 +17,6 @@ import CreateUpdateHomeOurFeatured from "./form/CreateUpdateHomeOurFeatured";
 import { THomeOurFeatured } from "./schema/homeOurFeatured.schema";
 
 export default function HomePageOurFeatured() {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = useState({});
   const [isDeleteOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [deletedId, setDeletedId] = useState<string | null>();
 
@@ -95,34 +86,6 @@ export default function HomePageOurFeatured() {
           {row.original.description}
         </p>
       ),
-    },
-
-    {
-      accessorKey: "status",
-      header: ({ column }) => (
-        <Button
-          variant="ghost"
-          className="px-0"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Status
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      ),
-
-      cell: ({ row }) => {
-        const status = row.original.status;
-
-        return (
-          <span
-            className={`rounded-full px-2 py-1 text-xs font-medium ${
-              status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-            }`}
-          >
-            {status ? "Active" : "Inactive"}
-          </span>
-        );
-      },
     },
 
     {

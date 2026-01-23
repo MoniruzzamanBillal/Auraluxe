@@ -27,10 +27,10 @@ export default function Heading({
       <TextWrapper text={backText}>
         <div className="flex min-h-20 items-center gap-3 sm:gap-5">
           <div>
-            <p className="text-brandMain text-[0.625rem] leading-3.5 sm:text-[1rem] sm:leading-6">
+            <p className="text-prime50 text-[0.625rem] leading-3.5 sm:text-[1rem] sm:leading-6">
               {firstText}
             </p>
-            <p className="text-textBlack text-sm leading-5 font-bold sm:text-5xl sm:leading-14">
+            <p className="text-prime200 text-sm leading-5 font-bold sm:text-5xl sm:leading-14">
               {secondText}
             </p>
           </div>
@@ -41,15 +41,15 @@ export default function Heading({
           {/*  */}
           <div>
             {title && (
-              <p className="text-textBlack shrink-0 text-xs leading-4 font-bold sm:max-w-[438px] sm:text-[1rem] sm:leading-8">
+              <p className="text-prime100 shrink-0 text-xs leading-4 font-bold sm:max-w-[438px] sm:text-[1rem] sm:leading-8">
                 {title}
               </p>
             )}
             {descripiton && (
               <p
                 className={cn(
-                  "text-mediumGray text-xs leading-4 font-normal sm:max-w-[438px] sm:text-[1rem] sm:leading-6 lg:max-w-[600px]",
-                  descriptionClassName
+                  "text-prime200 text-xs leading-4 font-normal sm:max-w-[438px] sm:text-[1rem] sm:leading-6 lg:max-w-[600px]",
+                  descriptionClassName,
                 )}
               >
                 {descripiton}

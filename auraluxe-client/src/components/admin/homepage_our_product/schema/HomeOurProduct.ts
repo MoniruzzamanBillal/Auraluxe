@@ -21,6 +21,4 @@ export type THomeOurProductFormData = z.infer<typeof HomeOurProductSchema>;
 
 export type THomeOurProduct = THomeOurProductFormData & {
   id: string;
-  order: number;
-  status: boolean;
 };
