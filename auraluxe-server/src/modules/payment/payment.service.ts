@@ -113,22 +113,14 @@ export class PaymentService {
         });
       }
 
-      // 2️⃣ Clear cart (IMPORTANT)
-      // const cart = await tx.cart.findUnique({
-      //   where: { userId: payment.userId },
-      // });
-      // if (cart) {
-      //   await tx.cartItem.deleteMany({
-      //     where: { cartId: cart.id },
-      //   });
-      // }
       // 2️⃣ Clear ONLY cart items (KEEP cart)
-      await tx.cartItem.deleteMany({
+      await tx.cartItem.updateMany({
         where: {
           cart: {
             userId: payment.userId,
           },
         },
+        data: { isDeleted: true },
       });
 
       // 2️⃣ Update payment

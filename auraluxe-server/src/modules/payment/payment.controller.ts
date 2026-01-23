@@ -39,7 +39,7 @@ export class PaymentController {
 
     await this.paymentService.handleFailedOrCanceledPayment(transactionId);
 
-    return res.redirect(`${redirectURL}/payment-cancel`);
+    return res.redirect(`${redirectURL}/cart`);
   }
 
   //
