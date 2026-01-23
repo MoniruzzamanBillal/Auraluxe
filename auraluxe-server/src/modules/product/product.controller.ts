@@ -64,14 +64,42 @@ export class ProductController {
 
   // ! for getting all product
   @Get('')
-  async getAllProduct() {
-    const result = await this.productService.getAllProduct();
+  async getAllProduct(
+    @Query('categoryId') categoryId?: string,
+    @Query('brandId') brandId?: string,
+    @Query('sortBy') sortBy?: string,
+    @Query('search') search?: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    const validSortOptions = ['price_asc', 'price_desc'];
+
+    if (sortBy && !validSortOptions.includes(sortBy)) {
+      throw new BadRequestException(
+        `Invalid sortBy parameter. Valid options are: ${validSortOptions.join(', ')}`,
+      );
+    }
+
+    const result = await this.productService.getAllProducts({
+      categoryId,
+      brandId,
+      sortBy: sortBy as any,
+      search,
+      page: page ? parseInt(page) : 1,
+      limit: limit ? parseInt(limit) : 12,
+    });
 
     return {
       success: true,
       status: HttpStatus.OK,
       message: 'Products retrieved successfully!',
-      data: result,
+      data: result.products,
+      meta: {
+        total: result.total,
+        page: result.page,
+        limit: result.limit,
+        totalPages: result.totalPages,
+      },
     };
   }
 

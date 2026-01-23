@@ -58,11 +58,56 @@ export class ProductService {
   }
 
   // ! for getting all active products
-  async getAllProduct() {
-    const result = await this.prisma.product.findMany({
-      where: {
-        isDeleted: false,
-      },
+  async getAllProduct(query: {
+    categoryId?: string;
+    brandId?: string;
+    sortBy?: 'price_asc' | 'price_desc';
+
+    page?: number;
+    limit?: number;
+  }) {
+    const {
+      categoryId,
+      brandId,
+      sortBy = 'newest',
+
+      page = 1,
+      limit = 12,
+    } = query;
+
+    const skip = (page - 1) * limit;
+
+    const where: Record<string, any> = {
+      isDeleted: false,
+    };
+
+    if (categoryId) {
+      where.categoryId = categoryId;
+    }
+
+    if (brandId) {
+      where.brandId = brandId;
+    }
+
+    let orderBy: Record<string, any> = { createdAt: 'desc' };
+
+    switch (sortBy) {
+      case 'price_asc':
+        orderBy = { price: 'asc' };
+        break;
+      case 'price_desc':
+        orderBy = { price: 'desc' };
+        break;
+
+      default:
+        orderBy = { createdAt: 'desc' };
+        break;
+    }
+
+    const total = await this.prisma.product.count({ where });
+
+    const products = await this.prisma.product.findMany({
+      where,
       include: {
         category: {
           select: {
@@ -70,11 +115,26 @@ export class ProductService {
             name: true,
           },
         },
+        brand: {
+          select: {
+            id: true,
+            name: true,
+            logo: true,
+          },
+        },
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy,
+      skip,
+      take: limit,
     });
 
-    return result;
+    return {
+      products,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    };
   }
 
   // ! for getting single product data
