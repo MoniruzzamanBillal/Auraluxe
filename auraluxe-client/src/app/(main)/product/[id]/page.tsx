@@ -7,18 +7,18 @@ export const metadata: Metadata = {
 };
 
 interface IPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ id: string }>;
 }
 
 export default async function ProductDetailsPage({ params }: IPageProps) {
-  const { slug } = await params;
+  const { id } = await params;
 
   const ProductDetails = dynamic(
     () => import("@/components/main/product-details/ProductDetails"),
     {
       loading: () => <Loader />,
-    }
+    },
   );
 
-  return <ProductDetails slug={slug} />;
+  return <ProductDetails id={id} />;
 }

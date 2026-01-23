@@ -151,6 +151,13 @@ export class ProductService {
             name: true,
           },
         },
+        brand: {
+          select: {
+            id: true,
+            name: true,
+            logo: true,
+          },
+        },
       },
     });
 

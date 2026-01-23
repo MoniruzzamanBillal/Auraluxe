@@ -3,7 +3,7 @@ import Breadcrumb from "@/components/share/Breadcrumb";
 import CustomPageHeader from "@/components/share/common/CustomPageHeader";
 
 import StaticPagination from "@/components/share/pagination/StaticPagination";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TbPackageOff } from "react-icons/tb";
 import Category from "./Category";
 import FilterTitle from "./FilterTitle";
@@ -14,13 +14,8 @@ import { TProduct } from "@/components/admin/product/schema/product.schema";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useFetchData } from "@/hooks/useApi";
 
-const Product = ({ query }: { query: string }) => {
+const Product = () => {
   // console.log("query = ", query);
-
-  const searchParams = new URLSearchParams(query);
-
-  const categoryQuery = searchParams.get("category");
-  // console.log("category query =>>", categoryQuery);
 
   const [page, setPage] = useState(1);
   const itemsPerPage = 12;
@@ -76,14 +71,6 @@ const Product = ({ query }: { query: string }) => {
 
   const totalPages = meta?.totalPage || 1;
   const totalItems = meta?.total || 0;
-
-  // Sync state with URL params
-  useEffect(() => {
-    if (categoryQuery) {
-      setSelectedCat(categoryQuery);
-    }
-    // Handle brand query if needed in future
-  }, [categoryQuery]);
 
   return (
     <div className="relative flex min-h-screen flex-col gap-0 overflow-hidden bg-white lg:gap-20">

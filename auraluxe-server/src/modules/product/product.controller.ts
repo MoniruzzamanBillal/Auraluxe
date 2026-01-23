@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -80,11 +81,11 @@ export class ProductController {
       );
     }
 
-    const result = await this.productService.getAllProducts({
+    const result = await this.productService.getAllProduct({
       categoryId,
       brandId,
       sortBy: sortBy as any,
-      search,
+
       page: page ? parseInt(page) : 1,
       limit: limit ? parseInt(limit) : 12,
     });

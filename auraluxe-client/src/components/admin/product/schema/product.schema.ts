@@ -42,5 +42,4 @@ export type TProduct = TProductForm & {
   id: string;
   brandName?: string;
   categoryName?: string;
-  // productCode?: string;
 };
