@@ -6,9 +6,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { usePatch, usePost } from "@/hooks/useApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { getChangedFields } from "../../../../../utils/getChangedFields";
 import {
   HomeOurProductSchema,
   THomeOurProduct,
@@ -30,27 +33,83 @@ export default function CreateUpdateHomeOurProduct({
     defaultValues: {
       title: "",
       description: "",
-      imageUrl: "",
     },
   });
 
+  const {
+    mutateAsync: createBanner,
+    reset: postReset,
+    isPending: isPostPending,
+  } = usePost([["home-our-product"]]);
+
+  const {
+    mutateAsync: updateBanner,
+    reset: patchReset,
+    isPending: isPatchPending,
+  } = usePatch([["home-our-product"]]);
+
   useEffect(() => {
     if (initialValues) {
-      methods.reset({
-        title: initialValues.title,
-        description: initialValues.description,
-        imageUrl: initialValues.imageUrl,
-      });
+      methods.reset(initialValues);
+    } else {
+      methods.reset();
     }
   }, [initialValues, methods]);
 
   useEffect(() => {
-    if (!isOpen) methods.reset();
-  }, [isOpen, methods]);
+    if (!isOpen) {
+      methods.reset({ title: "", description: "" });
+      postReset();
+      patchReset();
+    }
+  }, [isOpen, methods, postReset, patchReset]);
 
-  const onSubmit = (data: THomeOurProductFormData) => {
-    console.log("Home Our Product:", data);
+  const onSubmit = async (data: THomeOurProductFormData) => {
+    try {
+      // UPDATE
+      if (initialValues) {
+        const changedData = getChangedFields(data, initialValues);
+        const formData = new FormData();
+
+        if (changedData.title) formData.append("title", changedData.title);
+        if (changedData.description)
+          formData.append("description", changedData.description);
+        if (changedData.imageUrl instanceof File)
+          formData.append("file", changedData.imageUrl);
+
+        const result = await updateBanner({
+          url: `/home-our-product/${initialValues.id}`,
+          payload: formData,
+        });
+
+        if (result?.success) {
+          toast.success(result.message);
+          onClose();
+        }
+        return;
+      }
+
+      // CREATE
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      if (data.imageUrl) formData.append("file", data.imageUrl);
+
+      const result = await createBanner({
+        url: "/home-our-product",
+        payload: formData,
+      });
+
+      if (result?.success) {
+        toast.success(result.message);
+        onClose();
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to save our-product");
+    }
   };
+
+  const isLoading = isPostPending || isPatchPending;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -65,6 +124,7 @@ export default function CreateUpdateHomeOurProduct({
           <HomeOurProductForm
             onSubmit={onSubmit}
             isEditMode={!!initialValues}
+            isPending={isLoading}
           />
         </FormProvider>
       </DialogContent>

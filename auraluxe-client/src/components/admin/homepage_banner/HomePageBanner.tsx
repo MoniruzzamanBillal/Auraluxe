@@ -79,7 +79,7 @@ export default function HomePageBanner() {
       ),
     },
     {
-      accessorKey: "bannerImage",
+      accessorKey: "imageUrl",
       header: "Image",
       cell: ({ row }) => (
         <div className="size-32 rounded-md overflow-hidden">

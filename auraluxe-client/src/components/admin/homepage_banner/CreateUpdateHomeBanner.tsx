@@ -60,7 +60,7 @@ export default function CreateUpdateHomeBanner({
 
   useEffect(() => {
     if (!isOpen) {
-      methods.reset();
+      methods.reset({ title: "", description: "" });
       postReset();
       patchReset();
     }

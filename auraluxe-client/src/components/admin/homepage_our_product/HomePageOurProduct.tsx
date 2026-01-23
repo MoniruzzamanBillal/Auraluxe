@@ -11,41 +11,15 @@ import {
   ColumnFiltersState,
   SortingState,
   VisibilityState,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
 } from "@tanstack/react-table";
 
 // temp image (same approach as banner page)
-import testImage from "@/../public/landingPage/slider/sliderThree.png";
 import GenericTable from "@/components/common/GenericTable";
 import DeleteDialog from "@/components/share/DeleteDialog";
+import { useDeleteData, useFetchData } from "@/hooks/useApi";
+import { toast } from "sonner";
 import CreateUpdateHomeOurProduct from "./form/CreateUpdateHomeOurProduct";
 import { THomeOurProduct } from "./schema/HomeOurProduct";
-
-/* -------------------- Dummy Data -------------------- */
-export const homeOurProductDummyData: THomeOurProduct[] = [
-  {
-    id: "product_01",
-    title: "Luxury Interior Materials",
-    description: "Premium materials crafted for elegant living spaces.",
-    imageUrl: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
-
-    status: true,
-    order: 1,
-  },
-  {
-    id: "product_02",
-    title: "Imported Tiles Collection",
-    description: "High quality tiles sourced from global brands.",
-    imageUrl: "https://i.postimg.cc/fbZkT6j4/slider-Three.png",
-
-    status: true,
-    order: 2,
-  },
-];
 
 /* -------------------- Component -------------------- */
 export default function HomePageOurProduct() {
@@ -60,15 +34,36 @@ export default function HomePageOurProduct() {
   const [selectedProduct, setSelectedProduct] =
     useState<THomeOurProduct | null>(null);
 
+  // ! FETCH
+  const { data, isLoading } = useFetchData(
+    ["home-our-product"],
+    "/home-our-product",
+  );
+
+  // ! DELETE
+  const deleteMutation = useDeleteData([["home-our-product"]]);
+
   const handleEdit = (row: THomeOurProduct) => {
     setSelectedProduct(row);
     setIsModalOpen(true);
   };
 
   const handleDelete = async () => {
-    console.log("deleted id =  ", deletedId);
-    setIsDeleteModalOpen(false);
-    setDeletedId(null);
+    try {
+      if (!deletedId) return;
+
+      const result = await deleteMutation.mutateAsync({
+        url: `/home-our-product/${deletedId}`,
+      });
+
+      if (result?.success) {
+        toast.success(result.message);
+        setDeletedId(null);
+        setIsDeleteModalOpen(false);
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to delete our product");
+    }
   };
 
   /* -------------------- Columns -------------------- */
@@ -101,11 +96,11 @@ export default function HomePageOurProduct() {
     {
       header: "Image",
       accessorKey: "imageUrl",
-      cell: () => (
+      cell: ({ row }) => (
         <div className="size-32 overflow-hidden rounded-md">
           <Image
-            src={testImage}
-            alt="product"
+            src={row.original.imageUrl as string}
+            alt={row.original.title}
             width={300}
             height={300}
             className="h-full w-full "
@@ -172,55 +167,37 @@ export default function HomePageOurProduct() {
     },
   ];
 
-  /* -------------------- Table -------------------- */
-  const table = useReactTable({
-    data: homeOurProductDummyData,
-    columns,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-      rowSelection,
-    },
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-  });
-
   /* -------------------- UI -------------------- */
   return (
     <div className="flex flex-col gap-8">
       <div className="rounded-2xl bg-white py-10">
-        <h2 className="text-3xl font-bold text-black">Home Page Our Product</h2>
-
-        {/* Add Button */}
-        <div className="mt-4">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold">Home Page Our Product</h2>
           <Button
             onClick={() => {
               setSelectedProduct(null);
               setIsModalOpen(true);
             }}
           >
-            Add New Product
+            Add New Banner
           </Button>
         </div>
 
         {/* table  */}
         <GenericTable
-          data={homeOurProductDummyData}
+          data={data?.data}
           columns={columns}
           filterKey="title"
+          isLoading={isLoading}
         />
 
         {/* Modal */}
         <CreateUpdateHomeOurProduct
           isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedProduct(null);
+          }}
           initialValues={selectedProduct}
         />
 
