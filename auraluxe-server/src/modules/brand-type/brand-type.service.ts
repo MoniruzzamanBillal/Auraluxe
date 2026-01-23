@@ -55,7 +55,6 @@ export class BrandTypeService {
 
     return result;
   }
-
   // ! for deleting brandtype
   async deleteBrandType(id: string) {
     const data = await this.prisma.brandType.findUnique({
@@ -64,6 +63,20 @@ export class BrandTypeService {
 
     if (!data) {
       throw new NotFoundException("This brand type don't exist!!!");
+    }
+
+    // Check if brand type has active brands
+    const activeBrands = await this.prisma.brand.count({
+      where: {
+        brandTypeId: id,
+        isDeleted: false,
+      },
+    });
+
+    if (activeBrands > 0) {
+      throw new NotFoundException(
+        'Cannot delete brand type. It has active brands. Please delete or reassign brands first.',
+      );
     }
 
     await this.prisma.brandType.update({

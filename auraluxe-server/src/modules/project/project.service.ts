@@ -21,7 +21,6 @@ export class ProjectService {
     return this.prisma.project.findMany({
       where: {
         isDeleted: false,
-        status: true,
       },
       include: {
         projectType: true,
@@ -100,7 +99,6 @@ export class ProjectService {
       where: { id },
       data: {
         isDeleted: true,
-        status: false,
       },
     });
 

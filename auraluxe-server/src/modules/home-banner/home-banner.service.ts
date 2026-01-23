@@ -21,7 +21,7 @@ export class HomeBannerService {
   // ! for getting all home banner
   async getAllHomeBanner() {
     const result = await this.prisma.homeBanner.findMany({
-      where: { isDeleted: false, status: true },
+      where: { isDeleted: false },
     });
 
     return result;
@@ -34,7 +34,7 @@ export class HomeBannerService {
     imageUrl?: string,
   ) {
     const data = await this.prisma.homeBanner.findFirst({
-      where: { id, isDeleted: false, status: true },
+      where: { id, isDeleted: false },
     });
 
     if (!data) {
@@ -58,7 +58,7 @@ export class HomeBannerService {
   // ! for deleting home banner
   async deleteHomeBanner(id: string) {
     const data = await this.prisma.homeBanner.findFirst({
-      where: { id, isDeleted: false, status: true },
+      where: { id, isDeleted: false },
     });
 
     if (!data) {
@@ -67,7 +67,7 @@ export class HomeBannerService {
 
     await this.prisma.homeBanner.update({
       where: { id },
-      data: { isDeleted: true, status: false },
+      data: { isDeleted: true },
     });
   }
 

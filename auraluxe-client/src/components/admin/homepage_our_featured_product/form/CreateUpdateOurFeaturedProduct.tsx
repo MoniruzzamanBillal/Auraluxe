@@ -46,7 +46,6 @@ export default function CreateUpdateOurFeaturedProduct({
     isPending: isPatchPending,
   } = usePatch([["our-featured-product"]]);
 
-  /* -------------------- Reset Logic -------------------- */
   useEffect(() => {
     if (initialValues) {
       methods.reset({ imageUrl: initialValues.imageUrl });
@@ -63,7 +62,6 @@ export default function CreateUpdateOurFeaturedProduct({
     }
   }, [isOpen, methods, postReset, patchReset]);
 
-  /* -------------------- Submit -------------------- */
   const onSubmit = async (data: TOurFeaturedProductFormData) => {
     try {
       // ✅ UPDATE
@@ -120,7 +118,6 @@ export default function CreateUpdateOurFeaturedProduct({
           <OurFeaturedProductForm
             onSubmit={onSubmit}
             isEditMode={!!initialValues}
-            isPending={isLoading}
           />
         </FormProvider>
       </DialogContent>

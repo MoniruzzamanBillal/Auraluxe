@@ -21,7 +21,7 @@ export class CategoryService {
   // ! for getting all categories
   async getAllCategories() {
     const result = await this.prisma.category.findMany({
-      where: { isDeleted: false, status: true },
+      where: { isDeleted: false },
       orderBy: { createdAt: 'asc' },
     });
 
@@ -41,7 +41,7 @@ export class CategoryService {
   async updateCategory(id: string, payload: UpdateCategoryDto) {
     // Check if category exists
     const category = await this.prisma.category.findUnique({
-      where: { id, isDeleted: false, status: true },
+      where: { id, isDeleted: false },
     });
 
     if (!category) {
@@ -70,7 +70,7 @@ export class CategoryService {
   // ! for deleting category (soft delete)
   async deleteCategory(id: string) {
     const category = await this.prisma.category.findUnique({
-      where: { id, isDeleted: false, status: true },
+      where: { id, isDeleted: false },
     });
 
     if (!category) {
@@ -96,7 +96,6 @@ export class CategoryService {
       where: { id },
       data: {
         isDeleted: true,
-        status: false,
       },
     });
 

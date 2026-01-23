@@ -16,7 +16,6 @@ export class ProductService {
       where: {
         id: payload.categoryId,
         isDeleted: false,
-        status: true,
       },
     });
 
@@ -43,7 +42,7 @@ export class ProductService {
       data: {
         ...payload,
         productImage: imageUrl,
-        quantity: payload.quantity || 0, // Ensure quantity is set
+        quantity: payload.quantity || 0,
       },
       include: {
         category: {
@@ -63,7 +62,6 @@ export class ProductService {
     const result = await this.prisma.product.findMany({
       where: {
         isDeleted: false,
-        status: true,
       },
       include: {
         category: {
@@ -85,7 +83,6 @@ export class ProductService {
       where: {
         id: productId,
         isDeleted: false,
-        status: true,
       },
       include: {
         category: {
@@ -124,7 +121,6 @@ export class ProductService {
         where: {
           id: payload.categoryId,
           isDeleted: false,
-          status: true,
         },
       });
 
@@ -221,7 +217,6 @@ export class ProductService {
       where: { id },
       data: {
         isDeleted: true,
-        status: false,
       },
     });
 

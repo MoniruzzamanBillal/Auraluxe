@@ -67,6 +67,11 @@ export class CreateProjectDto {
   @MinLength(1, { message: 'Project type ID is required' })
   projectTypeId: string;
 
+  @IsString()
+  @IsNotEmpty({ message: 'Material ID is required' })
+  @MinLength(1, { message: 'Material ID is required' })
+  materialId: string; // ← Add this required field
+
   @IsOptional()
   @IsString()
   @MaxLength(5000, { message: 'Description cannot exceed 5000 characters' })

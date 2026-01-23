@@ -17,7 +17,7 @@ export class OurFeaturedProductService {
   // ! get all active
   async getAllOurFeaturedProduct() {
     return this.prisma.ourFeaturedProduct.findMany({
-      where: { isDeleted: false, status: true },
+      where: { isDeleted: false },
       orderBy: { createdAt: 'desc' },
     });
   }
@@ -25,7 +25,7 @@ export class OurFeaturedProductService {
   // ! get single
   async getSingleOurFeaturedProduct(id: string) {
     const data = await this.prisma.ourFeaturedProduct.findFirst({
-      where: { id, isDeleted: false, status: true },
+      where: { id, isDeleted: false },
     });
 
     if (!data) {
@@ -69,7 +69,6 @@ export class OurFeaturedProductService {
       where: { id },
       data: {
         isDeleted: true,
-        status: false,
       },
     });
 

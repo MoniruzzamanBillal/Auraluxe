@@ -7,21 +7,18 @@ import { UpdateBrandDto } from './dto/update-brand.dto';
 export class BrandService {
   constructor(private prisma: PrismaService) {}
 
-  //
-
   // ! for adding new brand
   async addBrand(payload: CreateBrandDto, imageUrl: string) {
-    // Check if brand type exists and is active
+    // Check if brand type exists and is not deleted
     const brandType = await this.prisma.brandType.findUnique({
       where: {
         id: payload.brandTypeId,
         isDeleted: false,
-        status: true,
       },
     });
 
     if (!brandType) {
-      throw new NotFoundException('Brand type not found or inactive!');
+      throw new NotFoundException('Brand type not found!');
     }
 
     // Check if brand with same name already exists
@@ -39,8 +36,8 @@ export class BrandService {
         where: { id: existingBrand.id },
         data: {
           ...payload,
+          logo: imageUrl,
           isDeleted: false,
-          status: true,
         },
       });
       return result;
@@ -63,12 +60,11 @@ export class BrandService {
     return result;
   }
 
-  // ! for getting all brands (active only)
+  // ! for getting all brands (not deleted only)
   async getAllBrands() {
     const result = await this.prisma.brand.findMany({
       where: {
         isDeleted: false,
-        status: true,
       },
       include: {
         brandType: {
@@ -91,7 +87,6 @@ export class BrandService {
       where: {
         id,
         isDeleted: false,
-        status: true,
       },
       include: {
         brandType: {
@@ -120,6 +115,7 @@ export class BrandService {
     if (imageUrl) {
       updatedPayload.logo = imageUrl;
     }
+
     // Check if brand exists
     const brand = await this.prisma.brand.findUnique({
       where: { id, isDeleted: false },
@@ -135,12 +131,11 @@ export class BrandService {
         where: {
           id: payload.brandTypeId,
           isDeleted: false,
-          status: true,
         },
       });
 
       if (!brandType) {
-        throw new NotFoundException('Brand type not found or inactive!');
+        throw new NotFoundException('Brand type not found!');
       }
     }
 
@@ -150,7 +145,11 @@ export class BrandService {
         where: { name: payload.name },
       });
 
-      if (existingBrand && existingBrand.id !== id) {
+      if (
+        existingBrand &&
+        existingBrand.id !== id &&
+        !existingBrand.isDeleted
+      ) {
         throw new NotFoundException('Brand with this name already exists!');
       }
     }
@@ -182,31 +181,28 @@ export class BrandService {
       throw new NotFoundException("This brand doesn't exist!");
     }
 
-    // Check if brand has active products (if you add products later)
-    // const activeProducts = await this.prisma.product.count({
-    //   where: {
-    //     brandId: id,
-    //     isDeleted: false
-    //   },
-    // });
+    // Check if brand has active products
+    const activeProducts = await this.prisma.product.count({
+      where: {
+        brandId: id,
+        isDeleted: false,
+      },
+    });
 
-    // if (activeProducts > 0) {
-    //   throw new NotFoundException(
-    //     'Cannot delete brand. It has active products. Please delete or reassign products first.'
-    //   );
-    // }
+    if (activeProducts > 0) {
+      throw new NotFoundException(
+        'Cannot delete brand. It has active products. Please delete or reassign products first.',
+      );
+    }
 
-    // Soft delete the brand
+    // Soft delete the brand (only set isDeleted: true)
     await this.prisma.brand.update({
       where: { id },
       data: {
         isDeleted: true,
-        status: false,
       },
     });
 
     return { message: 'Brand deleted successfully' };
   }
-
-  //
 }

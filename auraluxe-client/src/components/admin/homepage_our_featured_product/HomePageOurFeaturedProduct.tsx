@@ -146,6 +146,7 @@ export default function HomePageOurFeaturedProduct() {
 
       {/* table */}
       <GenericTable data={data?.data} columns={columns} isLoading={isLoading} />
+
       {/* modal */}
       <CreateUpdateOurFeaturedProduct
         isOpen={isModalOpen}

@@ -28,7 +28,7 @@ export class ProjectTypeService {
   // ! for getting single project type
   async getProjectTypeDetail(id: string) {
     const result = await this.prisma.projectType.findUnique({
-      where: { id, status: true, isDeleted: false },
+      where: { id, isDeleted: false },
     });
 
     if (!result) {

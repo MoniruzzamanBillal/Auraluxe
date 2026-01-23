@@ -19,9 +19,9 @@ export class CreateProductDto {
   @MaxLength(50)
   productCode?: string;
 
-  // @IsString()
-  // @IsNotEmpty({ message: 'Brand ID is required' })
-  // brandId: string;
+  @IsString()
+  @IsNotEmpty({ message: 'Brand ID is required' })
+  brandId: string;
 
   @IsString()
   @IsNotEmpty({ message: 'Category ID is required' })

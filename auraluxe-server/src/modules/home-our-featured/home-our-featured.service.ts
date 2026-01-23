@@ -20,7 +20,7 @@ export class HomeOurFeaturedService {
   // ! get all
   async getAllHomeOurFeatured() {
     return this.prisma.homeOurFeatured.findMany({
-      where: { isDeleted: false, status: true },
+      where: { isDeleted: false },
     });
   }
 
@@ -31,7 +31,7 @@ export class HomeOurFeaturedService {
     imageUrl?: string,
   ) {
     const data = await this.prisma.homeOurFeatured.findFirst({
-      where: { id, isDeleted: false, status: true },
+      where: { id, isDeleted: false },
     });
 
     if (!data) {
@@ -50,7 +50,7 @@ export class HomeOurFeaturedService {
   // ! delete (soft delete + reorder)
   async deleteHomeOurFeatured(id: string) {
     const data = await this.prisma.homeOurFeatured.findFirst({
-      where: { id, isDeleted: false, status: true },
+      where: { id, isDeleted: false },
     });
 
     if (!data) {
@@ -59,7 +59,7 @@ export class HomeOurFeaturedService {
 
     await this.prisma.homeOurFeatured.update({
       where: { id },
-      data: { isDeleted: true, status: false },
+      data: { isDeleted: true },
     });
   }
 }

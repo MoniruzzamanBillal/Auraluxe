@@ -11,35 +11,38 @@ import { ColumnDef } from "@tanstack/react-table";
 import CreateUpdateMaterial from "./form/CreateUpdateMaterial";
 import { TMaterial } from "./schema/material.schema";
 
-/* ---------------- Dummy Data ---------------- */
-const materialDummyData: TMaterial[] = [
-  {
-    id: "1",
-    name: "Wood",
-    description: "High quality wooden material",
-    status: true,
-  },
-  {
-    id: "2",
-    name: "Steel",
-    description: "Durable steel material",
-    status: false,
-  },
-];
+import { useDeleteData, useFetchData } from "@/hooks/useApi";
+import { toast } from "sonner";
 
 export default function MaterialPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMaterial, setSelectedMaterial] = useState<TMaterial | null>(
-    null
+    null,
   );
 
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deletedId, setDeletedId] = useState<string | null>(null);
 
-  const handleDelete = () => {
-    console.log("Deleted ID:", deletedId);
-    setIsDeleteOpen(false);
-    setDeletedId(null);
+  const { data, isLoading } = useFetchData(["material"], "/material");
+
+  const deleteMutation = useDeleteData([["material"]]);
+
+  const handleDelete = async () => {
+    try {
+      if (!deletedId) return;
+
+      const result = await deleteMutation.mutateAsync({
+        url: `/material/${deletedId}`,
+      });
+
+      if (result?.success) {
+        toast.success(result.message);
+        setIsDeleteOpen(false);
+        setDeletedId(null);
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to delete product");
+    }
   };
 
   const columns: ColumnDef<TMaterial>[] = [
@@ -125,9 +128,10 @@ export default function MaterialPage() {
       </div>
 
       <GenericTable
-        data={materialDummyData}
+        data={data?.data}
         columns={columns}
         filterKey="name"
+        isLoading={isLoading}
       />
 
       <CreateUpdateMaterial

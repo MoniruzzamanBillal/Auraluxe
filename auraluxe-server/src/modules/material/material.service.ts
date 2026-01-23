@@ -27,7 +27,6 @@ export class MaterialService {
         data: {
           ...payload,
           isDeleted: false,
-          status: true,
         },
       });
       return result;
@@ -46,7 +45,6 @@ export class MaterialService {
     const result = await this.prisma.material.findMany({
       where: {
         isDeleted: false,
-        status: true,
       },
       orderBy: { createdAt: 'desc' },
     });
@@ -60,7 +58,6 @@ export class MaterialService {
       where: {
         id,
         isDeleted: false,
-        status: true,
       },
     });
 
@@ -112,25 +109,24 @@ export class MaterialService {
     }
 
     // Check if material is used in any projects
-    // const projectCount = await this.prisma.project.count({
-    //   where: {
-    //     materialId: id,
-    //     isDeleted: false
-    //   },
-    // });
+    const projectCount = await this.prisma.project.count({
+      where: {
+        materialId: id,
+        isDeleted: false,
+      },
+    });
 
-    // if (projectCount > 0) {
-    //   throw new NotFoundException(
-    //     'Cannot delete material. It is being used in projects. Please update or delete those projects first.'
-    //   );
-    // }
+    if (projectCount > 0) {
+      throw new NotFoundException(
+        'Cannot delete material. It is being used in projects. Please update or delete those projects first.',
+      );
+    }
 
     // Soft delete the material
     await this.prisma.material.update({
       where: { id },
       data: {
         isDeleted: true,
-        status: false,
       },
     });
 
