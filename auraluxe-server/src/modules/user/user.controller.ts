@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
@@ -50,14 +51,14 @@ export class UserController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     console.log(file);
-    // if (!file) {
-    //   throw new BadRequestException('Image is required');
-    // }
+    if (!file) {
+      throw new BadRequestException('Image is required');
+    }
 
-    // const imageUrl = `${process.env.APP_URL}/uploads/${file?.filename}`;
+    const imageUrl = `${process.env.APP_URL}/uploads/${file?.filename}`;
 
-    const result = await this.userService.createUser(payload);
-    // const result = await this.userService.createUser(payload, imageUrl);
+    // const result = await this.userService.createUser(payload);
+    const result = await this.userService.createUser(payload, imageUrl);
 
     return {
       success: true,

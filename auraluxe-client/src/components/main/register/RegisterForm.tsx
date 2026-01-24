@@ -36,7 +36,7 @@ export default function RegisterForm() {
       formData.append("name", data.name);
       formData.append("email", data.email);
       formData.append("password", data.password);
-      //   formData.append("profileImage", data.profileImage);
+      formData.append("file", data.profileImage);
 
       const result = await addMutation.mutateAsync({
         url: "/user",
