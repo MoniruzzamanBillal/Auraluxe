@@ -54,9 +54,16 @@ const navInfo = [
 ];
 
 import navLogo from "@/../public/logo-no-bg.png";
+import { Button } from "@/components/ui/button";
+import { getUserInfo } from "@/services/auth.service";
 import { ShoppingCart } from "lucide-react";
+import { LuUser } from "react-icons/lu";
 
 const Navbar = () => {
+  const userData = getUserInfo();
+
+  console.log("user data = ", userData);
+
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathName = usePathname();
   const [activeProduct, setActiveProduct] = useState<string | null>(null);
@@ -71,6 +78,19 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const getProfileUrl = () => {
+    if (!userData) return "/login";
+
+    switch (userData.role) {
+      case "admin":
+        return "/admin/profile";
+      case "user":
+        return "/user/profile";
+      default:
+        return "/";
+    }
   };
 
   return (
@@ -176,13 +196,37 @@ const Navbar = () => {
                 </NavigationMenuList>
               </NavigationMenu>
 
-              {/*========= wish list button ======== */}
-              <Link
-                href={"/cart"}
-                className="hidden w-[20px] cursor-pointer lg:block"
-              >
-                <ShoppingCart />
-              </Link>
+              {/*========= right section button ======== */}
+              <div className=" flex items-center gap-x-8 ">
+                <Link
+                  href={"/cart"}
+                  className="hidden w-[20px] cursor-pointer lg:block"
+                >
+                  <ShoppingCart />
+                </Link>
+
+                {!userData ? (
+                  <Link href={"/login"}>
+                    <Button className=" -z-[1] text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 ">
+                      Sign in
+                    </Button>
+                  </Link>
+                ) : (
+                  <div className="relative">
+                    <Link
+                      href={getProfileUrl()}
+                      className="inline-block p-2 rounded-full bg-orange-100 cursor-pointer hover:bg-orange-200 transition-colors"
+                      title={
+                        userData.role === "admin"
+                          ? "Admin Profile"
+                          : "User Profile"
+                      }
+                    >
+                      <LuUser className="text-2xl font-bold text-gray-800" />
+                    </Link>
+                  </div>
+                )}
+              </div>
 
               {/*====== small screen navbar =========*/}
               <div className="transition-all duration-300 lg:hidden">

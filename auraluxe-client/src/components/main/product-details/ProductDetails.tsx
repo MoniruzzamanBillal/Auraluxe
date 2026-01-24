@@ -72,8 +72,8 @@ export default function ProductDetails({ id }: { id: string }) {
           </div>
         </section>
 
-        {/* {/* description - start  */}
-        <div className="mt-6 py-6 ">
+        {/* {/* description   */}
+        <div className="mt-6 py-4 ">
           <div
             className=" textEditor "
             dangerouslySetInnerHTML={{
