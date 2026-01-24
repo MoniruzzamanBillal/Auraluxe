@@ -137,6 +137,63 @@ export class ProductService {
     };
   }
 
+  // ! Get products from same category (excluding the given product)
+  async getSameCategoryProducts(productId: string, limit = 8) {
+    // Validate product exists and get its category
+    const product = await this.prisma.product.findFirst({
+      where: {
+        id: productId,
+        isDeleted: false,
+      },
+      select: {
+        id: true,
+        categoryId: true,
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+
+    if (!product) {
+      throw new NotFoundException('Product not found!');
+    }
+
+    // Get products from same category, excluding the given product
+    const sameCategoryProducts = await this.prisma.product.findMany({
+      where: {
+        categoryId: product.categoryId,
+        isDeleted: false,
+        NOT: {
+          id: productId,
+        },
+      },
+      include: {
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        brand: {
+          select: {
+            id: true,
+            name: true,
+            logo: true,
+          },
+        },
+      },
+      take: limit,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return sameCategoryProducts;
+  }
+
   // ! for getting single product data
   async getSingleProduct(productId: string) {
     const result = await this.prisma.product.findFirst({

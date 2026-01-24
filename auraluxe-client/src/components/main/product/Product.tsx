@@ -46,11 +46,6 @@ const Product = () => {
 
   const allProductList = productData?.data || [];
 
-  const meta = productData?.meta;
-
-  const totalPages = meta?.totalPage || 1;
-  const totalItems = meta?.total || 0;
-
   return (
     <div className="relative flex min-h-screen flex-col gap-0 overflow-hidden bg-white lg:gap-20">
       {/*========= header ==========*/}

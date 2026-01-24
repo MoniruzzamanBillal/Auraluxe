@@ -6,7 +6,6 @@ import { TProduct } from "@/components/admin/product/schema/product.schema";
 import CustomProductCarousel from "@/components/share/carousel/CustomProductCarousel";
 import { useFetchData } from "@/hooks/useApi";
 
-import { dummyProductData } from "../../../../data/productData";
 import ProductDetailGallery from "./ProductDetailGallery";
 import ProductDetailInfo from "./ProductDetailInfo";
 
@@ -27,6 +26,14 @@ export default function ProductDetails({ id }: { id: string }) {
   const { data: productDetailData, isLoading: isProductLoading } = useFetchData(
     [`product-detail-${id}`],
     `/product/${id}`,
+    {
+      enabled: !!id,
+    },
+  );
+
+  const { data: relatedProduct, isLoading } = useFetchData(
+    [`related-product-${id}`],
+    `/product/related/${id}`,
     {
       enabled: !!id,
     },
@@ -83,12 +90,15 @@ export default function ProductDetails({ id }: { id: string }) {
         </div>
 
         {/*======== related product section  ========*/}
-        <section className="mt-22">
-          <CustomProductCarousel
-            data={dummyProductData}
-            title={"Related Products"}
-          />
-        </section>
+
+        {relatedProduct?.data?.length > 0 && (
+          <section className="mt-22">
+            <CustomProductCarousel
+              data={relatedProduct?.data}
+              title={"Related Products"}
+            />
+          </section>
+        )}
       </div>
     </div>
   );

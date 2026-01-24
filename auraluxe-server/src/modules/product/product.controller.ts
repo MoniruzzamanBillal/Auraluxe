@@ -108,6 +108,19 @@ export class ProductController {
     };
   }
 
+  // ! for getting single product
+  @Get('related/:id')
+  async getSameCategoryProducts(@Param('id') id: string) {
+    const result = await this.productService.getSameCategoryProducts(id);
+
+    return {
+      success: true,
+      status: HttpStatus.OK,
+      message: 'Related Product retrived successfully!!!',
+      data: result,
+    };
+  }
+
   // ! for updating product (Admin only)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.admin)
