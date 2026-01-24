@@ -3,20 +3,30 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Edit, User } from "lucide-react";
-import Link from "next/link";
+import { useState } from "react";
+import UpdateUserProfile from "./UpdateUserProfile";
+
+// import coverImage from "@/../public/coverImage.jpg";
+import coverImage from "../../../../public/coverImage.jpg";
+
+import Image from "next/image";
 
 export default function UserProfileDetail({
   userProfile,
 }: {
   userProfile: any;
 }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="UserProfileContainer w-full bg-white rounded-lg shadow-lg overflow-hidden">
       {/* Cover Photo Section */}
       <div className="relative w-full h-[30rem] bg-gray-300 overflow-hidden">
-        <img
-          src={"https://i.postimg.cc/HLTCWBgC/pexels-scottwebb-1029604-1.jpg"}
+        <Image
+          src={coverImage}
           alt="Cover Photo"
+          height={1280}
+          width={1280}
           className="w-full h-full"
         />
       </div>
@@ -53,18 +63,23 @@ export default function UserProfileDetail({
               </p>
             </div>
 
-            <Link
-              href={`/dashboard/update-profile/${userProfile?.id}`}
-              className="mt-4 md:mt-0"
-            >
-              <Button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold text-sm sm:text-base">
+            <div onClick={() => setIsModalOpen(true)} className="mt-4 md:mt-0">
+              <Button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold text-sm sm:text-base cursor-pointer ">
                 <Edit className="mr-2 h-4 w-4" />
                 Edit profile
               </Button>
-            </Link>
+            </div>
           </div>
         </div>
       </div>
+
+      <UpdateUserProfile
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
+        initialValue={userProfile}
+      />
     </div>
   );
 }

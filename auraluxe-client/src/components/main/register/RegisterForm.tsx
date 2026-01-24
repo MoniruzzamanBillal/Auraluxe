@@ -55,7 +55,7 @@ export default function RegisterForm() {
     }
   };
 
-  const isPending = methods.formState.isSubmitting;
+  const isPending = methods.formState.isSubmitting || addMutation.isPending;
 
   return (
     <div className="flex min-h-screen flex-1 flex-col items-center justify-center">
