@@ -11,4 +11,6 @@ export type TOurFeaturedProductFormData = z.infer<
 
 export type TOurFeaturedProduct = TOurFeaturedProductFormData & {
   id: string;
+  createdAt: string;
+  updatedAt: string;
 };

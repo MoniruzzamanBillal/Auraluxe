@@ -1,5 +1,7 @@
 import { imageSchema } from "@/components/share/schema/imageSchema";
 import { z } from "zod";
+import { TBrand } from "../../brand/schema/brand.schema";
+import { TCategory } from "../../category/schema/category.schema";
 
 export const productSchema = z.object({
   name: z.string().trim().min(1, "Product name is required").max(100),
@@ -42,4 +44,9 @@ export type TProduct = TProductForm & {
   id: string;
   brandName?: string;
   categoryName?: string;
+  brand?: TBrand;
+  category?: TCategory;
+
+  createdAt: string;
+  updatedAt: string;
 };

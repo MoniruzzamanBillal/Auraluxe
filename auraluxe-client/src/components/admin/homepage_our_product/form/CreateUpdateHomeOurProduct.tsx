@@ -58,7 +58,7 @@ export default function CreateUpdateHomeOurProduct({
 
   useEffect(() => {
     if (!isOpen) {
-      methods.reset({ title: "", description: "" });
+      methods.reset({ title: "", description: "", imageUrl: "" });
       postReset();
       patchReset();
     }

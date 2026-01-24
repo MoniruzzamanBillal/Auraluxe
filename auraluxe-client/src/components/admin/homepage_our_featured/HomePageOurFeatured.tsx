@@ -1,6 +1,6 @@
 "use client";
 
-import { SquarePen, Trash2 } from "lucide-react";
+import { ArrowUpDown, SquarePen, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -28,6 +28,8 @@ export default function HomePageOurFeatured() {
     ["home-our-featured"],
     "/home-our-featured",
   );
+
+  console.log(data?.data);
 
   const deleteMutation = useDeleteData([["home-our-featured"]]);
 
@@ -60,61 +62,120 @@ export default function HomePageOurFeatured() {
       accessorKey: "imageUrl",
       header: "Image",
       cell: ({ row }) => (
-        <div className="w-24 h-24 overflow-hidden rounded-md">
+        <div className="relative size-24 overflow-hidden rounded-lg border">
           <Image
             src={row.original.imageUrl as string}
-            alt="featured image"
-            width={400}
-            height={400}
-            className="w-full h-full object-cover"
+            alt={row.original.title}
+            width={96}
+            height={96}
+            className="h-full w-full object-cover"
           />
         </div>
       ),
     },
     {
       accessorKey: "title",
-      header: "Title",
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          className="px-0 font-semibold"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Title
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
       cell: ({ row }) => (
-        <span className="font-medium">{row.original.title}</span>
+        <div>
+          <span className="font-medium text-gray-900">
+            {row.original.title}
+          </span>
+        </div>
       ),
     },
     {
       accessorKey: "description",
       header: "Description",
       cell: ({ row }) => (
-        <p className="max-w-[350px] truncate text-sm text-muted-foreground">
+        <p className="max-w-[300px] text-sm text-gray-600 line-clamp-3">
           {row.original.description}
         </p>
       ),
     },
+    {
+      accessorKey: "createdAt",
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          className="px-0 font-semibold"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Created Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
+      cell: ({ row }) => (
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.createdAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.createdAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
+    {
+      accessorKey: "updatedAt",
+      header: "Last Updated",
+      cell: ({ row }) => (
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.updatedAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.updatedAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
 
     {
-      header: "Action",
-      id: "action",
-      cell: ({ row }) => {
-        // console.log("row =  ", row?.original);
-
-        return (
-          <div className="flex items-center gap-x-4">
-            <button
-              onClick={() => handleEdit(row.original)}
-              className="text-muted-foreground hover:text-primary"
-            >
-              <SquarePen size={16} />
-            </button>
-            <button
-              onClick={() => {
-                setIsDeleteModalOpen(true);
-                setDeletedId(row?.original?.id);
-              }}
-              className="text-darkLiver hover:underline text-sm flex items-center gap-1"
-            >
-              <Trash2 size={16} />
-              Delete
-            </button>
-          </div>
-        );
-      },
+      header: "Actions",
+      id: "actions",
+      cell: ({ row }) => (
+        <div className="flex items-center gap-x-3">
+          <button
+            onClick={() => handleEdit(row.original)}
+            className="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 transition-colors"
+          >
+            <SquarePen size={16} />
+            Edit
+          </button>
+          <button
+            onClick={() => {
+              setIsDeleteModalOpen(true);
+              setDeletedId(row.original.id);
+            }}
+            className="flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 transition-colors"
+          >
+            <Trash2 size={16} />
+            Delete
+          </button>
+        </div>
+      ),
     },
   ];
 
@@ -124,6 +185,7 @@ export default function HomePageOurFeatured() {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Home Our Featured</h2>
         <Button
+          className="bg-prime100 hover:bg-prime200 text-slate-100 font-semibold cursor-pointer"
           onClick={() => {
             setSelectedFeatured(null);
             setIsModalOpen(true);

@@ -24,6 +24,8 @@ export default function BrandType() {
 
   const { data, isLoading } = useFetchData(["brand-type"], "/brand-type");
 
+  console.log(data?.data);
+
   const deleteMutation = useDeleteData([["brand-type"]]);
 
   const handleDelete = async () => {
@@ -42,51 +44,78 @@ export default function BrandType() {
     }
   };
 
+  /* -------------------- Columns -------------------- */
   const columns: ColumnDef<TBrandType>[] = [
     {
       accessorKey: "name",
       header: "Name",
       cell: ({ row }) => (
-        <span className="font-medium">{row.original.name}</span>
+        <span className="font-medium text-gray-900">{row.original.name}</span>
       ),
     },
     {
       accessorKey: "description",
       header: "Description",
       cell: ({ row }) => (
-        <p className="max-w-[300px] truncate text-sm text-muted-foreground">
+        <p className="max-w-[300px] text-sm text-gray-600 line-clamp-3">
           {row.original.description}
         </p>
       ),
     },
     {
-      accessorKey: "status",
-      header: "Status",
+      accessorKey: "createdAt",
+      header: "Created Date",
       cell: ({ row }) => (
-        <span
-          className={`rounded-full px-2 py-1 text-xs font-medium ${
-            row.original.status
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
-          }`}
-        >
-          {row.original.status ? "Active" : "Inactive"}
-        </span>
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.createdAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.createdAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
       ),
     },
     {
-      id: "action",
-      header: "Action",
+      accessorKey: "updatedAt",
+      header: "Last Updated",
       cell: ({ row }) => (
-        <div className="flex items-center gap-x-4">
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.updatedAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.updatedAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
+    {
+      header: "Actions",
+      id: "actions",
+      cell: ({ row }) => (
+        <div className="flex items-center gap-x-3">
           <button
             onClick={() => {
               setSelectedBrandType(row.original);
               setIsModalOpen(true);
             }}
-            className="text-muted-foreground hover:text-primary"
+            className="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 transition-colors"
           >
             <SquarePen size={16} />
+            Edit
           </button>
 
           <button
@@ -94,7 +123,7 @@ export default function BrandType() {
               setDeletedId(row.original.id);
               setIsDeleteOpen(true);
             }}
-            className="text-darkLiver hover:underline text-sm flex items-center gap-1"
+            className="flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 transition-colors"
           >
             <Trash2 size={16} />
             Delete
@@ -110,6 +139,7 @@ export default function BrandType() {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Brand Types</h2>
         <Button
+          className="bg-prime100 hover:bg-prime200 text-slate-100 font-semibold cursor-pointer"
           onClick={() => {
             setSelectedBrandType(null);
             setIsModalOpen(true);

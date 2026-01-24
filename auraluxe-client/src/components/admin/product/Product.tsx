@@ -22,6 +22,8 @@ export default function ProductPage() {
   const { data, isLoading } = useFetchData(["product"], "/product");
   const deleteMutation = useDeleteData([["product"]]);
 
+  console.log(data?.data);
+
   const handleDelete = async () => {
     try {
       const result = await deleteMutation.mutateAsync({
@@ -42,13 +44,13 @@ export default function ProductPage() {
 
   const columns: ColumnDef<TProduct>[] = [
     {
-      accessorKey: "productImages",
+      accessorKey: "productImage",
       header: "Image",
       cell: ({ row }) => (
         <div className="w-24 h-24 overflow-hidden rounded-md">
           <Image
             src={row.original.productImage as string}
-            alt="brand logo"
+            alt={row.original.name}
             width={400}
             height={400}
             className="w-full h-full object-cover"
@@ -56,51 +58,86 @@ export default function ProductPage() {
         </div>
       ),
     },
+
     { accessorKey: "name", header: "Name" },
-    { accessorKey: "productCode", header: "Code" },
-    { accessorKey: "brandName", header: "Brand" },
-    { accessorKey: "categoryName", header: "Category" },
-    { accessorKey: "price", header: "Price" },
-    // {
-    //   accessorKey: "status",
-    //   header: ({ column }) => (
-    //     <Button
-    //       variant="ghost"
-    //       className="px-0"
-    //       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-    //     >
-    //       Status <ArrowUpDown className="ml-2 h-4 w-4" />
-    //     </Button>
-    //   ),
-    //   cell: ({ row }) => (
-    //     <span
-    //       className={`rounded-full px-2 py-1 text-xs font-medium ${row.original.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
-    //     >
-    //       {row.original.status ? "Active" : "Inactive"}
-    //     </span>
-    //   ),
-    // },
+
     {
-      header: "Action",
+      header: "Brand",
+      cell: ({ row }) => row.original.brand?.name || "—", // ✅ nested access
+    },
+
+    {
+      header: "Category",
+      cell: ({ row }) => row.original.category?.name || "—", // ✅ nested access
+    },
+
+    { accessorKey: "price", header: "Price" },
+    {
+      accessorKey: "createdAt",
+      header: "Created Date",
       cell: ({ row }) => (
-        <div className="flex items-center gap-x-4">
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.createdAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.createdAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
+    {
+      accessorKey: "updatedAt",
+      header: "Last Updated",
+      cell: ({ row }) => (
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.updatedAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.updatedAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
+
+    {
+      header: "Actions",
+      id: "actions",
+      cell: ({ row }) => (
+        <div className="flex items-center gap-x-3">
           <button
             onClick={() => {
               setSelectedProduct(row.original);
               setIsModalOpen(true);
             }}
-            className="text-muted-foreground hover:text-primary"
+            className="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 transition-colors"
           >
             <SquarePen size={16} />
+            Edit
           </button>
+
           <button
             onClick={() => {
               setDeletedId(row.original.id);
               setIsDeleteOpen(true);
             }}
-            className="text-red-600 flex items-center gap-1"
+            className="flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 transition-colors"
           >
-            <Trash2 size={16} /> Delete
+            <Trash2 size={16} />
+            Delete
           </button>
         </div>
       ),
@@ -114,6 +151,7 @@ export default function ProductPage() {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Products</h2>
         <Button
+          className="bg-prime100 hover:bg-prime200 text-slate-100 font-semibold cursor-pointer"
           onClick={() => {
             setSelectedProduct(null);
             setIsModalOpen(true);

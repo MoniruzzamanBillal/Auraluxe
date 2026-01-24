@@ -31,7 +31,6 @@ export default function CreateUpdateBrand({
     resolver: zodResolver(brandSchema),
     defaultValues: {
       name: "",
-
       brandTypeId: "",
     },
   });
@@ -63,13 +62,21 @@ export default function CreateUpdateBrand({
     if (initialValues) {
       methods.reset(initialValues);
     } else {
-      methods.reset();
+      methods.reset({
+        name: "",
+        brandTypeId: "",
+        logo: "",
+      });
     }
   }, [initialValues, methods]);
 
   useEffect(() => {
     if (!isOpen) {
-      methods.reset();
+      methods.reset({
+        name: "",
+        brandTypeId: "",
+        logo: "",
+      });
       postReset();
       patchReset();
     }

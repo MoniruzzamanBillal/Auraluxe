@@ -21,6 +21,9 @@ export class HomeOurFeaturedService {
   async getAllHomeOurFeatured() {
     return this.prisma.homeOurFeatured.findMany({
       where: { isDeleted: false },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
   }
 

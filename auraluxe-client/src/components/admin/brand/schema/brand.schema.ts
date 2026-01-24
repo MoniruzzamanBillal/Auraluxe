@@ -1,5 +1,6 @@
 import { imageSchema } from "@/components/share/schema/imageSchema";
 import { z } from "zod";
+import { TBrandType } from "../../BrandType/schema/brandType.schema";
 
 export const brandSchema = z.object({
   name: z.string().trim().min(1, "Brand name is required").max(100),
@@ -11,5 +12,10 @@ export type TBrandForm = z.infer<typeof brandSchema>;
 
 export type TBrand = TBrandForm & {
   id: string;
-  status: boolean;
+
+  createdAt: string;
+  updatedAt: string;
+  isDeleted?: boolean;
+
+  brandType?: TBrandType;
 };

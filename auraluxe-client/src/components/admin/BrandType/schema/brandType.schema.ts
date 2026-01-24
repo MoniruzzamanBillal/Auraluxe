@@ -18,5 +18,7 @@ export type TBrandTypeForm = z.infer<typeof brandTypeSchema>;
 
 export type TBrandType = TBrandTypeForm & {
   id: string;
-  status: boolean;
+  createdAt: string;
+  updatedAt: string;
+  isDeleted?: boolean;
 };

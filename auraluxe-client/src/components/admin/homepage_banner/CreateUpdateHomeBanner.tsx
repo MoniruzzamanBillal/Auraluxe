@@ -54,13 +54,13 @@ export default function CreateUpdateHomeBanner({
     if (initialValues) {
       methods.reset(initialValues);
     } else {
-      methods.reset();
+      methods.reset({ title: "", description: "" });
     }
   }, [initialValues, methods]);
 
   useEffect(() => {
     if (!isOpen) {
-      methods.reset({ title: "", description: "" });
+      methods.reset({ title: "", description: "", imageUrl: "" });
       postReset();
       patchReset();
     }

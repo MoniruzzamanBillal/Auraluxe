@@ -12,5 +12,7 @@ export type TCategoryForm = z.infer<typeof categorySchema>;
 
 export type TCategory = TCategoryForm & {
   id: string;
-  status: boolean;
+
+  createdAt: string;
+  updatedAt: string;
 };

@@ -56,14 +56,21 @@ export default function CreateUpdateHomeOurFeatured({
     if (initialValues) {
       methods.reset(initialValues);
     } else {
-      methods.reset();
+      methods.reset({
+        title: "",
+        description: "",
+        imageUrl: "",
+      });
     }
   }, [initialValues, methods]);
 
-  // 🔁 Cleanup on modal close
   useEffect(() => {
     if (!isOpen) {
-      methods.reset();
+      methods.reset({
+        title: "",
+        description: "",
+        imageUrl: "",
+      });
       postReset();
       patchReset();
     }

@@ -21,4 +21,6 @@ export type THomeOurFeaturedForm = z.infer<typeof homeOurFeaturedSchema>;
 
 export type THomeOurFeatured = THomeOurFeaturedForm & {
   id: string;
+  createdAt: string;
+  updatedAt: string;
 };

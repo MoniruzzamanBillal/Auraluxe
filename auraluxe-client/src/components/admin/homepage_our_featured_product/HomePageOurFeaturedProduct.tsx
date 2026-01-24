@@ -29,6 +29,8 @@ export default function HomePageOurFeaturedProduct() {
     "/our-featured-product",
   );
 
+  console.log(data?.data);
+
   const deleteMutation = useDeleteData([["our-featured-product"]]);
 
   /* -------------------- Actions -------------------- */
@@ -55,41 +57,82 @@ export default function HomePageOurFeaturedProduct() {
     }
   };
 
-  /* -------------------- Table -------------------- */
+  /* -------------------- Columns -------------------- */
   const columns: ColumnDef<TOurFeaturedProduct>[] = [
     {
       accessorKey: "imageUrl",
       header: "Image",
       cell: ({ row }) => (
-        <div className="w-24 h-24 overflow-hidden rounded-md">
+        <div className="relative size-24 overflow-hidden rounded-lg border">
           <Image
             src={row.original.imageUrl as string}
-            alt="featured product"
-            width={500}
-            height={500}
-            className="w-full h-full object-cover"
+            alt={"featured product"}
+            width={96}
+            height={96}
+            className="h-full w-full object-cover"
           />
         </div>
       ),
     },
 
     {
-      header: "Action",
-      id: "action",
+      accessorKey: "createdAt",
+      header: "Created Date",
       cell: ({ row }) => (
-        <div className="flex items-center gap-x-4">
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.createdAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.createdAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
+    {
+      accessorKey: "updatedAt",
+      header: "Last Updated",
+      cell: ({ row }) => (
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.updatedAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.updatedAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
+    {
+      header: "Actions",
+      id: "actions",
+      cell: ({ row }) => (
+        <div className="flex items-center gap-x-3">
           <button
             onClick={() => handleEdit(row.original)}
-            className="text-muted-foreground hover:text-primary"
+            className="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 transition-colors"
           >
             <SquarePen size={16} />
+            Edit
           </button>
           <button
             onClick={() => {
               setIsDeleteModalOpen(true);
-              setDeletedId(row?.original?.id);
+              setDeletedId(row.original.id);
             }}
-            className="text-darkLiver hover:underline text-sm flex items-center gap-1"
+            className="flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 transition-colors"
           >
             <Trash2 size={16} />
             Delete
@@ -103,7 +146,12 @@ export default function HomePageOurFeaturedProduct() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Our Featured Products</h2>
-        <Button onClick={() => setIsModalOpen(true)}>Add New Product</Button>
+        <Button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-prime100 hover:bg-prime200 text-slate-100 font-semibold cursor-pointer"
+        >
+          Add Featured Product
+        </Button>
       </div>
 
       {/* table */}

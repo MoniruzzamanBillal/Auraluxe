@@ -21,5 +21,7 @@ export type THomeOurProductFormData = z.infer<typeof HomeOurProductSchema>;
 
 export type THomeOurProduct = THomeOurProductFormData & {
   id: string;
+  createdAt: string;
+  updatedAt: string;
   isDeleted?: boolean;
 };

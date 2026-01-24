@@ -20,6 +20,9 @@ export class ProjectTypeService {
   async getAllProjectType() {
     const result = await this.prisma.projectType.findMany({
       where: { isDeleted: false },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
 
     return result;

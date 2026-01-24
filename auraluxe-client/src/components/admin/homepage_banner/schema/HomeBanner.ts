@@ -23,4 +23,7 @@ export type THomePageBanner = THomePageBannerFormData & {
   isDeleted?: boolean;
 
   id: string;
+
+  createdAt: string;
+  updatedAt: string;
 };

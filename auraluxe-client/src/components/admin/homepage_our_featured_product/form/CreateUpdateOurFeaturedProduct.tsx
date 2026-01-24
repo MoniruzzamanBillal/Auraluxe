@@ -50,13 +50,17 @@ export default function CreateUpdateOurFeaturedProduct({
     if (initialValues) {
       methods.reset({ imageUrl: initialValues.imageUrl });
     } else {
-      methods.reset();
+      methods.reset({
+        imageUrl: "",
+      });
     }
   }, [initialValues, methods]);
 
   useEffect(() => {
     if (!isOpen) {
-      methods.reset();
+      methods.reset({
+        imageUrl: "",
+      });
       postReset();
       patchReset();
     }

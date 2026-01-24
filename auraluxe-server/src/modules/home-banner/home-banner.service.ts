@@ -22,6 +22,9 @@ export class HomeBannerService {
   async getAllHomeBanner() {
     const result = await this.prisma.homeBanner.findMany({
       where: { isDeleted: false },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
 
     return result;

@@ -24,6 +24,8 @@ export default function Category() {
 
   const { data, isLoading } = useFetchData(["category"], "/category");
 
+  console.log(data?.data);
+
   const deleteMutation = useDeleteData([["category"]]);
 
   // ! for handling delete
@@ -44,53 +46,75 @@ export default function Category() {
     }
   };
 
+  /* -------------------- Columns -------------------- */
   const columns: ColumnDef<TCategory>[] = [
     {
       accessorKey: "name",
-      header: "Category Name",
-      cell: ({ row }) => (
-        <span className="font-medium">{row.original.name}</span>
-      ),
-    },
-    {
-      accessorKey: "status",
       header: ({ column }) => (
         <Button
           variant="ghost"
-          className="px-0"
+          className="px-0 font-semibold"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Status
+          Category Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       ),
-
-      cell: ({ row }) => {
-        const status = row.original.status;
-
-        return (
-          <span
-            className={`rounded-full px-2 py-1 text-xs font-medium ${
-              status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-            }`}
-          >
-            {status ? "Active" : "Inactive"}
-          </span>
-        );
-      },
-    },
-
-    {
-      id: "action",
-      header: "Action",
       cell: ({ row }) => (
-        <div className="flex items-center gap-x-4">
+        <span className="font-medium text-gray-900">{row.original.name}</span>
+      ),
+    },
+    {
+      header: "Created Date",
+      accessorKey: "createdAt",
+      cell: ({ row }) => (
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.createdAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.createdAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
+    {
+      header: "Last Updated",
+      accessorKey: "updatedAt",
+      cell: ({ row }) => (
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.updatedAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.updatedAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
+    {
+      header: "Actions",
+      id: "actions",
+      cell: ({ row }) => (
+        <div className="flex items-center gap-x-3">
           <button
             onClick={() => {
               setSelectedCategory(row.original);
               setIsModalOpen(true);
             }}
-            className="text-muted-foreground hover:underline hover:text-primary text-sm flex items-center gap-1"
+            className="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 transition-colors"
           >
             <SquarePen size={16} />
             Update
@@ -101,7 +125,7 @@ export default function Category() {
               setDeletedId(row.original.id);
               setIsDeleteOpen(true);
             }}
-            className="text-darkLiver hover:underline text-sm flex items-center gap-1"
+            className="flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 transition-colors"
           >
             <Trash2 size={16} />
             Delete
@@ -117,6 +141,7 @@ export default function Category() {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Categories</h2>
         <Button
+          className="bg-prime100 hover:bg-prime200 text-slate-100 font-semibold cursor-pointer"
           onClick={() => {
             setSelectedCategory(null);
             setIsModalOpen(true);
