@@ -13,6 +13,10 @@ model User {
   name      String
   password  String
   role      UserRole @default(user)
+
+   profileImage        String
+
+
   isDeleted Boolean  @default(false)
 
   cart   Cart?

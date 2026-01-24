@@ -1,4 +1,16 @@
-import { Body, Controller, Get, HttpStatus, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UserService } from './user.service';
 
@@ -8,13 +20,35 @@ export class UserController {
 
   //  ! for creating new user
   @Post('')
-  async createNewUser(@Body() payload: CreateUserDto) {
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => {
+          const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1e9);
+          cb(null, uniqueName + extname(file.originalname));
+        },
+      }),
+    }),
+  )
+  async createNewUser(
+    @Body() payload: CreateUserDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    console.log(file);
+    // if (!file) {
+    //   throw new BadRequestException('Image is required');
+    // }
+
+    // const imageUrl = `${process.env.APP_URL}/uploads/${file?.filename}`;
+
     const result = await this.userService.createUser(payload);
+    // const result = await this.userService.createUser(payload, imageUrl);
 
     return {
       success: true,
       status: HttpStatus.CREATED,
-      message: 'user created successfully!!!',
+      message: 'Registration successful!',
       data: result,
     };
   }
