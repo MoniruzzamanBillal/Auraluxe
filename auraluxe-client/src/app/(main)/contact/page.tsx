@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   const ContactPage = dynamic(
     () => import("@/components/main/contact_page/ContactPage"),
-    { loading: () => <Loader /> }
+    { loading: () => <Loader /> },
   );
   return <ContactPage />;
 }

@@ -7,28 +7,28 @@ import FaqComp from "./ FaqComp";
 
 export default function ContactPageDetails() {
   const [selectedLocation, setSelectedLocation] =
-    useState<string>("Tilottoma Gulshan");
+    useState<string>("Auraluxe Gulshan");
 
   // console.log("selected location => ", selectedLocation);
 
   const Locations = [
     {
-      locationName: "Tilottoma Gulshan",
+      locationName: "Auraluxe Gulshan",
       locationMapUrl:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4710.714756691834!2d90.4109392!3d23.794225399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c72f6bd57fb9%3A0x27ba5b928c803bf4!2sTilottoma%20Gulshan!5e1!3m2!1sen!2sbd!4v1764129471823!5m2!1sen!2sbd",
     },
     {
-      locationName: "Tilottoma Hatirpool",
+      locationName: "Auraluxe Hatirpool",
       locationMapUrl:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4712.567732397341!2d90.39197349999999!3d23.7430603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8be5acf6e6f%3A0x4a074a21ec78596a!2sTilottoma%20Trade%20Center!5e1!3m2!1sen!2sbd!4v1764129377470!5m2!1sen!2sbd",
     },
     {
-      locationName: "Tilottoma Uttara",
+      locationName: "Auraluxe Uttara",
       locationMapUrl:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4707.804153102774!2d90.38220609999999!3d23.874385599999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c5b8e7105f5b%3A0xb13a4f1caf067de1!2sTILOTTOMA%20UTTARA!5e1!3m2!1sen!2sbd!4v1764129483849!5m2!1sen!2sbd",
     },
     {
-      locationName: "Tilottoma Chittagong",
+      locationName: "Auraluxe Chittagong",
       locationMapUrl:
         "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d595.19237158908!2d91.8248243!3d22.350888!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd897c64c6827%3A0x36997fabb0288f4f!2sTilottoma%20Chattogram!5e1!3m2!1sen!2sbd!4v1764129493394!5m2!1sen!2sbd",
     },
@@ -36,7 +36,7 @@ export default function ContactPageDetails() {
 
   const activeLocation = Locations.find(
     (data: any) =>
-      data.locationName.toLowerCase() === selectedLocation.toLowerCase()
+      data.locationName.toLowerCase() === selectedLocation.toLowerCase(),
   );
 
   // console.log("activeLocation =>>", activeLocation);
@@ -73,10 +73,10 @@ export default function ContactPageDetails() {
 
           {/*============ Location Cards Grid ==========*/}
           <div className="grid lg:grid-cols-2 xl:col-span-2 xl:ml-32">
-            {/*========= Tilottoma gulshan ========*/}
+            {/*========= Auraluxe gulshan ========*/}
             <div className="flex flex-col justify-center">
               <StoreLocation
-                title={"Tilottoma Gulshan"}
+                title={"Auraluxe Gulshan"}
                 location={
                   "Baro Bhuiyan, Plot No #3/A, Road No # 49, Gulshan 2, Dhaka, 1212"
                 }
@@ -85,10 +85,10 @@ export default function ContactPageDetails() {
               />
             </div>
 
-            {/*======== Tilottoma Hatirpool =========*/}
+            {/*======== Auraluxe Hatirpool =========*/}
             <div className="flex flex-col justify-center">
               <StoreLocation
-                title={"Tilottoma Hatirpool"}
+                title={"Auraluxe Hatirpool"}
                 location={
                   "67, Bir Uttam C.R Dutt Road, Hatirpool, Dhaka - 1205"
                 }
@@ -97,19 +97,19 @@ export default function ContactPageDetails() {
               />
             </div>
 
-            {/*========= Tilottoma Uttara ========*/}
+            {/*========= Auraluxe Uttara ========*/}
             <div className="">
               <StoreLocation
-                title={"Tilottoma Uttara"}
+                title={"Auraluxe Uttara"}
                 location={"Plot No: 18, Road Sonargaon Janapath, Dhaka - 1230"}
                 phone={"01329718828"}
                 setSelectedLocation={setSelectedLocation}
               />
             </div>
 
-            {/*====== Tilottoma Chittagong =========*/}
+            {/*====== Auraluxe Chittagong =========*/}
             <StoreLocation
-              title={"Tilottoma Chittagong"}
+              title={"Auraluxe Chittagong"}
               location={"95 Chatteswari Road, Chittagong"}
               phone={"01329718827"}
               setSelectedLocation={setSelectedLocation}

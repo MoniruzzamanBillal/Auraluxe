@@ -10,7 +10,7 @@ export default function NewsAndUpdates() {
     () => import("@/components/main/news-updates/NewsUpdates"),
     {
       loading: () => <Loader />,
-    }
+    },
   );
   return <NewsUpdates />;
 }

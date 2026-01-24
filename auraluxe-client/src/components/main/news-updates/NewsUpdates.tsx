@@ -22,7 +22,7 @@ export default function NewsUpdates() {
       <CustomPageHeader
         pageTitle={"News & Updates"}
         description={
-          "Tilottoma.com reserves the right to update or modify these terms at any time"
+          "Auraluxe reserves the right to update or modify these terms at any time"
         }
         image="/news_updates/main_header.jpg"
       />
