@@ -22,8 +22,8 @@ const links = [
     icon: <FaUserCircle className="h-5 w-5 shrink-0 text-neutral-200" />,
   },
   {
-    label: "Home Banner",
-    href: "/admin/homepage_banner",
+    label: "Order History",
+    href: "/user/order_history",
     icon: <BsAlignCenter className="h-5 w-5 shrink-0 text-neutral-200" />,
   },
 ];

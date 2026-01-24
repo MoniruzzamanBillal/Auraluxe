@@ -125,5 +125,45 @@ export class OrderService {
     });
   }
 
+  // ! Get user's successful/completed order history
+  async getOrderHistory(userId: string) {
+    const orders = await this.prisma.order.findMany({
+      where: {
+        userId,
+        isDeleted: false,
+        payment: {
+          status: PAYMENTSTATUS.COMPLETED,
+        },
+      },
+      include: {
+        items: {
+          where: { isDeleted: false },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+        payment: {
+          select: {
+            id: true,
+            transactionId: true,
+            status: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return orders;
+  }
+
   //
 }

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpStatus,
   Post,
   Req,
@@ -39,6 +40,23 @@ export class OrderController {
     return {
       success: true,
       message: 'Order Places successfully!!!',
+      status: HttpStatus.OK,
+      data: result,
+    };
+  }
+
+  // ! for getting user order data
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.user)
+  @Get('/history')
+  async orderHistory(@Req() req: JwtRequest) {
+    const userId = req?.user?.userId;
+
+    const result = await this.orderService.getOrderHistory(userId);
+
+    return {
+      success: true,
+      message: 'Order History retrived successfully!!!',
       status: HttpStatus.OK,
       data: result,
     };
