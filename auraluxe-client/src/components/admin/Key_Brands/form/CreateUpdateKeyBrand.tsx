@@ -55,6 +55,7 @@ export default function CreateUpdateKeyBrand({
       methods.reset({
         name: initialValues.name,
         description: initialValues.description,
+        logo: initialValues?.logo,
       });
     } else {
       methods.reset();
@@ -63,7 +64,11 @@ export default function CreateUpdateKeyBrand({
 
   useEffect(() => {
     if (!isOpen) {
-      methods.reset();
+      methods.reset({
+        name: "",
+        description: "",
+        logo: "",
+      });
       postReset();
       patchReset();
     }

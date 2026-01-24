@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { SquarePen, Trash2 } from "lucide-react";
+import { ArrowUpDown, SquarePen, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 import GenericTable from "@/components/common/GenericTable";
@@ -22,6 +22,8 @@ export default function ProjectType() {
   const [deletedId, setDeletedId] = useState<string | null>(null);
 
   const { data, isLoading } = useFetchData(["project-type"], "/project-type");
+
+  console.log(data?.data);
 
   // ✅ Delete mutation
   const deleteMutation = useDeleteData([["project-type"]]);
@@ -44,36 +46,92 @@ export default function ProjectType() {
   };
 
   const columns: ColumnDef<TProjectType>[] = [
+    /* ---------------- Name ---------------- */
     {
       accessorKey: "name",
-      header: "Name",
-      cell: ({ row }) => <span className="">{row.original.name}</span>,
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          className="px-0 font-semibold"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
+      cell: ({ row }) => (
+        <span className="font-medium text-gray-900">{row.original.name}</span>
+      ),
     },
+
+    /* ---------------- Description ---------------- */
     {
       accessorKey: "description",
       header: "Description",
       cell: ({ row }) => (
-        <p className="max-w-[200px] truncate  ">{row.original.description}</p>
+        <p className="max-w-[300px] line-clamp-3 text-sm text-muted-foreground">
+          {row.original.description}
+        </p>
       ),
     },
+
+    /* ---------------- Created Date ---------------- */
     {
-      accessorKey: "status",
-      header: "Status",
-      cell: ({ row }) => (
-        <span
-          className={`rounded-full px-2 py-1 text-xs font-medium ${
-            row.original.status
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
-          }`}
+      accessorKey: "createdAt",
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          className="px-0 font-semibold"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          {row.original.status ? "Active" : "Inactive"}
-        </span>
+          Created Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
+      cell: ({ row }) => (
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.createdAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.createdAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
       ),
     },
+
+    /* ---------------- Last Updated ---------------- */
     {
-      id: "action",
-      header: "Action",
+      accessorKey: "updatedAt",
+      header: "Last Updated",
+      cell: ({ row }) => (
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.updatedAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.updatedAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
+
+    /* ---------------- Actions ---------------- */
+    {
+      header: "Actions",
+      id: "actions",
       cell: ({ row }) => (
         <div className="flex items-center gap-x-4">
           <button
@@ -81,9 +139,9 @@ export default function ProjectType() {
               setSelectedProjectType(row.original);
               setIsModalOpen(true);
             }}
-            className="text-muted-foreground hover:text-primary"
+            className="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 transition-colors"
           >
-            <SquarePen size={16} />
+            <SquarePen size={16} /> Edit
           </button>
 
           <button
@@ -91,10 +149,9 @@ export default function ProjectType() {
               setDeletedId(row.original.id);
               setIsDeleteOpen(true);
             }}
-            className="text-darkLiver hover:underline text-sm flex items-center gap-1"
+            className="flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 transition-colors"
           >
-            <Trash2 size={16} />
-            Delete
+            <Trash2 size={16} /> Delete
           </button>
         </div>
       ),
@@ -107,6 +164,7 @@ export default function ProjectType() {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Project Types</h2>
         <Button
+          className="bg-prime100 hover:bg-prime200 text-slate-100 font-semibold cursor-pointer"
           onClick={() => {
             setSelectedProjectType(null);
             setIsModalOpen(true);

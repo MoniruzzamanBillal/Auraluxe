@@ -19,4 +19,6 @@ export type TMaterialForm = z.infer<typeof materialSchema>;
 export type TMaterial = TMaterialForm & {
   id: string;
   status: boolean;
+  createdAt: string;
+  updatedAt: string;
 };

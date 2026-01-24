@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
-  title: "Tilottoma | Project",
+  title: "Auraluxe | Project",
 };
 export default function page() {
   const Project = dynamic(() => import("@/components/admin/project/Project"), {

@@ -19,4 +19,7 @@ export type TProjectTypeForm = z.infer<typeof projectTypeSchema>;
 export type TProjectType = TProjectTypeForm & {
   id: string;
   status: boolean;
+
+  createdAt: string;
+  updatedAt: string;
 };

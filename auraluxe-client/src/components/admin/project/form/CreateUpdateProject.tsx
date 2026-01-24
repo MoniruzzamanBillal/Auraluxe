@@ -45,6 +45,7 @@ export default function CreateUpdateProject({
       xLink: "",
       description: "",
       projectTypeId: "",
+      materialId: "",
     },
   });
 
@@ -54,8 +55,18 @@ export default function CreateUpdateProject({
     "/project-type",
   );
 
+  // ✅ Fetch project types for material type
+
+  const { data: materialTypeData } = useFetchData(["material"], "/material");
+
   const projectTypeOptions =
     projectTypeData?.data?.map((item: any) => ({
+      label: item.name,
+      value: item.id,
+    })) || [];
+
+  const materialTypeOptions =
+    materialTypeData?.data?.map((item: any) => ({
       label: item.name,
       value: item.id,
     })) || [];
@@ -76,13 +87,41 @@ export default function CreateUpdateProject({
     if (initialValues) {
       methods.reset({ ...initialValues });
     } else {
-      methods.reset();
+      methods.reset({
+        projectName: "",
+        projectImg: "",
+        location: "",
+        client: "",
+        architects: "",
+        website: "",
+        facebookLink: "",
+        instagramLink: "",
+        linkedinLink: "",
+        xLink: "",
+        description: "",
+        projectTypeId: "",
+        materialId: "",
+      });
     }
   }, [initialValues, methods]);
 
   useEffect(() => {
     if (!isOpen) {
-      methods.reset();
+      methods.reset({
+        projectName: "",
+        projectImg: "",
+        location: "",
+        client: "",
+        architects: "",
+        website: "",
+        facebookLink: "",
+        instagramLink: "",
+        linkedinLink: "",
+        xLink: "",
+        description: "",
+        projectTypeId: "",
+        materialId: "",
+      });
     }
     postReset();
     patchReset();
@@ -143,6 +182,9 @@ export default function CreateUpdateProject({
         if (changedData?.description) {
           formData.append("description", changedData?.description);
         }
+        if (changedData?.materialId) {
+          formData.append("materialId", changedData?.materialId);
+        }
         if (changedData?.projectTypeId) {
           formData.append("projectTypeId", changedData?.projectTypeId);
         }
@@ -194,6 +236,7 @@ export default function CreateUpdateProject({
       }
 
       formData.append("projectTypeId", data?.projectTypeId);
+      formData.append("materialId", data?.materialId);
 
       const response = await mutateAsync({
         url: "/project",
@@ -223,6 +266,7 @@ export default function CreateUpdateProject({
           <ProjectForm
             onSubmit={onSubmit}
             projectTypeOptions={projectTypeOptions}
+            materialTypeOptions={materialTypeOptions}
             isEdit={!!initialValues}
             isLoading={isLoading}
           />

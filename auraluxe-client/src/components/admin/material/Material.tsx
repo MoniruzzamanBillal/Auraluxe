@@ -25,6 +25,8 @@ export default function MaterialPage() {
 
   const { data, isLoading } = useFetchData(["material"], "/material");
 
+  console.log(data?.data);
+
   const deleteMutation = useDeleteData([["material"]]);
 
   const handleDelete = async () => {
@@ -46,57 +48,94 @@ export default function MaterialPage() {
   };
 
   const columns: ColumnDef<TMaterial>[] = [
+    /* ---------------- Name ---------------- */
     {
       accessorKey: "name",
-      header: "Name",
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          className="px-0 font-semibold"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      ),
       cell: ({ row }) => (
-        <span className="font-medium">{row.original.name}</span>
+        <span className="font-medium text-gray-900">{row.original.name}</span>
       ),
     },
+
+    /* ---------------- Description ---------------- */
     {
       accessorKey: "description",
       header: "Description",
       cell: ({ row }) => (
-        <p className="max-w-[350px] truncate text-sm text-muted-foreground">
+        <p className="max-w-[350px] line-clamp-3 text-sm text-muted-foreground">
           {row.original.description}
         </p>
       ),
     },
+
+    /* ---------------- Created Date ---------------- */
     {
-      accessorKey: "status",
-      header: ({ column }) => (
-        <Button
-          variant="ghost"
-          className="px-0"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Status <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      ),
+      accessorKey: "createdAt",
+      header: "Created Date",
       cell: ({ row }) => (
-        <span
-          className={`rounded-full px-2 py-1 text-xs font-medium ${
-            row.original.status
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
-          }`}
-        >
-          {row.original.status ? "Active" : "Inactive"}
-        </span>
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.createdAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.createdAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
       ),
     },
+
+    /* ---------------- Last Updated ---------------- */
     {
-      header: "Action",
+      accessorKey: "updatedAt",
+      header: "Last Updated",
       cell: ({ row }) => (
-        <div className="flex items-center gap-x-4">
+        <div className="text-sm text-gray-500">
+          {new Date(row.original.updatedAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+          <br />
+          <span className="text-xs">
+            {new Date(row.original.updatedAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      ),
+    },
+
+    /* ---------------- Actions ---------------- */
+    {
+      header: "Actions",
+      id: "actions",
+      cell: ({ row }) => (
+        <div className="flex items-center gap-x-3">
           <button
             onClick={() => {
               setSelectedMaterial(row.original);
               setIsModalOpen(true);
             }}
-            className="text-muted-foreground hover:text-primary"
+            className="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 transition-colors"
           >
             <SquarePen size={16} />
+            Edit
           </button>
 
           <button
@@ -104,9 +143,10 @@ export default function MaterialPage() {
               setDeletedId(row.original.id);
               setIsDeleteOpen(true);
             }}
-            className="text-red-600 flex items-center gap-1"
+            className="flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 transition-colors"
           >
-            <Trash2 size={16} /> Delete
+            <Trash2 size={16} />
+            Delete
           </button>
         </div>
       ),
@@ -118,6 +158,7 @@ export default function MaterialPage() {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Material</h2>
         <Button
+          className="bg-prime100 hover:bg-prime200 text-slate-100 font-semibold cursor-pointer"
           onClick={() => {
             setSelectedMaterial(null);
             setIsModalOpen(true);

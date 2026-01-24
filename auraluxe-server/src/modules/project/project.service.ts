@@ -24,6 +24,7 @@ export class ProjectService {
       },
       include: {
         projectType: true,
+        material: true,
       },
       orderBy: { createdAt: 'desc' },
     });

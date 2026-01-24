@@ -12,4 +12,7 @@ export type TKeyBrandForm = z.infer<typeof keyBrandSchema>;
 export type TKeyBrand = TKeyBrandForm & {
   id: string;
   status: boolean;
+
+  createdAt: string;
+  updatedAt: string;
 };
