@@ -186,16 +186,18 @@ const Navbar = () => {
 
               {/*========= right section button ======== */}
               <div className=" flex items-center gap-x-8 ">
-                <Link
-                  href={"/cart"}
-                  className="hidden w-[20px] cursor-pointer lg:block"
-                >
-                  <ShoppingCart />
-                </Link>
+                {userData?.role === "user" && (
+                  <Link
+                    href={"/cart"}
+                    className="hidden w-5 cursor-pointer lg:block"
+                  >
+                    <ShoppingCart />
+                  </Link>
+                )}
 
                 {!userData ? (
                   <Link href={"/login"}>
-                    <Button className=" -z-[1] text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 ">
+                    <Button className=" -z-1 text-xs sm:text-sm md:text-base bg-prime50 hover:bg-prime100 ">
                       Sign in
                     </Button>
                   </Link>

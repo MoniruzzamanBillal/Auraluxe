@@ -26,7 +26,7 @@ export default function PaymentSuccess() {
 
           <Button
             onClick={() => handleNavigateProduct()}
-            className=" mt-3  bg-prime100 hover:bg-prime100 hover:scale-[1.01] hover:shadow-md active:scale-100  "
+            className=" mt-3 bg-prime100 text-slate-200 font-bold  hover:bg-prime200 hover:scale-[1.01] hover:shadow-md active:scale-100 cursor-pointer  "
           >
             Continue shooping
           </Button>

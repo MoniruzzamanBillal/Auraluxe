@@ -2,8 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { PackageSearch, ShoppingBasket } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function EmptyCart() {
+  const router = useRouter();
+
   return (
     <main className="grow flex flex-col justify-center items-center px-6 py-20">
       <div className="max-w-[640px] w-full text-center">
@@ -30,7 +33,10 @@ export default function EmptyCart() {
         </div>
         {/* <!-- Call to Action --> */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button className=" px-8 py-6 bg-prime100 text-slate-200 font-bold text-lg  hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer ">
+          <Button
+            onClick={() => router.push("/product")}
+            className=" px-8 py-6 bg-prime100 text-slate-200 font-bold text-lg  hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer "
+          >
             <PackageSearch size={24} />
             Browse Products
           </Button>

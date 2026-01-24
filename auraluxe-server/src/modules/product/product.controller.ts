@@ -68,23 +68,14 @@ export class ProductController {
   async getAllProduct(
     @Query('categoryId') categoryId?: string,
     @Query('brandId') brandId?: string,
-    @Query('sortBy') sortBy?: string,
+
     @Query('search') search?: string,
     @Query('page') page?: string,
     @Query('limit') limit?: string,
   ) {
-    const validSortOptions = ['price_asc', 'price_desc'];
-
-    if (sortBy && !validSortOptions.includes(sortBy)) {
-      throw new BadRequestException(
-        `Invalid sortBy parameter. Valid options are: ${validSortOptions.join(', ')}`,
-      );
-    }
-
     const result = await this.productService.getAllProduct({
       categoryId,
       brandId,
-      sortBy: sortBy as any,
 
       page: page ? parseInt(page) : 1,
       limit: limit ? parseInt(limit) : 12,

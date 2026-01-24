@@ -130,13 +130,13 @@ const Category = ({
         )}
       </div>
 
-      <div className="mt-10 w-full">
+      <div className="mt-10 ">
         <Button
           variant="outline"
-          className="w-full border-red-500 text-red-500 hover:bg-red-50 hover:text-red-600"
+          className="w-full border-red-500 text-red-500 hover:bg-red-50 hover:text-red-600 cursor-pointer "
           onClick={handleReset}
         >
-          Reset Filters
+          Reset
         </Button>
       </div>
     </div>

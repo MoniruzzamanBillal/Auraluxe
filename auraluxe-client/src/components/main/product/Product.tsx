@@ -2,11 +2,9 @@
 import Breadcrumb from "@/components/share/Breadcrumb";
 import CustomPageHeader from "@/components/share/common/CustomPageHeader";
 
-import StaticPagination from "@/components/share/pagination/StaticPagination";
 import { useState } from "react";
 import { TbPackageOff } from "react-icons/tb";
 import Category from "./Category";
-import FilterTitle from "./FilterTitle";
 import ProductCard from "./ProductCard";
 import ProductTitleAndSort from "./ProductTitleAndSort";
 
@@ -15,58 +13,39 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useFetchData } from "@/hooks/useApi";
 
 const Product = () => {
-  // console.log("query = ", query);
-
   const [page, setPage] = useState(1);
   const itemsPerPage = 12;
 
   //? Filters state
   const [selectedCat, setSelectedCat] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const [appliedFilters, setAppliedFilters] = useState({
-    brand: "",
-    category: "",
-  });
-
-  const handleSortChange = (selectedSort: string) => {
-    switch (selectedSort) {
-      case "a to z":
-        setSortOrder("asc");
-        break;
-      case "z to a":
-        setSortOrder("desc");
-        break;
-      default:
-        setSortOrder("asc");
-        break;
-    }
-    setPage(1);
-  };
-
-  const handleApply = () => {
-    setAppliedFilters({
-      brand: selectedBrand,
-      category: selectedCat,
-    });
-    setPage(1);
-  };
 
   // Construct query string for API
-  let filterQuery = `page=${page}&limit=${itemsPerPage}&sort=${sortOrder}`;
-  if (selectedCat) filterQuery += `&categoryId=${selectedCat}`;
-  if (selectedBrand) filterQuery += `&brandId=${selectedBrand}`;
+  const buildQueryString = () => {
+    const params = new URLSearchParams();
+    params.append("page", page.toString());
+    params.append("limit", itemsPerPage.toString());
+
+    if (selectedCat) params.append("categoryId", selectedCat);
+    if (selectedBrand) params.append("brandId", selectedBrand);
+
+    return params.toString();
+  };
+
+  const filterQuery = buildQueryString();
 
   const { data: productData, isLoading: isProductLoading } = useFetchData(
-    ["products", filterQuery],
+    ["products", selectedCat, selectedBrand],
     `/product?${filterQuery}`,
   );
 
   console.log("selected cat =>>", selectedCat);
   console.log("selected brand =>>", selectedBrand);
-  console.log("prodct data = ", productData?.data);
+  // console.log("product data = ", productData?.data);
+  console.log("API URL: ", `/product?${filterQuery}`);
 
   const allProductList = productData?.data || [];
+
   const meta = productData?.meta;
 
   const totalPages = meta?.totalPage || 1;
@@ -103,22 +82,8 @@ const Product = () => {
 
           {/* product lists  & right section  */}
           <div className="col-span-3 p-6 px-0  ">
-            <div className="bg-backgroundColor sticky top-24 z-30 pt-8 pb-4 lg:pt-0 lg:pb-0">
-              {/* ===== filter for small screen ====== */}
-              <div className="flex items-center justify-between xl:hidden  ">
-                <FilterTitle
-                  selectedCat={selectedCat}
-                  setSelectedCat={setSelectedCat}
-                  selectedBrand={selectedBrand}
-                  setSelectedBrand={setSelectedBrand}
-                  handleApply={handleApply}
-                />
-                <ProductTitleAndSort onSortChange={handleSortChange} />
-              </div>
-            </div>
-
             <div className="hidden xl:block  ">
-              <ProductTitleAndSort onSortChange={handleSortChange} />
+              <ProductTitleAndSort />
             </div>
 
             <div className="text-text my-6 text-3xl font-normal xl:hidden">
@@ -154,49 +119,8 @@ const Product = () => {
                   ))}
               </div>
             )}
-
-            {/* {isProductLoading ? (
-                <p>I am miniloader</p>
-              ) : allProductList.length === 0 ? (
-                <div className="min-h-screen">NO PRODUCT FOUND</div>
-              ) : (
-                <div className="grid grid-cols-1 gap-x-5 gap-y-10 pt-4 pb-22 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-16 lg:pt-12">
-                  {allProductList.map((product: any, index: number) => (
-                    <div
-                      key={product?._id}
-                      className="group relative h-auto cursor-pointer overflow-hidden"
-                    >
-                      <ProductCard {...product} />
-                    </div>
-                  ))}
-                </div>
-              )} */}
           </div>
         </div>
-
-        {/* ===== pagination ====== */}
-
-        {allProductList?.length > 0 && (
-          <div className="sc-laptop:mb-22 mb-16 flex justify-end">
-            <StaticPagination
-              currentPage={page}
-              totalPages={totalPages}
-              totalItems={totalItems}
-              itemsPerPage={itemsPerPage}
-              onPageChange={setPage}
-            />
-          </div>
-        )}
-        {/* {allProductList?.length > 0 && (
-          <div className="sc-laptop:mb-22 mb-16 flex justify-end">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setPage}
-              // isLoading={isProductLoading}
-            />
-          </div>
-        )} */}
       </div>
     </div>
   );
