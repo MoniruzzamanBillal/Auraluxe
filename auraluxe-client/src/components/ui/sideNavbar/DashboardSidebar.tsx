@@ -5,24 +5,28 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { BsAlignCenter } from "react-icons/bs";
-import { FaProductHunt, FaProjectDiagram } from "react-icons/fa";
+import { FaProductHunt, FaProjectDiagram, FaUserCircle } from "react-icons/fa";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { TbBrand4Chan, TbCategory } from "react-icons/tb";
 
-// import { logout } from "@/services/auth.service";
 import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Sidebar, SidebarBody, SidebarLink } from "../sidebar";
 
-// import navLogo from "@/../public/logo-no-bg.png";
 import headerLogo from "@/../public/dashboardHeaderImg.jpeg";
 import navLogo from "@/../public/logo-no-bg.png";
+import { logout } from "@/services/auth.service";
 
 const links = [
   {
     label: "Dashboard",
     href: "/admin/dashboard",
     icon: <LuLayoutDashboard className="h-5 w-5 shrink-0 text-neutral-200" />,
+  },
+  {
+    label: "Profile",
+    href: "/admin/profile",
+    icon: <FaUserCircle className="h-5 w-5 shrink-0 text-neutral-200" />,
   },
   {
     label: "Home Banner",
@@ -95,12 +99,12 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
   const handleLogout = async () => {
     console.log("logout clicked!!!");
 
-    // try {
-    //   await logout();
-    //   router.push("/login");
-    // } catch (error) {
-    //   console.error("Logout failed:", error);
-    // }
+    try {
+      await logout();
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
   return (
     <div
@@ -166,6 +170,7 @@ export function DashboardSidebar({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
 export const Logo = () => {
   return (
     <Link

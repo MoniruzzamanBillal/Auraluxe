@@ -35,9 +35,6 @@ export async function logout() {
   // Delete the refresh token from cookies
   await refreshDelete();
   await deleteAllCookies();
-
-  // ! dont redirect from here
-  // redirect("/");
 }
 
 export const getNewAccessToken = async () => {

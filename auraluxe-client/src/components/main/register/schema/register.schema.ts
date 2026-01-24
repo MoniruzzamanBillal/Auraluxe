@@ -37,6 +37,8 @@ export const updateProfileSchema = z.object({
   profileImage: imageSchema,
 });
 
+export type UpdateProfileFormData = z.infer<typeof updateProfileSchema>;
+
 export type RegisterFormData = z.infer<typeof registerSchema>;
 
 export type TRegisteredUser = RegisterFormData & { id: string };
