@@ -2,19 +2,16 @@
 import Breadcrumb from "@/components/share/Breadcrumb";
 import CustomPageHeader from "@/components/share/common/CustomPageHeader";
 import Heading from "@/components/share/common/Heading";
-import { useFetchData } from "@/hooks/useApi";
 import ProjectLists from "./ProjectLists";
 
 export default function Projects() {
-  const { data, isLoading } = useFetchData(["project"], "/project");
-
   return (
     <div className="flex min-h-screen flex-col gap-10 overflow-hidden bg-white sm:gap-20">
       {/*======== header ==========*/}
       <CustomPageHeader
         pageTitle={"Projects"}
         description={
-          "Tilottoma.com reserves the right to update or modify these terms at any time"
+          "Auraluxe reserves the right to update or modify these terms at any time"
         }
       />
 
@@ -35,7 +32,7 @@ export default function Projects() {
 
         {/* ======== projects list ======= */}
         <div className="container mb-20 max-w-[1460px] sm:mt-10">
-          <ProjectLists projectData={data?.data} />
+          <ProjectLists />
         </div>
       </div>
     </div>

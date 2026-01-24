@@ -4,7 +4,7 @@ import ControlledInput from "@/components/share/input/ControlledInput";
 import { FileUploadController } from "@/components/share/input/FileUploadController";
 
 import ControlledSelectField from "@/components/share/input/ControlledSelectField";
-import ControlledTextArea from "@/components/share/input/ControlledTextArea";
+import ControlledTextEditor from "@/components/share/input/ControlledTextEditor";
 import SubmitButton from "@/components/share/SubmitButton";
 import { useFormContext } from "react-hook-form";
 import { TProjectForm } from "../schema/project.schema";
@@ -87,12 +87,6 @@ export default function ProjectForm({
       />
       <ControlledInput name="xLink" label="X Link" placeholder="Optional" />
 
-      <ControlledTextArea
-        name="description"
-        label="Description"
-        placeholder="Optional description"
-      />
-
       <ControlledSelectField
         name="projectTypeId"
         label="Project Type"
@@ -106,6 +100,19 @@ export default function ProjectForm({
         label="Material Type"
         options={materialTypeOptions}
         placeholder="Select material type"
+        isRequired
+      />
+
+      {/* <ControlledTextArea
+        name="description"
+        label="Description"
+        placeholder="Optional description"
+      /> */}
+
+      <ControlledTextEditor
+        name="description"
+        label="Description"
+        placeholder="Enter project description"
         isRequired
       />
 

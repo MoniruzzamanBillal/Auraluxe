@@ -11,7 +11,7 @@ export default function ProjectPortfolio() {
       import("@/components/main/project-portfolio-details/PortfolioDetails"),
     {
       loading: () => <Loader />,
-    }
+    },
   );
   return <ProjectPortfolioDetails />;
 }
