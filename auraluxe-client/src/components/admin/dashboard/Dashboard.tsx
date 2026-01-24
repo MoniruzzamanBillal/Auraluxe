@@ -1,99 +1,182 @@
 "use client";
-import { BiCategoryAlt } from "react-icons/bi";
-import { FaHourglassEnd } from "react-icons/fa";
-import { FaKitchenSet } from "react-icons/fa6";
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
-import { TbBrandDatabricks } from "react-icons/tb";
-// import { useGet } from "@/hooks/useGet";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useFetchData } from "@/hooks/useApi";
+import AdminStatCard from "./stat/AdminStatCard";
+import AdminStatCardSkeleton from "./stat/AdminStatCardSkeleton";
+import RevenueChartSkeleton from "./stat/RevenueChartSkeleton";
+
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import CategoryDistributionChartSkeleton from "./stat/CategoryDistributionChartSkeleton";
+
+const COLORS = [
+  "#0088FE",
+  "#00C49F",
+  "#FFBB28",
+  "#FF8042",
+  "#8884d8",
+  "#82ca9d",
+  "#ffc658",
+];
+
+type TAdminStatItem = {
+  title: string;
+  value: number;
+};
+
+type TAdminRevenueData = {
+  month: string;
+  revenue: number;
+  orders: number;
+};
+
+type TAdminCategoryPercentage = {
+  name: string;
+  value: number;
+};
 
 export default function Dashboard() {
-  const getIcon = (name: string) => {
-    switch (name) {
-      case "Brands":
-        return TbBrandDatabricks;
-      case "Category":
-        return BiCategoryAlt;
-      case "Career":
-        return FaHourglassEnd;
-      case "Product":
-        return MdOutlineProductionQuantityLimits;
-      case "Project":
-        return FaKitchenSet;
-      default:
-        return FaKitchenSet;
-    }
-  };
+  const { data: adminStatData, isLoading } = useFetchData(
+    ["admin-stat"],
+    "/order/stats",
+  );
 
-  const getCardColor = (name: string) => {
-    switch (name) {
-      case "Product":
-        return "from-red-700 via-red-500 to-red-600";
-      case "Project":
-        return "from-blue-700 via-blue-500 to-blue-600";
-      case "Brands":
-        return "from-green-700 via-green-500 to-green-600";
-      case "Category":
-        return "from-purple-700 via-purple-500 to-purple-600";
-      case "Career":
-        return "from-yellow-700 via-yellow-500 to-yellow-600";
-      default:
-        return "from-gray-700 via-gray-500 to-gray-600";
-    }
-  };
-
-  // const {
-  //   isLoading,
-  //   data: allDashboardStats,
-  //   refetch,
-  // } = useGet<[]>("/dashboard/summary", ["getAllDashboardStats"]);
+  console.log(adminStatData?.data);
 
   return (
     <div className="p-6">
       {/* Header */}
       <div className="mb-10 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight">
-          <span className="text-brandColor">Tilottoma</span> Dashboard
+          <span className="text-prime200 ">Auraluxe</span> Dashboard
         </h1>
         <p className="mt-2 text-gray-500">
           Quick overview of your inventory stats
         </p>
       </div>
 
-      {/* Dashboard Cards */}
-      {/* {isLoading ? (
-        <AdminLoader />
-      ) : (
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {allDashboardStats?.map((item: any, index: number) => {
-            const IconComponent = getIcon(item.name);
-            const gradient = getCardColor(item.name);
+      {/* ================= Stats Cards ================= */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {isLoading &&
+          Array.from({ length: 3 }).map((_, ind) => (
+            <AdminStatCardSkeleton key={ind} />
+          ))}
 
-            return (
-              <Card
-                key={index + 1}
-                className={`border-0 bg-gradient-to-br ${gradient} shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
-              >
-                <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-base font-semibold text-white">
-                    {item.name}
-                  </CardTitle>
-                  <div className="rounded-full bg-white p-2 shadow-sm">
-                    <IconComponent className="text-brandColor h-5 w-5" />
-                  </div>
-                </CardHeader>
-                <CardContent className="px-5 pb-3">
-                  <div className="text-3xl font-extrabold text-white">
-                    {item.count}
-                  </div>
-                  <p className="mt-1 text-xs text-white">
-                    Total {item.name.toLowerCase()}
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      )} */}
+        {adminStatData?.data?.statsData?.map(
+          (item: { value: number; title: string }, ind: number) => (
+            <AdminStatCard key={ind} data={item} />
+          ),
+        )}
+      </div>
+
+      {/* ================= Revenue Chart ================= */}
+      <div className="border border-gray-300 rounded-md mt-6 ">
+        {isLoading && <RevenueChartSkeleton />}
+
+        {adminStatData?.data?.revenueDatas?.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Revenue & Orders Trend</CardTitle>
+              <CardDescription>
+                Monthly revenue and order volume
+              </CardDescription>
+            </CardHeader>
+
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={adminStatData?.data.revenueDatas}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="revenue" name="Revenue" />
+                  <Bar dataKey="orders" name="Orders" />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+
+      {/* ================= Category Distribution ================= */}
+      <div className="border border-gray-300 rounded-md mt-6">
+        {isLoading && <CategoryDistributionChartSkeleton />}
+
+        {adminStatData?.data?.categoryDataPercentage?.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Category Distribution</CardTitle>
+              <CardDescription>Product categories breakdown</CardDescription>
+            </CardHeader>
+
+            <CardContent>
+              <ResponsiveContainer width="100%" height={250}>
+                <PieChart>
+                  <Pie
+                    data={adminStatData.data.categoryDataPercentage}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={100}
+                    paddingAngle={5}
+                    dataKey="value"
+                  >
+                    {adminStatData.data.categoryDataPercentage.map(
+                      (entry: TAdminCategoryPercentage, index: number) => (
+                        <Cell
+                          key={entry.name}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ),
+                    )}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+
+              <div className="mt-4 space-y-2  ">
+                {adminStatData.data.categoryDataPercentage.map(
+                  (category: TAdminCategoryPercentage, index: number) => (
+                    <div
+                      key={category.name}
+                      className="flex items-center justify-between text-sm"
+                    >
+                      <div className="flex items-center gap-2">
+                        <div
+                          className="h-3 w-3 rounded-full"
+                          style={{
+                            backgroundColor: COLORS[index % COLORS.length],
+                          }}
+                        />
+                        <span>{category.name}</span>
+                      </div>
+                      <span className="font-medium">{category.value}%</span>
+                    </div>
+                  ),
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+
+      {/*  */}
     </div>
   );
 }

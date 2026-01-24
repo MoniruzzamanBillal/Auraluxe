@@ -165,5 +165,101 @@ export class OrderService {
     return orders;
   }
 
+  // ! for getting stats
+
+  async getStats() {
+    /* ================= USERS ================= */
+    const totalUsers = await this.prisma.user.count({
+      where: { isDeleted: false },
+    });
+
+    /* ================= ORDERS ================= */
+    const totalOrders = await this.prisma.order.count({
+      where: { isDeleted: false },
+    });
+
+    const revenueResult = await this.prisma.payment.aggregate({
+      _sum: { amount: true },
+      where: {
+        status: 'COMPLETED',
+        isDeleted: false,
+      },
+    });
+
+    const totalRevenue = revenueResult._sum.amount || 0;
+
+    /* ================= MONTHLY REVENUE ================= */
+    const payments = await this.prisma.payment.findMany({
+      where: {
+        status: 'COMPLETED',
+        isDeleted: false,
+      },
+      select: {
+        amount: true,
+        createdAt: true,
+        orderId: true,
+      },
+    });
+
+    const revenueMap = new Map<string, { revenue: number; orders: number }>();
+
+    payments.forEach((payment) => {
+      const month = payment.createdAt.toLocaleString('en-US', {
+        month: 'short',
+      });
+
+      if (!revenueMap.has(month)) {
+        revenueMap.set(month, { revenue: 0, orders: 0 });
+      }
+
+      const entry = revenueMap.get(month)!;
+      entry.revenue += payment.amount;
+      entry.orders += 1;
+    });
+
+    const revenueDatas = Array.from(revenueMap.entries()).map(
+      ([month, data]) => ({
+        month,
+        revenue: Math.round(data.revenue),
+        orders: data.orders,
+      }),
+    );
+
+    /* ================= CATEGORY DISTRIBUTION ================= */
+    const products = await this.prisma.product.findMany({
+      where: { isDeleted: false },
+      include: {
+        category: true,
+      },
+    });
+
+    const categoryMap = new Map<string, number>();
+
+    products.forEach((product) => {
+      const name = product.category.name;
+      categoryMap.set(name, (categoryMap.get(name) || 0) + 1);
+    });
+
+    const totalProducts = products.length || 1;
+
+    const categoryDataPercentage = Array.from(categoryMap.entries()).map(
+      ([name, count]) => ({
+        name,
+        value: Math.round((count / totalProducts) * 100),
+      }),
+    );
+
+    /* ================= FINAL RESPONSE ================= */
+    return {
+      statsData: [
+        { title: 'Total Users', value: totalUsers },
+        { title: 'Total Orders', value: totalOrders },
+        { title: 'Total Revenue', value: totalRevenue },
+      ],
+      revenueDatas,
+      categoryDataPercentage,
+    };
+  }
+
   //
 }

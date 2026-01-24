@@ -62,5 +62,20 @@ export class OrderController {
     };
   }
 
+  // ! for getting admin stats
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.admin)
+  @Get('/stats')
+  async getStats() {
+    const result = await this.orderService.getStats();
+
+    return {
+      success: true,
+      message: 'Stats retrived successfully!!!',
+      status: HttpStatus.OK,
+      data: result,
+    };
+  }
+
   //
 }

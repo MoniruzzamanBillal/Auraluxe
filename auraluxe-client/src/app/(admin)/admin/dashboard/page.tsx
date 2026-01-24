@@ -3,14 +3,14 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
-  title: "Tilottoma | Dashboard",
+  title: "Auraluxe | Dashboard",
 };
 export default function page() {
   const Dashboard = dynamic(
     () => import("@/components/admin/dashboard/Dashboard"),
     {
       loading: () => <Loader />,
-    }
+    },
   );
   return <Dashboard />;
 }
