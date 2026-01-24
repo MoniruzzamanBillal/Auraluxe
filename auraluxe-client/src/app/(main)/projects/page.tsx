@@ -11,7 +11,7 @@ export default function ProjectsPage() {
     () => import("@/components/main/projects/Projects"),
     {
       loading: () => <Loader />,
-    }
+    },
   );
   return <Projects />;
 }

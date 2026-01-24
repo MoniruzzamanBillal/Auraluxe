@@ -4,7 +4,7 @@ import Link from "next/link";
 
 type Props = {
   name: string;
-  slug: string;
+  id: string;
   location: string;
   image: string;
   className?: string;
@@ -15,23 +15,23 @@ export default function ProjectCard({
   name,
   location,
   image,
-  slug,
+  id,
   className,
   imageDivClass,
 }: Props) {
   return (
     <Link
-      href={`/projects/${slug}`}
+      href={`/projects/${id}`}
       className={cn(
         "group cursor-pointer overflow-hidden rounded-lg shadow-lg md:max-w-[460px] bg-gray-100 ",
-        className
+        className,
       )}
     >
       {/* ====== image ===== */}
       <div
         className={cn(
           "relative h-[30vh] max-h-[464px] w-full transition-all duration-1000 ease-in-out group-hover:scale-105 md:h-[35vh] lg:h-screen",
-          imageDivClass
+          imageDivClass,
         )}
       >
         {/* ===== overlay ======= */}

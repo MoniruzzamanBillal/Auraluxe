@@ -2,12 +2,12 @@
 import Breadcrumb from "@/components/share/Breadcrumb";
 import CustomPageHeader from "@/components/share/common/CustomPageHeader";
 import Heading from "@/components/share/common/Heading";
-import { useSearchParams } from "next/navigation";
+import { useFetchData } from "@/hooks/useApi";
 import ProjectLists from "./ProjectLists";
 
 export default function Projects() {
-  const searchParams = useSearchParams();
-  const projectTypeFromURL = searchParams.get("type") || "";
+  const { data, isLoading } = useFetchData(["project"], "/project");
+
   return (
     <div className="flex min-h-screen flex-col gap-10 overflow-hidden bg-white sm:gap-20">
       {/*======== header ==========*/}
@@ -35,7 +35,7 @@ export default function Projects() {
 
         {/* ======== projects list ======= */}
         <div className="container mb-20 max-w-[1460px] sm:mt-10">
-          <ProjectLists initialProjectType={projectTypeFromURL} />
+          <ProjectLists projectData={data?.data} />
         </div>
       </div>
     </div>

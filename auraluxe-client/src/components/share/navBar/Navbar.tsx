@@ -36,7 +36,7 @@ const navInfo = [
   },
   {
     navName: "Projects",
-    href: "/about",
+    href: "/projects",
   },
   {
     navName: "Connects",
