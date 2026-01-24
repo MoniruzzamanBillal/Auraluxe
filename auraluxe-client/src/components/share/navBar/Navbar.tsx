@@ -62,19 +62,10 @@ import { LuUser } from "react-icons/lu";
 const Navbar = () => {
   const userData = getUserInfo();
 
-  console.log("user data = ", userData);
+  // console.log("user data = ", userData);
 
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathName = usePathname();
-  const [activeProduct, setActiveProduct] = useState<string | null>(null);
-
-  const handleMouseEnter = (productName: string) => {
-    setActiveProduct(productName);
-  };
-
-  const handleMouseLeave = () => {
-    setActiveProduct(null);
-  };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
@@ -149,10 +140,7 @@ const Navbar = () => {
                               {list.navName}
                             </div>
                           </NavigationMenuTrigger>
-                          <NavigationMenuContent
-                            onMouseLeave={handleMouseLeave}
-                            className="absolute !top-6 -left-28 z-[1000] w-[330px] !rounded-none !border-none p-0 !shadow-none"
-                          >
+                          <NavigationMenuContent className="absolute !top-6 -left-28 z-[1000] w-[330px] !rounded-none border-none! p-0 !shadow-none">
                             <div className="bg-bgSoftGray mt-9 flex h-full w-[330px] shadow-2xl">
                               <div className="relative flex w-full flex-col gap-4 py-5">
                                 {list.children?.map((product, secIndex) => (
