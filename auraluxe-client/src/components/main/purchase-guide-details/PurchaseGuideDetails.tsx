@@ -9,7 +9,7 @@ export default function PurchaseGuideDetails() {
       <CustomPageHeader
         pageTitle={"Purchase Guide"}
         description={
-          "Tilottoma.com reserves the right to update or modify these terms at any time"
+          "Auraluxe reserves the right to update or modify these terms at any time"
         }
         image="/purchase_guide/purchase_header.jpg"
       />
