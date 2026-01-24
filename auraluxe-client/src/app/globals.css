@@ -147,6 +147,16 @@ body {
   font-family: Montserrat, sans-serif;
 }
 
+.textEditor ul,
+.textEditor li,
+.textEditor h1,
+.textEditor ol,
+.textEditor p {
+  all: revert !important;
+  margin: 0 !important;
+  padding: revert !important;
+}
+
 .swiper {
   width: 100%;
   height: 100%;

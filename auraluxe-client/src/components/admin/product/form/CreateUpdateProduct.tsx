@@ -187,7 +187,7 @@ export default function CreateUpdateProduct({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white max-w-5xl">
+      <DialogContent className="bg-white  ">
         <DialogHeader>
           <DialogTitle>
             {initialValues ? "Update Product" : "Add Product"}

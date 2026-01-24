@@ -72,6 +72,16 @@ export default function ProductDetails({ id }: { id: string }) {
           </div>
         </section>
 
+        {/* {/* description - start  */}
+        <div className="mt-6 py-6 ">
+          <div
+            className=" textEditor "
+            dangerouslySetInnerHTML={{
+              __html: productDetailData?.data?.productDes,
+            }}
+          ></div>
+        </div>
+
         {/*======== related product section  ========*/}
         <section className="mt-22">
           <CustomProductCarousel

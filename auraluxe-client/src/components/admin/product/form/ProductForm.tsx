@@ -4,6 +4,7 @@ import ControlledInput from "@/components/share/input/ControlledInput";
 
 import ControlledSelectField from "@/components/share/input/ControlledSelectField";
 import ControlledTextArea from "@/components/share/input/ControlledTextArea";
+import ControlledTextEditor from "@/components/share/input/ControlledTextEditor";
 import { FileUploadController } from "@/components/share/input/FileUploadController";
 import SubmitButton from "@/components/share/SubmitButton";
 import { useFormContext } from "react-hook-form";
@@ -80,12 +81,21 @@ export default function ProductForm({
         placeholder="Enter specifications"
         isRequired
       />
-      <ControlledTextArea
+
+      {/* <ControlledTextArea
+        name="productDes"
+        label="Product Description"
+        placeholder="Enter product description"
+        isRequired
+      /> */}
+
+      <ControlledTextEditor
         name="productDes"
         label="Product Description"
         placeholder="Enter product description"
         isRequired
       />
+
       <ControlledInput
         name="shippingDelivery"
         label="Shipping/Delivery"
