@@ -82,6 +82,12 @@ export default function ProductForm({
         isRequired
       />
 
+      <ControlledInput
+        name="shippingDelivery"
+        label="Shipping/Delivery"
+        placeholder="Optional"
+      />
+
       {/* <ControlledTextArea
         name="productDes"
         label="Product Description"
@@ -94,12 +100,6 @@ export default function ProductForm({
         label="Product Description"
         placeholder="Enter product description"
         isRequired
-      />
-
-      <ControlledInput
-        name="shippingDelivery"
-        label="Shipping/Delivery"
-        placeholder="Optional"
       />
 
       <FileUploadController

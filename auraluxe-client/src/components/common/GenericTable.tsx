@@ -98,7 +98,7 @@ export default function GenericTable<TData>({
           onChange={(e) =>
             table.getColumn(filterKey as string)?.setFilterValue(e.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm border border-blue-300  "
         />
       )}
 
@@ -130,7 +130,7 @@ export default function GenericTable<TData>({
                   {columns.map((_, colIndex) => (
                     <TableCell key={`skeleton-cell-${rowIndex}-${colIndex}`}>
                       <div className="space-y-2 py-2 ">
-                        <Skeleton className="h-5  " />
+                        <Skeleton className="h-5 bg-slate-300  " />
                       </div>
                     </TableCell>
                   ))}

@@ -14,7 +14,7 @@ export const HomeOurProductSchema = z.object({
     .string()
     .trim()
     .min(1, "Description is required")
-    .max(200, "Description cannot exceed 200 characters"),
+    .max(300, "Description cannot exceed 300 characters"),
 });
 
 export type THomeOurProductFormData = z.infer<typeof HomeOurProductSchema>;

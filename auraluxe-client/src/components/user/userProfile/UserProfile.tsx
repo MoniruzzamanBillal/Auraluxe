@@ -17,7 +17,7 @@ export default function UserProfile() {
     },
   );
 
-  console.log("userProfileData = ", userProfileData?.data);
+  // console.log("userProfileData = ", userProfileData?.data);
 
   let content = null;
 

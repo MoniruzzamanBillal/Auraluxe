@@ -116,7 +116,7 @@ export default function RegisterForm() {
                 type="submit"
                 className=" bg-brandColor   cursor-pointer rounded-md px-6 py-2.5 text-base font-medium text-white disabled:cursor-not-allowed"
               >
-                {isPending ? "Loading..." : "Sign in"}
+                {isPending ? "Loading..." : "Sign up"}
               </Button>
             </div>
           </form>

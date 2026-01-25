@@ -18,6 +18,8 @@ export default function UserProfileDetail({
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log(userProfile?.profileImage);
+
   return (
     <div className="UserProfileContainer w-full bg-white rounded-lg shadow-lg overflow-hidden">
       {/* Cover Photo Section */}
@@ -38,7 +40,7 @@ export default function UserProfileDetail({
             <Avatar className="w-full h-full">
               <AvatarImage
                 src={
-                  userProfile?.profileImg ||
+                  userProfile?.profileImage ||
                   "/placeholder.svg?height=120&width=120&query=user profile"
                 }
                 alt={userProfile?.name}

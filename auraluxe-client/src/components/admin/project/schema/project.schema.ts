@@ -14,7 +14,7 @@ export const projectSchema = z.object({
   instagramLink: z.string().trim().optional(),
   linkedinLink: z.string().trim().optional(),
   xLink: z.string().trim().optional(),
-  description: z.string().trim().max(1000).optional(),
+  description: z.string().trim().optional(),
   projectTypeId: z.string().min(1, "Project type is required"),
   materialId: z.string().min(1, "Material type is required"),
 });
